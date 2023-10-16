@@ -28,7 +28,7 @@ export default {
             overlay: new Tile({
                 source: new XYZ({
                     url:
-                        "http://t0.tianditu.com/DataServer?T=cva_w&x={x}&y={y}&l={z}&tk=49d0c416ba07ffa62dbf768c6f733645",
+                        "http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/{z}/{y}/{x}",
                     wrapX: false,
                 }),
                 extent:[68.17665, 7.96553, 97.40256, 35.49401]
@@ -43,7 +43,7 @@ export default {
                     new Tile({
                         source: new XYZ({
                             url:
-                                "http://t0.tianditu.com/DataServer?T=vec_w&x={x}&y={y}&l={z}&tk=49d0c416ba07ffa62dbf768c6f733645",
+                                "http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/{z}/{y}/{x}",
                             wrapX: false,
                         }),
                         extent:[-1730.41544,-55.36174,970.40256,690.10625]

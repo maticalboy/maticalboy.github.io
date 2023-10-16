@@ -53,14 +53,7 @@ export default {
                     new Tile({
                         source: new XYZ({
                             url:
-                                "http://t0.tianditu.com/DataServer?T=vec_w&x={x}&y={y}&l={z}&tk=49d0c416ba07ffa62dbf768c6f733645",
-                            wrapX: false,
-                        }),
-                    }),
-                    new Tile({
-                        source: new XYZ({
-                            url:
-                                "http://t0.tianditu.com/DataServer?T=cva_w&x={x}&y={y}&l={z}&tk=49d0c416ba07ffa62dbf768c6f733645",
+                                "http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/{z}/{y}/{x}",
                             wrapX: false,
                         }),
                     }),
