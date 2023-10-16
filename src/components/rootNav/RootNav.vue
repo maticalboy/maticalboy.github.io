@@ -1,7 +1,7 @@
 <template>
     <nav id="nav">
         <router-link class="link" to="/" active-class="active" exact tag="div">
-            第一个地图 map
+            创建地图 map
         </router-link>
         <router-link
             v-for="(nav, index) in navList"
