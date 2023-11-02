@@ -206,6 +206,12 @@ const routes = [
 		name: 'TrackPlayback',
 		component: () => import('../views/trackPlayback/TrackPlayback')
 
+    },
+    {
+        path: '/waterMark',
+		name: 'WaterMark',
+		component: () => import('../views/waterMark/WaterMark')
+
     }
 ];
 

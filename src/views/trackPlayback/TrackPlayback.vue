@@ -138,10 +138,11 @@ export default {
 			});
 			//深复制车的位置，不在原数组改变，方便重新播放
 			this.carPoints = [...this.dotsData];
-
+            // 当前的小车
 			this.carPoint = new Feature({
 				geometry: new Point(fromLonLat(this.carPoints[0]))
 			});
+            // 设置小车样式
 			this.carPoint.setStyle(
 				new Style({
 					image: new Icon({

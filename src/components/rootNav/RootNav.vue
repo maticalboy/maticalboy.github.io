@@ -178,6 +178,11 @@ export default {
                     title: "轨迹回放 trackPlayback",
                     to: "/trackPlayback",
 
+                },
+                {
+                    title: "添加水印 waterMark",
+                    to: "/waterMark",
+
                 }
             ],
         };
