@@ -2,7 +2,7 @@
  * @Author: “chenjinwei” “507725948@qq.com”
  * @Date: 2023-11-02 09:17:29
  * @LastEditors: “chenjinwei” “507725948@qq.com”
- * @LastEditTime: 2023-11-02 09:28:51
+ * @LastEditTime: 2023-11-02 10:48:33
  * @FilePath: \openlayers-demo\src\views\waterMark\WaterMark.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -19,7 +19,7 @@ import { Map, View } from 'ol';
 import Tile from 'ol/layer/Tile';
 import XYZ from 'ol/source/XYZ.js';
 import { fromLonLat, transformExtent } from 'ol/proj';
-
+import BingMaps from 'ol/source/BingMaps.js';
 export default {
 	name: 'Zoom',
 	data() {
@@ -35,15 +35,9 @@ export default {
 				layers: [
 					// 图层
 					new Tile({
-						source: new XYZ({
-							url: 'http://t0.tianditu.com/DataServer?T=vec_w&x={x}&y={y}&l={z}&tk=49d0c416ba07ffa62dbf768c6f733645',
-							wrapX: false
-						})
-					}),
-					new Tile({
-						source: new XYZ({
-							url: 'http://t0.tianditu.com/DataServer?T=cva_w&x={x}&y={y}&l={z}&tk=49d0c416ba07ffa62dbf768c6f733645',
-							wrapX: false
+						source: new BingMaps({
+							key: 'AoYx5jv0GDB8RRzyHOoANbDG428XghidtzpyGlJg1aeJPV-DhqoWvLjoIyTwkreR', // 输入您的密钥
+							imagerySet: 'AerialWithLabels' // ['Aerial','AerialWithLabels','Road','collinsBart','ordnanceSurvey']
 						})
 					}),
 					this.getWaterMarkLayer()
