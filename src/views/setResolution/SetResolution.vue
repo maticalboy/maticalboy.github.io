@@ -1,13 +1,5 @@
 <!--
  * @Author: “chenjinwei” “507725948@qq.com”
- * @Date: 2023-10-16 10:18:27
- * @LastEditors: “chenjinwei” “507725948@qq.com”
- * @LastEditTime: 2023-10-16 10:25:18
- * @FilePath: \maticalboy.github.io\src\views\setResolution\SetResolution.vue
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
-<!--
- * @Author: “chenjinwei” “507725948@qq.com”
  * @Date: 2023-10-13 08:44:52
  * @LastEditors: “chenjinwei” “507725948@qq.com”
  * @LastEditTime: 2023-10-13 14:40:33
@@ -51,7 +43,14 @@ export default {
                     new Tile({
                         source: new XYZ({
                             url:
-                                "http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/{z}/{y}/{x}",
+                                "http://t0.tianditu.com/DataServer?T=vec_w&x={x}&y={y}&l={z}&tk=49d0c416ba07ffa62dbf768c6f733645",
+                            wrapX: false,
+                        }),
+                    }),
+                    new Tile({
+                        source: new XYZ({
+                            url:
+                                "http://t0.tianditu.com/DataServer?T=cva_w&x={x}&y={y}&l={z}&tk=49d0c416ba07ffa62dbf768c6f733645",
                             wrapX: false,
                         }),
                         // minResolution: 20,

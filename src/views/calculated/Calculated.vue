@@ -72,10 +72,17 @@ export default {
 					new TileLayer({
 						title: '天地图矢量图层',
 						source: new XYZ({
-							url: "http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/{z}/{y}/{x}",
+							url: 'http://t0.tianditu.com/DataServer?T=vec_w&x={x}&y={y}&l={z}&tk=49d0c416ba07ffa62dbf768c6f733645',
 							wrapX: false
 						})
 					}),
+					new TileLayer({
+						title: '天地图矢量注记图层',
+						source: new XYZ({
+							url: 'http://t0.tianditu.com/DataServer?T=cva_w&x={x}&y={y}&l={z}&tk=49d0c416ba07ffa62dbf768c6f733645',
+							wrapX: false
+						})
+					})
 				]
 			});
 		},

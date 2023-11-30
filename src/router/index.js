@@ -10,6 +10,11 @@ const routes = [
 		name: 'FirstMap',
 		component: FirstMap
 	},
+    {
+		path: '/table',
+		name: 'Table',
+		component: () => import('../views/Table/Table')
+	},
 	{
 		path: '/popup',
 		name: 'Popup',
@@ -212,6 +217,18 @@ const routes = [
 		name: 'WaterMark',
 		component: () => import('../views/waterMark/WaterMark')
 
+    },
+    // 大文件上传
+    {
+        path:'/bigFile',
+        name:'BigFile',
+        component: () => import('../views/BigFile/BigFile')
+    },
+    // 进度条
+    {
+        path:'/process',
+        name:'Process',
+        component: () => import('../views/Process/Process')
     }
 ];
 

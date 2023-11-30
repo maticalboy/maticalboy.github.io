@@ -34,7 +34,7 @@ export default {
             // 维也纳文字标签
             let vienna = new Overlay({
                 position: pos,
-                positioning: "top-center",
+                positioning: "top-center", 
                 element: this.$refs.viennaTxt,
             });
 
@@ -54,7 +54,14 @@ export default {
                     new Tile({
                         source: new XYZ({
                             url:
-                                "http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/{z}/{y}/{x}",
+                                "http://t0.tianditu.com/DataServer?T=vec_w&x={x}&y={y}&l={z}&tk=49d0c416ba07ffa62dbf768c6f733645",
+                            wrapX: false,
+                        }),
+                    }),
+                    new Tile({
+                        source: new XYZ({
+                            url:
+                                "http://t0.tianditu.com/DataServer?T=cva_w&x={x}&y={y}&l={z}&tk=49d0c416ba07ffa62dbf768c6f733645",
                             wrapX: false,
                         }),
                     }),

@@ -256,12 +256,11 @@ export default {
 				this.tip = this.idleTip;
 				// 获取绘制图形 坐标信息
 				this.sktch = e.feature;
-				let arr = this.sktch.getGeometry().getCoordinates();
-                console.log(arr,'arr')
-				// for (let i = 0; i < arr.length - 1; i++) {
-				// 	let line = new LineString([arr[i], arr[i + 1]]);
-				// 	console.log('坐标详情', arr[i], arr[i + 1], this.formatLength(line), this.formatArea(this.sktch.getGeometry()));
-				// }
+				let arr = this.sktch.getGeometry().getCoordinates()[0];
+				for (let i = 0; i < arr.length - 1; i++) {
+					let line = new LineString([arr[i], arr[i + 1]]);
+					console.log('坐标详情', arr[i], arr[i + 1], this.formatLength(line), this.formatArea(this.sktch.getGeometry()));
+				}
 			});
 			this.modify.setActive(true);
 			this.map.addInteraction(this.draw);
