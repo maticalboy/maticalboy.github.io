@@ -2,7 +2,7 @@
  * @Author: “chenjinwei” “507725948@qq.com”
  * @Date: 2023-11-30 10:30:33
  * @LastEditors: “chenjinwei” “507725948@qq.com”
- * @LastEditTime: 2023-11-30 16:00:09
+ * @LastEditTime: 2023-11-30 16:50:39
  * @FilePath: \openlayers-demo\src\views\Process\Process.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -69,7 +69,6 @@ export default {
 		this.circle = document.querySelector('#progress-circle circle');
 		const radius = this.circle.r.baseVal.value;
 		this.circumference = radius * 2 * Math.PI;
-
 		this.interval = setInterval(() => {
 			this.progress1 = (this.progress1 + 10) % 101;
 			//设置初始进度
@@ -77,6 +76,12 @@ export default {
 			this.modifyProg(this.progress1);
 		}, 1000);
 		this.randomLeaf();
+	},
+	beforeDestroy() {
+		clearInterval(this.interval);
+		for (let i = 0; i < this.leafIntervalArr.length; i++) {
+			clearInterval(this.leafIntervalArr[i]);
+		}
 	},
 	methods: {
 		upDateProcess(prog) {
@@ -125,7 +130,7 @@ export default {
 					clearInterval(this.leafIntervalArr[i]);
 				}
 				clearInterval(this.interval);
-                this.text = 'success!' + this.progress1 + '%';
+				this.text = 'success!' + this.progress1 + '%';
 			}
 		}
 	}
