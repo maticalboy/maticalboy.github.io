@@ -1,25 +1,39 @@
 <template>
-	<nav id="nav">
-		<router-link class="link" to="/" active-class="active" exact tag="div">
-			第一个地图 map
-		</router-link>
-		<router-link
-			v-for="(nav, index) in navList"
-			:key="index"
-			class="link"
-			:to="nav.to"
-			active-class="active"
-			tag="div">
-			{{ nav.title }}
-		</router-link>
-	</nav>
+	<div>
+		<nav id="nav">
+			<router-link class="link" to="/" active-class="active" exact tag="div">
+				第一个地图 map
+			</router-link>
+			<router-link
+				v-for="(nav, index) in navList"
+				:key="index"
+				class="link"
+				:to="nav.to"
+				active-class="active"
+				tag="div">
+				{{ nav.title }}
+			</router-link>
+		</nav>
+		<live2d
+			:style="style"
+			:model="['Potion-Maker/Pio', 'school-2017-costume-yellow']"
+			:direction="direction"
+			:size="size"></live2d>
+	</div>
 </template>
 
 <script>
+import live2d from './Live2D.vue';
 export default {
 	name: 'rootNav',
+	components: {
+		live2d
+	},
 	data() {
 		return {
+            style: 'position: fixed; bottom: 0; right: 0;',
+            size: 350,
+            direction: 'right',
 			navList: [
 				{
 					title: '弹窗 popup',
