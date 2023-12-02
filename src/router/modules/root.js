@@ -13,7 +13,7 @@ export default [
     },
     {
         path: '/home',
-        component: () => import(/* webpackChunkName: 'home' */'@/views/home.vue'),
+        component: () => import(/* webpackChunkName: 'Home' */ '@/views/Home.vue'),
         meta: {
             title: '主页'
         }
@@ -21,5 +21,5 @@ export default [
     {
         path: '/login',
         component: () => import(/* webpackChunkName: 'root' */ '@/views/login.vue')
-    }
+    },
 ]
