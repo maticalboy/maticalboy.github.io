@@ -1,246 +1,75 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import FirstMap from '../views/firstMap/FirstMap';
+/*
+ * @Author: “chenjinwei” “507725948@qq.com”
+ * @Date: 2023-12-02 08:39:37
+ * @LastEditors: “chenjinwei” “507725948@qq.com”
+ * @LastEditTime: 2023-12-02 08:58:04
+ * @FilePath: \vue2-template\src\router\index.js
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import store from '@/store/index'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css' // progress bar style
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
-const routes = [
-	{
-		path: '/',
-		name: 'FirstMap',
-		component: FirstMap
-	},
-    {
-        path: '/home',
-		name: 'Home',
-		component: () => import('../views/Home')
-    },
-    {
-		path: '/table',
-		name: 'Table',
-		component: () => import('../views/Table/Table')
-	},
-	{
-		path: '/popup',
-		name: 'Popup',
-		component: () => import('../views/popup/Popup')
-	},
-	{
-		path: '/mapMarker',
-		name: 'MapMarker',
-		component: () => import('../views/mapMarker/MapMarker')
-	},
-	{
-		path: '/zoom',
-		name: 'Zoom',
-		component: () => import('../views/zoom/Zoom.vue')
-	},
-	{
-		path: '/tabindex',
-		name: 'TabIndex',
-		component: () => import('../views/tabIndex/TabIndex')
-	},
-	{
-		path: '/changeTarget',
-		name: 'ChangeTarget',
-		component: () => import('../views/changeTarget/ChangeTarget')
-	},
-	{
-		path: '/synchronization',
-		name: 'Synchronization',
-		component: () => import('../views/synchronization/Synchronization')
-	},
-	{
-		path: '/preloadMap',
-		name: 'PreloadMap',
-		component: () => import('../views/preloadMap/PreloadMap')
-	},
-	{
-		path: '/vectorJSON',
-		name: 'VectorJSON',
-		component: () => import('../views/vectorJSON/VectorJSON')
-	},
-	{
-		path: '/vectorHigh',
-		name: 'VectorHigh',
-		component: () => import('../views/vectorHigh/vectorHigh')
-	},
-	{
-		path: '/rotationMap',
-		name: 'RotationMap',
-		component: () => import('../views/rotationMap/RotationMap')
-	},
-	{
-		path: '/viewAnimate',
-		name: 'ViewAnimate',
-		component: () => import('../views/viewAnimate/ViewAnimate')
-	},
-	{
-		path: '/graticule',
-		name: 'Graticule',
-		component: () => import('../views/graticule/Graticule')
-	},
-	{
-		path: '/heatmap',
-		name: 'Heatmap',
-		component: () => import('../views/heatmap/heatmap')
-	},
-	{
-		path: '/scaleLine',
-		name: 'ScaleLine',
-		component: () => import('../views/scaleLine/ScaleLine')
-	},
-	{
-		path: '/fullScreen',
-		name: 'FullScreen',
-		component: () => import('../views/fullScreen/FullScreen')
-	},
-	{
-		path: '/zoomToExtent',
-		name: 'ZoomToExtent',
-		component: () => import('../views/zoomToExtent/ZoomToExtent')
-	},
-	{
-		path: '/overviewMap',
-		name: 'OverviewMap',
-		component: () => import('../views/overviewMap/OverviewMap')
-	},
-	{
-		path: '/mousePosition',
-		name: 'MousePosition',
-		component: () => import('../views/mousePosition/MousePosition')
-	},
-	{
-		path: '/zoomSlider',
-		name: 'ZoomSlider',
-		component: () => import('../views/zoomSlider/ZoomSlider')
-	},
-	{
-		path: '/layerSet',
-		name: 'LayerSet',
-		component: () => import('../views/layerSet/LayerSet')
-	},
-	{
-		path: '/setZIndex',
-		name: 'SetZIndex',
-		component: () => import('../views/setZIndex/SetZIndex')
-	},
-	{
-		path: '/setResolution',
-		name: 'SetResolution',
-		component: () => import('../views/setResolution/SetResolution')
-	},
-	{
-		path: '/setExtent',
-		name: 'SetExtent',
-		component: () => import('../views/setExtent/SetExtent')
-	},
-	{
-		path: '/coverageModal',
-		name: 'CoverageModal',
-		component: () => import('../views/coverageModal/coverageModal')
-	},
-	{
-		path: '/setSource',
-		name: 'SetSource',
-		component: () => import('../views/setSource/SetSource')
-	},
-	{
-		path: '/simplenessLabel',
-		name: 'SimplenessLabel',
-		component: () => import('../views/simplenessLabel/SimplenessLabel')
-	},
-	{
-		path: '/brightMark',
-		name: 'BrightMark',
-		component: () => import('../views/brightMark/BrightMark')
-	},
-	{
-		path: '/polymerization',
-		name: 'Polymerization',
-		component: () => import('../views/polymerization/Polymerization')
-	},
-	{
-		path: '/basicDraw',
-		name: 'BasicDraw',
-		component: () => import('../views/basicDraw/basicDraw')
-	},
-	{
-		path: '/drawGraph',
-		name: 'DrawGraph',
-		component: () => import('../views/drawGraph/drawGraph')
-	},
-	{
-		path: '/freeDrawing',
-		name: 'FreeDrawing',
-		component: () => import('../views/freeDrawing/freeDrawing')
-	},
-	{
-		path: '/arrowLine',
-		name: 'ArrowLine',
-		component: () => import('../views/arrowLine/arrowLine')
-	},
-	{
-		path: '/snapGraph',
-		name: 'SnapGraph',
-		component: () => import('../views/snapGraph/snapGraph')
-	},
-	{
-		path: '/mouseRotationMap',
-		name: 'MouseRotationMap',
-		component: () => import('../views/mouseRotationMap/mouseRotationMap')
-	},
-	{
-		path: '/calculatedLength',
-		name: 'CalculatedLength',
-		component: () => import('../views/calculatedLength/calculatedLength')
-	},
-	{
-		path: '/calculatedArea',
-		name: 'CalculatedArea',
-		component: () => import('../views/calculatedArea/calculatedArea')
-	},
-	{
-		path: '/drawGraphPro',
-		name: 'DrawGraphPro',
-		component: () => import('../views/drawGraphPro/drawGraphPro')
-	},
-    {
-        path: '/calculated',
-		name: 'Calculated',
-		component: () => import('../views/calculated/Calculated')
+/**
+ * 因为路由有优先级的概念，先定义的会先匹配，而自动注册是依据文件名的排序来遍历的
+ * 所以下面这种情况，如果访问 /news/edit ，会指向到 info.vue 页面上
+ * a.js   /news/:id   info.vue
+ * b.js   /news/edit   edit.vue
+ * 为避免这种情况发生，同一模块下的路由必须放在一个路由配置文件里
+ * 按上面的例子，news 模块的路由，应该放到一个类似于 news.js 的文件里
+ * 至于模块里的路由优先级，可以把 /news/edit 放在 /news/:id 前面，或者把 /news/:id 改成 /news/info/:id 均可
+ */
+const routes = []
+const require_module = require.context('./modules', false, /.js$/)
+require_module.keys().forEach(file_name => {
+    routes.push(require_module(file_name).default)
+})
 
-    },
-    {
-        path: '/trackPlayback',
-		name: 'TrackPlayback',
-		component: () => import('../views/trackPlayback/TrackPlayback')
-
-    },
-    {
-        path: '/waterMark',
-		name: 'WaterMark',
-		component: () => import('../views/waterMark/WaterMark')
-
-    },
-    // 大文件上传
-    {
-        path:'/bigFile',
-        name:'BigFile',
-        component: () => import('../views/BigFile/BigFile')
-    },
-    // 进度条
-    {
-        path:'/process',
-        name:'Process',
-        component: () => import('../views/Process/Process')
+routes.push({
+    path: '*',
+    component: () => import('@/views/404'),
+    meta: {
+        title: '找不到页面'
     }
-];
+})
 
 const router = new VueRouter({
-	mode: 'hash',
-	base: process.env.BASE_URL,
-	routes
-});
+    routes: routes.flat()
+})
 
-export default router;
+// 解决路由在 push/replace 了相同地址报错的问题
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+    return originalPush.call(this, location).catch(err => err)
+}
+const originalReplace = VueRouter.prototype.replace
+VueRouter.prototype.replace = function replace(location) {
+    return originalReplace.call(this, location).catch(err => err)
+}
+
+router.beforeEach((to, from, next) => {
+    NProgress.start()
+    if (to.meta.requireLogin) {
+        if (store.getters['token/isLogin']) {
+            next()
+            NProgress.done()
+        } else {
+            next({
+                path: '/login',
+                query: {
+                    redirect: to.fullPath
+                }
+            })
+            NProgress.done()
+        }
+    } else {
+        next()
+        NProgress.done()
+    }
+})
+
+export default router
