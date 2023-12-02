@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkvue2_template"]=self["webpackChunkvue2_template"]||[]).push([[2677],{42677:function(e,u,t){t.r(u),t.d(u,{default:function(){return c}});var n=function(){var e=this,u=e._self._c;return u("div",[e._v(" 我真的尽力了，但还是找不到页面 ")])},l=[],r=t(43736),s={},a=(0,r.Z)(s,n,l,!1,null,null,null),c=a.exports}}]);
+//# sourceMappingURL=2677.00a17e2d.js.map
