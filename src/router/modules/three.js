@@ -131,9 +131,15 @@ export default {
             }
         },
         {
-            path:'parametricGeometry',
+            path: 'parametricGeometry',
             component: () => {
                 return import(/* webpackChunkName: 'ParametricGeometry' */ '@/views/three/ParametricGeometry.vue')
+            }
+        },
+        {
+            path: 'raycaster',
+            component: () => {
+                return import(/* webpackChunkName: 'Raycaster' */ '@/views/three/Raycaster.vue')
             }
         }
     ]
