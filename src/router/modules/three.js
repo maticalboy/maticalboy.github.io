@@ -147,6 +147,12 @@ export default {
             component: () => {
                 return import(/* webpackChunkName: 'CanvasPoint' */ '@/views/three/CanvasPoint.vue')
             }
+        },
+        {
+            path:'rain',
+            component: () => {
+                return import(/* webpackChunkName: 'Rain' */ '@/views/three/Rain.vue')
+            }
         }
     ]
 }

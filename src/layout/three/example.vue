@@ -33,6 +33,7 @@
             <RouterLink to="/three/parametricGeometry">公式几何体</RouterLink>
             <RouterLink to="/three/raycaster">点击事件</RouterLink>
             <RouterLink to="/three/canvasPoint">糖豆人</RouterLink>
+            <RouterLink to="/three/rain">下雨</RouterLink>
             <!-- <RouterLink :to="{ name: 'exampleParams', params: { test: '123' } }"
                 >路由params</RouterLink
             >
