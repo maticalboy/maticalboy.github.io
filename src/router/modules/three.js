@@ -141,6 +141,12 @@ export default {
             component: () => {
                 return import(/* webpackChunkName: 'Raycaster' */ '@/views/three/Raycaster.vue')
             }
+        },
+        {
+            path:'canvasPoint',
+            component: () => {
+                return import(/* webpackChunkName: 'CanvasPoint' */ '@/views/three/CanvasPoint.vue')
+            }
         }
     ]
 }
