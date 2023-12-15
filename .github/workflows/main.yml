@@ -12,17 +12,17 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node_version: [14.x]
+                node_version: [16.x]
 
         # 步骤
         steps:
             # 官方action，将代码拉取到虚拟机
             - name: Checkout  ️
               uses: actions/checkout@v3
-            - name: Use Node.js 14.x
+            - name: Use Node.js 16.x
               uses: actions/setup-node@v1
               with:
-                  node-version: 14.x
+                  node-version: 16.x
             - name: Install and Build # 安装依赖、打包，如果提前已打包好无需这一步
               run: |
                   npm install
