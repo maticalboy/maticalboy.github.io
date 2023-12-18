@@ -153,6 +153,12 @@ export default {
             component: () => {
                 return import(/* webpackChunkName: 'Rain' */ '@/views/three/Rain.vue')
             }
+        },
+        {
+            path:'demo',
+            component: () => {
+                return import(/* webpackChunkName: 'Demo' */ '@/views/three/Demo.vue')
+            }
         }
     ]
 }
