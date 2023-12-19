@@ -171,6 +171,12 @@ export default {
             component: () => {
                 return import(/* webpackChunkName: 'People' */ '@/views/three/People.vue')
             }
+        },
+        {
+            path:'vr',
+            component: () => {
+                return import(/* webpackChunkName: 'VR' */ '@/views/three/VR.vue')
+            }
         }
     ]
 }
