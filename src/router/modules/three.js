@@ -165,6 +165,12 @@ export default {
             component: () => {
                 return import(/* webpackChunkName: 'House' */ '@/views/three/House.vue')
             }
+        },
+        {
+            path:'people',
+            component: () => {
+                return import(/* webpackChunkName: 'People' */ '@/views/three/People.vue')
+            }
         }
     ]
 }
