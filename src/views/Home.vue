@@ -67,6 +67,11 @@
                 ></i>
             </div>
         </div>
+        <Dialog @confirm="confirm" :dialogInfo="dialogInfo">
+            <template v-slot:content>
+                <Form :formInfo="formInfo"></Form>
+            </template>
+        </Dialog>
         <!-- 首页内容 -->
         <div class="page-container-wrap">
             <div class="page-container">
@@ -86,6 +91,8 @@
 export default {
     components: {
         Printer: () => import("@/components/common/printer"),
+        Dialog: () => import("@/components/element/Dialog"),
+        Form: () => import("@/components/element/Form"),
         // MyAside: () => import("@/components/common/aside"),
     },
     data() {
@@ -103,6 +110,89 @@ export default {
                 { name: "openlayers", url: "/openlayers" },
                 { name: "vue2", url: "/vue2" },
             ],
+            formInfo: [
+                [
+                    {
+                        label: "审批人",
+                        prop: "user",
+                        type: "input",
+                        value: "",
+                        placeholder: "审批人",
+                    },
+                    {
+                        label: "活动区域",
+                        prop: "region",
+                        type: "select",
+                        options: [
+                            { label: "区域一", value: "shanghai" },
+                            { label: "区域二", value: "北京" },
+                        ],
+                        value: "",
+                        placeholder: "活动区域",
+                    },
+                ],
+                [
+                    {
+                        label: "活动时间",
+                        prop: "date",
+                        type: "date",
+                        value: "",
+                        placeholder: "活动时间",
+                    },
+                    {
+                        label: "活动开关",
+                        prop: "switch",
+                        type: "switch",
+                        value: "",
+                    },
+                ],
+                [
+                    {
+                        label: "活动性质",
+                        prop: "type",
+                        type: "checkbox",
+                        checks: [
+                            { label: "美食/餐厅线上活动", value: "1" },
+                            { label: "地推活动", value: "2" },
+                            { label: "线下主题活动", value: "3" },
+                            { label: "单纯品牌曝光", value: "4" },
+                        ],
+                        value: [],
+                    },
+                ],
+                [
+                    {
+                        label: "特殊资源",
+                        prop: "resource",
+                        type: "radio",
+                        radios: [
+                            { label: "线上品牌商赞助", value: "1" },
+                            { label: "线下场地免费", value: "2" },
+                        ],
+                        value: "",
+                    },
+                ],
+                [
+                    {
+                        label: "活动形式",
+                        prop: "desc",
+                        type: "textarea",
+                        value: "",
+                        placeholder: "活动形式",
+                    },
+                ],
+            ],
+            dialogInfo: {
+                dialogVisible: true,
+                dialogTitle: "提示",
+                dialogWidth: "446px",
+                dialogModal: false,
+                dialogCloseOnClickModal: false,
+                dialogCloseOnPressEscape: false,
+                dialogShowClose: true,
+                dialogTop: "15vh",
+                dialogAppendToBody: true,
+            },
         };
     },
     mounted() {
@@ -171,6 +261,11 @@ export default {
         },
         travel(item) {
             this.$router.push(item.url);
+        },
+        confirm() {
+            this.formInfo=this.formInfo.flat()
+            console.log(this.formInfo);
+            this.formInfo = this.$options.data().formInfo;
         },
     },
 };
