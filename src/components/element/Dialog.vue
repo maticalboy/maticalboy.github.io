@@ -2,14 +2,14 @@
  * @Author: “chenjinwei” “507725948@qq.com”
  * @Date: 2023-12-29 08:53:41
  * @LastEditors: “chenjinwei” “507725948@qq.com”
- * @LastEditTime: 2023-12-29 09:39:45
+ * @LastEditTime: 2024-01-04 09:11:03
  * @FilePath: \maticalboy.github.io\src\components\element\Dialog.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 <template>
     <div>
         <el-dialog
-            v-dialog-drag
+            v-dialog-drag="dialogInfo.dialogDragable"
             :title="dialogInfo.dialogTitle"
             :visible.sync="dialogInfo.dialogVisible"
             :width="dialogInfo.dialogWidth"
@@ -19,14 +19,14 @@
             :append-to-body="dialogInfo.dialogAppendToBody"
         >
             <div slot="title" class="el-dialog__title">
-                <span class="title-name">name</span>
+                <slot name="title"></slot>
             </div>
-            <slot name="content"></slot>
+            <div :style="{ height: dialogInfo.dialogBodyHeight }">
+                <slot name="content"></slot>
+            </div>
+
             <span slot="footer" class="dialog-footer">
-                <el-button @click="dialogVisible = false">取 消</el-button>
-                <el-button type="primary" @click="confirm"
-                    >确 定</el-button
-                >
+                <slot name="footer"></slot>
             </span>
         </el-dialog>
     </div>
@@ -55,11 +55,11 @@ export default {
     data() {
         return {};
     },
-    methods:{
-        confirm(){
-            this.$emit('confirm')
-        }
-    }
+    methods: {
+        confirm() {
+            this.$emit("confirm");
+        },
+    },
 };
 </script>
 <style lang="less" scoped>
@@ -173,9 +173,9 @@ export default {
  * @description: 弹窗内容
  * @return {*}
  */
- ::v-deep .el-dialog__body {
+::v-deep .el-dialog__body {
     min-height: 120px;
     max-height: 500px;
     padding: 10px;
- }
+}
 </style>

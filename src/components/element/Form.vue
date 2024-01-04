@@ -16,6 +16,9 @@
                     <el-select
                         v-else-if="item.type == 'select'"
                         v-model="item.value"
+                        filterable
+                        allow-create
+                        default-first-option
                         :placeholder="item.placeholder"
                     >
                         <el-option

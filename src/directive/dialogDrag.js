@@ -8,6 +8,9 @@ var flag = false
  */
 Vue.directive('dialogDrag', {
   bind (el, binding, vnode, oldVnode) {
+    if(!binding.value){
+        return
+    }
     const dialogHeaderEl = el.querySelector('.el-dialog__header')
     const dragDom = el.querySelector('.el-dialog')
     // dialogHeaderEl.style.cursor = 'move';
