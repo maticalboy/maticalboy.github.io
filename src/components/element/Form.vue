@@ -9,23 +9,45 @@
                 >
                     <el-input
                         v-if="item.type == 'input'"
-                        class="input-style"
+                        :class="[
+                            'input-style',
+                            { 'has-prefix': item.prefixIcon ? true : false },
+                        ]"
+                        :clearable="item.clearable"
                         v-model="item.value"
+                        :disabled="item.disabled"
+                        :show-password="item.showPassword"
+                        :suffix-icon="item.suffixIcon"
+                        :prefix-icon="item.prefixIcon"
                         :placeholder="item.placeholder"
                     ></el-input>
                     <el-select
                         v-else-if="item.type == 'select'"
                         v-model="item.value"
-                        filterable
+                        :class="[
+                            {
+                                'select-multiple': item.multiple,
+                            },
+                        ]"
+                        :disabled="item.disabled"
+                        :multiple="item.multiple"
+                        :collapse-tags="item.multiple"
+                        :clearable="item.clearable"
+                        :filterable="item.filterable"
                         allow-create
                         default-first-option
+                        :popper-append-to-body="false"
                         :placeholder="item.placeholder"
+                        @change="
+                            multipleHandle($event, item.position, item.prop)
+                        "
                     >
                         <el-option
                             v-for="option in item.options"
                             :key="option.label"
                             :label="option.label"
                             :value="option.value"
+                            :disabled="option.disabled"
                         ></el-option>
                     </el-select>
                     <el-date-picker
@@ -37,19 +59,31 @@
                         <input type="checkbox" v-model="item.value" />
                         <span class="slider"></span>
                     </label>
-
-                    <el-checkbox-group
-                        v-else-if="item.type == 'checkbox'"
-                        v-model="item.value"
-                        :placeholder="item.placeholder"
-                    >
+                    <template v-else-if="item.type == 'checkbox'">
                         <el-checkbox
-                            v-for="check in item.checks"
-                            :key="check.label"
-                            :label="check.label"
-                            :disabled="check.disabled"
-                        ></el-checkbox>
-                    </el-checkbox-group>
+                            :indeterminate="item.isIndeterminate"
+                            v-model="item.checkAll"
+                            @change="
+                                handleCheckAllChange($event, item.position)
+                            "
+                            >全选</el-checkbox
+                        >
+                        <el-checkbox-group
+                            v-model="item.value"
+                            :placeholder="item.placeholder"
+                            @change="
+                                handleCheckedCitiesChange($event, item.position)
+                            "
+                        >
+                            <el-checkbox
+                                v-for="check in item.checks"
+                                :key="check.label"
+                                :label="check.label"
+                                :disabled="check.disabled"
+                            ></el-checkbox>
+                        </el-checkbox-group>
+                    </template>
+
                     <el-radio-group
                         v-else-if="item.type == 'radio'"
                         v-model="item.value"
@@ -73,8 +107,10 @@
     </div>
 </template>
 <script>
+import multipleMixin from "@/mixin/select_mixin";
 export default {
     name: "Form",
+    mixins: [multipleMixin],
     props: {
         formInfo: {
             type: Array,
@@ -157,6 +193,53 @@ export default {
     data() {
         return {};
     },
+    methods: {
+        /**
+         * @description: el-select全选功能
+         * @param {*} node node是当前已选中的option列表
+         * @param {*} type type是当前下拉框的属性名字, 自己随便取,这里我和data中的数据保持一致,为了后续动态创建参数保存上一次的已选择的option列表
+         * @return {*}
+         */
+        multipleHandle(node, type, name) {
+            this.multipleHandleMixin(node, type, name);
+        },
+        /**
+         * @description: 全选控制
+         * @param {*} val
+         * @return {*}
+         */
+        handleCheckAllChange(val, position) {
+            console.log(
+                val,
+                position,
+                this.formInfo[position[0]][position[1]].checks.map((item) => {
+                    return item.value;
+                })
+            );
+            this.formInfo[position[0]][position[1]].value = val
+                ? this.formInfo[position[0]][position[1]].checks.map((item) => {
+                      return item.label;
+                  })
+                : [];
+            this.formInfo[position[0]][position[1]].isIndeterminate = false;
+        },
+        /**
+         * @description: 单选控制
+         * @param {*} value
+         * @return {*}
+         */
+        handleCheckedCitiesChange(value, position) {
+            let checkedCount = value.length;
+            console.log(value);
+            this.formInfo[position[0]][position[1]].checkAll =
+                checkedCount ===
+                this.formInfo[position[0]][position[1]].checks.length;
+            this.formInfo[position[0]][position[1]].isIndeterminate =
+                checkedCount > 0 &&
+                checkedCount <
+                    this.formInfo[position[0]][position[1]].checks.length;
+        },
+    },
 };
 </script>
 <style lang="less" scoped>
@@ -184,7 +267,7 @@ export default {
         white-space: nowrap;
     }
     .el-form-item__content {
-        margin-left: 5px !important;
+        margin-left: 5px;
         line-height: 1;
     }
 }
@@ -194,15 +277,16 @@ export default {
  */
 ::v-deep .el-input {
     width: 120px;
-    height: 24px;
+    height: auto;
     color: #555;
     border: none;
     box-sizing: border-box;
     .el-input__inner {
         width: 120px;
-        height: 24px;
+        height: auto;
+        line-height: 1;
         box-sizing: border-box;
-        padding: 7px 12px 7px 8px;
+        padding: 5px 12px 5px 8px;
         border: 1px solid #d4d4d4;
         border-radius: 2px;
         font-size: 12px;
@@ -215,6 +299,17 @@ export default {
         }
         &:hover {
             box-shadow: 0 0 0 0.15vw rgba(135, 207, 235, 0.186);
+        }
+    }
+    .el-input__suffix,
+    .el-input__prefix {
+        .el-input__icon {
+            line-height: 30px;
+        }
+    }
+    &.has-prefix {
+        .el-input__inner {
+            padding-left: 26px;
         }
     }
 }
@@ -252,8 +347,39 @@ export default {
  * @return {*}
  */
 ::v-deep .el-select {
+    height: auto;
     .el-input__icon {
-        line-height: 24px;
+        line-height: 30px;
+    }
+    .el-select-dropdown {
+        position: absolute !important;
+        left: 0 !important;
+        min-width: 120px;
+        .el-select-dropdown__item {
+            font-size: 12px;
+            width: 120px;
+            height: 24px;
+            box-sizing: border-box;
+            padding: 0 0 0 15px;
+            line-height: 24px;
+            &.selected {
+                color: #3370ff;
+                font-weight: 700;
+            }
+        }
+    }
+    .el-select__tags {
+        max-width: 78px;
+        height: auto;
+        top: 0;
+        transform: translateY(0);
+        span {
+            display: flex;
+        }
+        .el-select__input {
+            min-width: 60px;
+            margin-left: 8px;
+        }
     }
 }
 /**
@@ -267,7 +393,7 @@ export default {
     .el-input__prefix,
     .el-input__suffix {
         .el-input__icon {
-            line-height: 25px;
+            line-height: 30px;
         }
     }
 }
@@ -329,7 +455,8 @@ export default {
         margin-right: 10px;
     }
 }
-::v-deep .el-checkbox__input.is-checked {
+::v-deep .el-checkbox__input.is-checked,
+::v-deep .el-checkbox__input.is-indeterminate {
     .el-checkbox__inner {
         border-radius: 2px;
         background-color: #3370ff;

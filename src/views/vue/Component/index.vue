@@ -15,6 +15,7 @@
     </div>
 </template>
 <script>
+
 export default {
     name: "MyComponent",
     components: {
@@ -54,17 +55,27 @@ export default {
                         prop: "user",
                         type: "input",
                         value: "",
+                        prefixIcon: "el-icon-search",
                         placeholder: "审批人",
+                        disabled: false,
+                        clearable: true,
+                        showPassword: true,
                     },
                     {
                         label: "活动区域",
                         prop: "region",
                         type: "select",
                         options: [
+                            { label: '全选', value: '全选' },
                             { label: "区域一", value: "shanghai" },
-                            { label: "区域二", value: "北京" },
+                            { label: "区域二", value: "北京", disabled: true },
                         ],
-                        value: "",
+                        value: [],
+                        disabled: false,
+                        clearable: true,
+                        filterable: true,
+                        multiple: true,
+                        position:[0,1],
                         placeholder: "活动区域",
                     },
                 ],
@@ -94,6 +105,9 @@ export default {
                             { label: "线下主题活动", value: "3" },
                             { label: "单纯品牌曝光", value: "4" },
                         ],
+                        isIndeterminate:false,
+                        checkAll:false,
+                        position:[2,0],
                         value: [],
                     },
                 ],
@@ -120,10 +134,6 @@ export default {
                 ],
             ],
         };
-    },
-    mounted() {
-        // 假设这是你想要执行的代码
-        console.log("MyComponent mounted");
     },
     methods: {
         confirm() {
