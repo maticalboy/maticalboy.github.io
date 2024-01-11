@@ -13,7 +13,6 @@ const toLogin = () => {
 }
 
 const api = axios.create({
-    baseURL: process.env.VUE_APP_API_ROOT,
     timeout: 10000,
     responseType: 'json'
 })
@@ -55,6 +54,7 @@ api.interceptors.request.use(
 
 api.interceptors.response.use(
     response => {
+        console.log(response)
         /**
          * 全局拦截请求发送后返回的数据，如果数据有报错则在这做全局的错误提示
          * 假设返回数据格式为：{ status: 1, error: '', data: '' }
@@ -69,8 +69,11 @@ api.interceptors.response.use(
             } else {
                 // 这里做错误提示，如果使用了 element ui 则可以使用 Message 进行提示
                 // Message.error(options)
-                return Promise.reject(response.data)
+                return Promise.reject(response.content)
             }
+        } else if (response.data.origin) {
+            // 请求成功并且没有报错
+            return Promise.resolve(response.data)
         } else {
             toLogin()
         }

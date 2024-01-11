@@ -16,7 +16,16 @@ module.exports = defineConfig({
         // 基本不同配置，了解即可
         host: 'localhost',
         // 是否自启动
-        open: true
+        open: true,
+        proxy:{
+            '/api':{
+                target:'https://v1.jinrishici.com',
+                changeOrigin:true,
+                pathRewrite:{
+                    '^/api':''
+                }
+            }
+        }
     },
     publicPath: './'
 })

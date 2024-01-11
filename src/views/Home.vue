@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="containor">
         <!-- el过渡动画 -->
         <transition name="el-fade-in-linear">
             <!-- 导航栏 -->
@@ -83,11 +83,10 @@
 </template>
 
 <script>
+import HomeQuest from "@/request/api/home.js";
 export default {
     components: {
         Printer: () => import("@/components/common/printer"),
-
-        // MyAside: () => import("@/components/common/aside"),
     },
     data() {
         return {
@@ -104,15 +103,24 @@ export default {
                 { name: "openlayers", url: "/openlayers" },
                 { name: "vue2", url: "/vue2" },
             ],
-
-
         };
     },
     mounted() {
         this.initGrid();
         this.bgLoad();
+        // 初始化文字内容
+        this.initPrintInfo();
+        // 滚动隐藏头部导航拦
+        window.addEventListener("scroll", () => {
+            let header = document.getElementsByClassName("toolbar-content")[0];
+            header.classList.toggle("sticky", window.scrollY > 60);
+        });
     },
     methods: {
+        async initPrintInfo() {
+            let info = await HomeQuest.getLover();
+            this.printerInfo = info.content;
+        },
         // 定义网格样式
         getCellStyle(rowIndex, colIndex) {
             return {
@@ -145,10 +153,11 @@ export default {
                 "http://pic.616pic.com/bg_w1180/00/03/57/voXsmWh7He.jpg!/fw/1120";
             const image = new Image();
             image.src = urlMatch;
+            let centerBg = this.$refs.centerBg;
             image.onload = () => {
                 setTimeout(() => {
                     this.opicty = +!this.opicty;
-                    this.$refs.centerBg.style.setProperty("--o", this.opicty);
+                    centerBg.style.setProperty("--o", this.opicty);
                 }, 800);
             };
         },
@@ -184,6 +193,15 @@ export default {
     margin: 0;
     padding: 0;
 }
+
+
+
+// 整体
+.containor{
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
 // 头部导航
 .toolbar-content {
     display: flex;
@@ -191,14 +209,17 @@ export default {
     align-items: center;
     width: 100%;
     height: 60px;
+    box-sizing: border-box;
     color: white;
-    /* 固定位置，不随滚动条滚动 */
-    position: fixed;
     z-index: 100;
-    transition: all 0.3s ease-in-out;
-    background: rgba(0, 0, 0, 0.5);
+    transition: all 0.5s ease-in-out;
+     position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
     box-shadow: 0 1px 3px 0 rgba(0, 34, 77, 0.05);
     padding: 0 20px;
+    overflow: hidden;
     .page-title {
         display: flex;
         flex-direction: row;
@@ -213,14 +234,26 @@ export default {
         }
     }
 }
-// 背景也
+.sticky {
+    /* 粘性布局位置，不随滚动条滚动 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+// 主页内容
+.page-container-wrap {
+    position: relative;
+    z-index: 1;
+    overflow-x: hidden;
+}
+// 主页开屏
 .centerBg {
     --o: 1;
     --img: url("http://pic.616pic.com/bg_w1180/00/03/57/voXsmWh7He.jpg!/fw/1120");
-
     background: var(--img) center center/cover;
     height: 100vh;
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -324,7 +357,6 @@ export default {
         }
     }
 }
-
 // 中间的文字
 .signature-wall {
     /* 向下排列 */
@@ -492,9 +524,5 @@ export default {
         color: var(--themeBackground);
         box-shadow: 0 0 5px var(--themeBackground);
     }
-}
-// 主页
-.page-container-wrap {
-    position: relative;
 }
 </style>
