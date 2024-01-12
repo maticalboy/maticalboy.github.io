@@ -8,7 +8,7 @@ export default {
         {
             path: 'test',
             component: () =>
-                import(/* webpackChunkName: 'Test' */ '@/views/example/Test.vue')
+                import(/* webpackChunkName: 'Test' */ '@/components/example/Test.vue')
         },
     ]
 }

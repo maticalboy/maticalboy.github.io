@@ -1,0 +1,98 @@
+/* 通用css */
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: SmileySans;
+    src: url(../../fonts/SmileySans.otf);
+    font-display: swap;
+}
+
+body {
+    color: var(--fontColor);
+    font-family: var(--globalFont), serif;
+    word-break: break-word;
+    overflow-x: hidden;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgba(73, 177, 245, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #49b1f5;
+    background-image: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.4) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0.4) 75%,
+        transparent 75%,
+        transparent
+    );
+    border-radius: 1em;
+}
+
+/* 阴影 */
+.shadow-box-mini {
+    box-shadow: 1px 1px 3px var(--mask);
+}
+
+.shadow-box {
+    box-shadow: 0 1px 20px -6px var(--borderColor);
+    transition: all 0.3s ease;
+}
+
+.shadow-box:hover {
+    box-shadow: 0 5px 10px 5px var(--borderHoverColor);
+}
+
+/* 模块通用样式 */
+.contain {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .leftContent {
+        width: 200px;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #000;
+        padding: 20px 0;
+        box-sizing: border-box;
+        overflow: auto;
+    }
+
+    .rightContent {
+        display: flex;
+        flex: 1;
+    }
+    a {
+        display: flex;
+        width: 100%;
+        min-height: 50px;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        font-size: 14px;
+        color: #fff;
+        cursor: pointer;
+
+        &.router-link-active {
+            font-weight: bold;
+            font-size: 18px;
+            background: #fff;
+            color: #000;
+        }
+    }
+}

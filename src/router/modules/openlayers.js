@@ -1,216 +1,255 @@
-import ExampleLayout from '@/layout/openlayers/example'
-
 export default {
     path: '/openlayers',
     redirect: '/openlayers/firstMap',
-    component: ExampleLayout,
+    component: () => import('@/layout/openlayers/example'),
     children: [
         {
             path: 'firstMap',
             name: 'FirstMap',
-            component: () => import('@/views/openlayers/firstMap/FirstMap')
+            title: "地图",
+            component: () => import('@/components/openlayers/firstMap/FirstMap')
         },
         {
             path: 'popup',
             name: 'Popup',
-            component: () => import('@/views/openlayers/popup/Popup')
+            title: "弹窗",
+            component: () => import('@/components/openlayers/popup/Popup')
         },
         {
             path: 'mapMarker',
             name: 'MapMarker',
-            component: () => import('@/views/openlayers/mapMarker/MapMarker')
+            title: "标记",
+            component: () => import('@/components/openlayers/mapMarker/MapMarker')
         },
         {
             path: 'zoom',
             name: 'Zoom',
-            component: () => import('@/views/openlayers/zoom/Zoom.vue')
+            title: "地图缩放级别",
+            component: () => import('@/components/openlayers/zoom/Zoom.vue')
         },
         {
             path: 'tabindex',
             name: 'TabIndex',
-            component: () => import('@/views/openlayers/tabIndex/TabIndex')
+            title: "单击激活地图",
+            component: () => import('@/components/openlayers/tabIndex/TabIndex')
         },
         {
             path: 'changeTarget',
             name: 'ChangeTarget',
-            component: () => import('@/views/openlayers/changeTarget/ChangeTarget')
+            title: "切换地图容器",
+            component: () => import('@/components/openlayers/changeTarget/ChangeTarget')
         },
         {
             path: 'synchronization',
             name: 'Synchronization',
-            component: () => import('@/views/openlayers/synchronization/Synchronization')
+            title: "同步两个地图",
+            component: () => import('@/components/openlayers/synchronization/Synchronization')
         },
         {
             path: 'preloadMap',
             name: 'PreloadMap',
-            component: () => import('@/views/openlayers/preloadMap/PreloadMap')
+            title: "预加载",
+            component: () => import('@/components/openlayers/preloadMap/PreloadMap')
         },
         {
             path: 'vectorJSON',
             name: 'VectorJSON',
-            component: () => import('@/views/openlayers/vectorJSON/VectorJSON')
+            title: "矢量图",
+            component: () => import('@/components/openlayers/vectorJSON/VectorJSON')
         },
         {
             path: 'vectorHigh',
             name: 'VectorHigh',
-            component: () => import('@/views/openlayers/vectorHigh/vectorHigh')
+            title: "矢量图",
+            component: () => import('@/components/openlayers/vectorHigh/vectorHigh')
         },
         {
             path: 'rotationMap',
             name: 'RotationMap',
-            component: () => import('@/views/openlayers/rotationMap/RotationMap')
+            title: "旋转",
+            component: () => import('@/components/openlayers/rotationMap/RotationMap')
         },
         {
             path: 'viewAnimate',
             name: 'ViewAnimate',
-            component: () => import('@/views/openlayers/viewAnimate/ViewAnimate')
+            title: "动画",
+            component: () => import('@/components/openlayers/viewAnimate/ViewAnimate')
         },
         {
             path: 'graticule',
             name: 'Graticule',
-            component: () => import('@/views/openlayers/graticule/Graticule')
+            title: "网格",
+            component: () => import('@/components/openlayers/graticule/Graticule')
         },
         {
             path: 'heatmap',
             name: 'Heatmap',
-            component: () => import('@/views/openlayers/heatmap/heatmap')
+            title: "热力图",
+            component: () => import('@/components/openlayers/heatmap/heatmap')
         },
         {
             path: 'scaleLine',
             name: 'ScaleLine',
-            component: () => import('@/views/openlayers/scaleLine/ScaleLine')
+            title: "比例尺控件",
+            component: () => import('@/components/openlayers/scaleLine/ScaleLine')
         },
         {
             path: 'fullScreen',
             name: 'FullScreen',
-            component: () => import('@/views/openlayers/fullScreen/FullScreen')
+            title: "全屏控件",
+            component: () => import('@/components/openlayers/fullScreen/FullScreen')
         },
         {
             path: 'zoomToExtent',
             name: 'ZoomToExtent',
-            component: () => import('@/views/openlayers/zoomToExtent/ZoomToExtent')
+            title: "导览控件",
+            component: () => import('@/components/openlayers/zoomToExtent/ZoomToExtent')
         },
         {
             path: 'overviewMap',
             name: 'OverviewMap',
-            component: () => import('@/views/openlayers/overviewMap/OverviewMap')
+            title: "总览控件",
+            component: () => import('@/components/openlayers/overviewMap/OverviewMap')
         },
         {
             path: 'mousePosition',
             name: 'MousePosition',
-            component: () => import('@/views/openlayers/mousePosition/MousePosition')
+            title: "鼠标位置控件",
+            component: () => import('@/components/openlayers/mousePosition/MousePosition')
         },
         {
             path: 'zoomSlider',
             name: 'ZoomSlider',
-            component: () => import('@/views/openlayers/zoomSlider/ZoomSlider')
+            title: "缩放滑块控件",
+            component: () => import('@/components/openlayers/zoomSlider/ZoomSlider')
         },
         {
             path: 'layerSet',
             name: 'LayerSet',
-            component: () => import('@/views/openlayers/layerSet/LayerSet')
+            title: "图层组",
+            component: () => import('@/components/openlayers/layerSet/LayerSet')
         },
         {
             path: 'setZIndex',
             name: 'SetZIndex',
-            component: () => import('@/views/openlayers/setZIndex/SetZIndex')
+            title: "控制图层层叠关系",
+            component: () => import('@/components/openlayers/setZIndex/SetZIndex')
         },
         {
             path: 'setResolution',
             name: 'SetResolution',
-            component: () => import('@/views/openlayers/setResolution/SetResolution')
+            title: "限制分辨率",
+            component: () => import('@/components/openlayers/setResolution/SetResolution')
         },
         {
             path: 'setExtent',
             name: 'SetExtent',
-            component: () => import('@/views/openlayers/setExtent/SetExtent')
+            title: "按限制范围加载图层",
+            component: () => import('@/components/openlayers/setExtent/SetExtent')
         },
         {
             path: 'coverageModal',
             name: 'CoverageModal',
-            component: () => import('@/views/openlayers/coverageModal/coverageModal')
+            title: "图层遮罩效果",
+            component: () => import('@/components/openlayers/coverageModal/coverageModal')
         },
         {
             path: 'setSource',
             name: 'SetSource',
-            component: () => import('@/views/openlayers/setSource/SetSource')
+            title: "设置图层的源",
+            component: () => import('@/components/openlayers/setSource/SetSource')
         },
         {
             path: 'simplenessLabel',
             name: 'SimplenessLabel',
-            component: () => import('@/views/openlayers/simplenessLabel/SimplenessLabel')
+            title: "简单的标记",
+            component: () => import('@/components/openlayers/simplenessLabel/SimplenessLabel')
         },
         {
             path: 'brightMark',
             name: 'BrightMark',
-            component: () => import('@/views/openlayers/brightMark/BrightMark')
+            title: "定义标记颜色",
+            component: () => import('@/components/openlayers/brightMark/BrightMark')
         },
         {
             path: 'polymerization',
             name: 'Polymerization',
-            component: () => import('@/views/openlayers/polymerization/Polymerization')
+            title: "聚合数据",
+            component: () => import('@/components/openlayers/polymerization/Polymerization')
         },
         {
             path: 'basicDraw',
             name: 'BasicDraw',
-            component: () => import('@/views/openlayers/basicDraw/basicDraw')
+            title: "绘制点、线、面",
+            component: () => import('@/components/openlayers/basicDraw/basicDraw')
         },
         {
             path: 'drawGraph',
             name: 'DrawGraph',
-            component: () => import('@/views/openlayers/drawGraph/drawGraph')
+            title: "绘制图形",
+            component: () => import('@/components/openlayers/drawGraph/drawGraph')
         },
         {
             path: 'freeDrawing',
             name: 'FreeDrawing',
-            component: () => import('@/views/openlayers/freeDrawing/freeDrawing')
+            title: "自由绘制图形",
+            component: () => import('@/components/openlayers/freeDrawing/freeDrawing')
         },
         {
             path: 'arrowLine',
             name: 'ArrowLine',
-            component: () => import('@/views/openlayers/arrowLine/arrowLine')
+            title: "带箭头的线段 ",
+            component: () => import('@/components/openlayers/arrowLine/arrowLine')
         },
         {
             path: 'snapGraph',
             name: 'SnapGraph',
-            component: () => import('@/views/openlayers/snapGraph/snapGraph')
+            title: "修改已绘制的图形",
+            component: () => import('@/components/openlayers/snapGraph/snapGraph')
         },
         {
             path: 'mouseRotationMap',
             name: 'MouseRotationMap',
-            component: () => import('@/views/openlayers/mouseRotationMap/mouseRotationMap')
+            title: "鼠标拖拽旋转/缩放",
+            component: () => import('@/components/openlayers/mouseRotationMap/mouseRotationMap')
         },
         {
             path: 'calculatedLength',
             name: 'CalculatedLength',
-            component: () => import('@/views/openlayers/calculatedLength/calculatedLength')
+            title: "计算长度",
+            component: () => import('@/components/openlayers/calculatedLength/calculatedLength')
         },
         {
             path: 'calculatedArea',
             name: 'CalculatedArea',
-            component: () => import('@/views/openlayers/calculatedArea/calculatedArea')
+            title: "计算面积",
+            component: () => import('@/components/openlayers/calculatedArea/calculatedArea')
         },
         {
             path: 'drawGraphPro',
             name: 'DrawGraphPro',
-            component: () => import('@/views/openlayers/drawGraphPro/drawGraphPro')
+            title: "绘制图形Element",
+            component: () => import('@/components/openlayers/drawGraphPro/drawGraphPro')
         },
         {
             path: 'calculated',
             name: 'Calculated',
-            component: () => import('@/views/openlayers/calculated/Calculated')
+            title: "绘制长度和面基",
+            component: () => import('@/components/openlayers/calculated/Calculated')
 
         },
         {
             path: 'trackPlayback',
             name: 'TrackPlayback',
-            component: () => import('@/views/openlayers/trackPlayback/TrackPlayback')
+            title: "轨迹回放",
+            component: () => import('@/components/openlayers/trackPlayback/TrackPlayback')
 
         },
         {
             path: 'waterMark',
             name: 'WaterMark',
-            component: () => import('@/views/openlayers/waterMark/WaterMark')
+            title: "添加水印",
+            component: () => import('@/components/openlayers/waterMark/WaterMark')
 
         },
     ]

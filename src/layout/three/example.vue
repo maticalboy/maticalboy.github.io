@@ -2,7 +2,7 @@
  * @Author: “chenjinwei” “507725948@qq.com”
  * @Date: 2023-10-26 14:09:02
  * @LastEditors: “chenjinwei” “507725948@qq.com”
- * @LastEditTime: 2023-12-19 16:09:00
+ * @LastEditTime: 2024-01-12 14:20:58
  * @FilePath: \vue2-template\vue2-template\src\layout\example.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -57,56 +57,17 @@
     </div>
 </template>
 <script>
-import live2d from '@/layout/live2D/Live2D.vue';
+import live2d from "@/layout/live2D/Live2D.vue";
 export default {
     components: {
-		live2d
-	},
+        live2d,
+    },
     data() {
         return {
             style: "position: fixed; bottom: 0; right: 0;",
             size: 350,
             direction: "right",
-        }
+        };
     },
-}
+};
 </script>
-<style lang="scss" scoped>
-.contain {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    .leftContent {
-        width: 200px;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-color: #000;
-        padding: 20px 0;
-        box-sizing: border-box;
-        overflow: auto;
-    }
-    .rightContent {
-        display: flex;
-        flex: 1;
-    }
-}
-a {
-    display: flex;
-    width: 100%;
-    min-height: 50px;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    font-size: 14px;
-    color: #fff;
-    cursor: pointer;
-    &.router-link-active {
-        font-weight: bold;
-        font-size: 18px;
-        background: #fff;
-        color: #000;
-    }
-}
-</style>

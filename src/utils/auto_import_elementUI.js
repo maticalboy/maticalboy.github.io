@@ -9,10 +9,10 @@ import {
 	DropdownItem,
 	Menu,
 	Submenu,
-	MenuItem, 
+	MenuItem,
 	MenuItemGroup,
 	Input,
-	InputNumber,  
+	InputNumber,
 	Radio,
 	RadioGroup,
 	RadioButton,
@@ -69,7 +69,7 @@ import {
 	TimelineItem,
 	Link,
 	Divider,
-	// Image,
+	Image,
 	Calendar,
 	// Backtop,
 	// PageHeader,
@@ -78,7 +78,8 @@ import {
 	MessageBox,
 	Message,
 	Notification,
-	Scrollbar
+	Scrollbar,
+    Avatar,
 } from 'element-ui';
 
 
@@ -151,12 +152,13 @@ Vue.use(Timeline);
 Vue.use(TimelineItem);
 Vue.use(Link);
 Vue.use(Divider);
-// Vue.use(Image);
+Vue.use(Image);
 Vue.use(Calendar);
 // Vue.use(Backtop);
 // Vue.use(PageHeader);
 Vue.use(CascaderPanel);
 Vue.use(Scrollbar);
+Vue.use(Avatar)
 
 
 const { directive: loadingDirective, service: loadingService } = Loading

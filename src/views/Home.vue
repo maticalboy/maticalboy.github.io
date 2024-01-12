@@ -70,9 +70,10 @@
         <!-- 首页内容 -->
         <div class="page-container-wrap">
             <div class="page-container">
-                <div v-for="i in 40" :key="i">
-                    {{ "我还没想好写什么" }}
+                <div class="aside">
+                    <Aside></Aside>
                 </div>
+                <div></div>
             </div>
         </div>
         <!-- 页脚 -->
@@ -87,6 +88,7 @@ import HomeQuest from "@/request/api/home.js";
 export default {
     components: {
         Printer: () => import("@/components/common/printer"),
+        Aside: () => import("@/components/Home/Aside"),
     },
     data() {
         return {
@@ -103,6 +105,8 @@ export default {
                 { name: "openlayers", url: "/openlayers" },
                 { name: "vue2", url: "/vue2" },
             ],
+            // 滚轮上一次滚动的距离
+            lastScrollTop: 0,
         };
     },
     mounted() {
@@ -111,12 +115,37 @@ export default {
         // 初始化文字内容
         this.initPrintInfo();
         // 滚动隐藏头部导航拦
-        window.addEventListener("scroll", () => {
-            let header = document.getElementsByClassName("toolbar-content")[0];
-            header.classList.toggle("sticky", window.scrollY > 60);
-        });
+        this.addEventListener();
     },
     methods: {
+        addEventListener() {
+            window.addEventListener("wheel", (event) => {
+                let header =
+                    document.getElementsByClassName("toolbar-content")[0];
+                const scrollTop =
+                    window.pageYOffset || document.documentElement.scrollTop;
+                const scrollDirection =
+                    scrollTop > this.lastScrollTop ? "down" : "up";
+                const scrollDistance = Math.abs(scrollTop - this.lastScrollTop);
+
+                console.log(
+                    `滚动方向：${scrollDirection}，滚动距离：${scrollDistance}px`
+                );
+
+                this.lastScrollTop = scrollTop;
+                if (scrollDirection == "down" && scrollDistance > 60) {
+                    console.log("向下滚动");
+                    header.classList.add("sticky");
+                } else if (scrollDirection == "up" && scrollDistance > 60) {
+                    console.log("向上滚动");
+                    header.classList.remove("sticky");
+                }
+            });
+        },
+        /**
+         * @description: 请求中间文字
+         * @return {*}
+         */
         async initPrintInfo() {
             let info = await HomeQuest.getLover();
             this.printerInfo = info.content;
@@ -174,10 +203,12 @@ export default {
         },
         navigation(selector) {
             let pageId = document.querySelector(selector);
+            let header = document.getElementsByClassName("toolbar-content")[0];
             window.scrollTo({
                 top: pageId.offsetTop,
                 behavior: "smooth",
             });
+            header.classList.add("sticky");
             // 禁止滚动
             // document.body.style.overflow = "hidden";
         },
@@ -194,10 +225,8 @@ export default {
     padding: 0;
 }
 
-
-
 // 整体
-.containor{
+.containor {
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
@@ -213,7 +242,7 @@ export default {
     color: white;
     z-index: 100;
     transition: all 0.5s ease-in-out;
-     position: fixed;
+    position: fixed;
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.5);
@@ -244,9 +273,23 @@ export default {
 }
 // 主页内容
 .page-container-wrap {
+    width: 100%;
+    height: 100vh;
     position: relative;
     z-index: 1;
-    overflow-x: hidden;
+    overflow: hidden;
+    padding: 25px 200px 0;
+    .page-container {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        .aside {
+            width: 300px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    }
 }
 // 主页开屏
 .centerBg {

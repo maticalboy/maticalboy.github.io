@@ -17,19 +17,19 @@ export default {
         {
             path: 'bigFile',
             name: 'BigFile',
-            component: () => import('@/views/vue/BigFile/BigFile')
+            component: () => import('@/components/vue/BigFile/BigFile')
         },
         // 进度条
         {
             path: 'process',
             name: 'Process',
-            component: () => import('@/views/vue/Process/Process')
+            component: () => import('@/components/vue/Process/Process')
         },
         // 封装的组件
         {
             path: 'component',
             name: 'Component',
-            component: () => import('@/views/vue/Component/index')
+            component: () => import('@/components/vue/Component/index')
         }
     ]
 }
