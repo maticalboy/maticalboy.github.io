@@ -8,23 +8,29 @@
                 :size="120"
                 :src="webInfo.avatar"
             ></el-avatar>
-            <div class="web-name">{{ 6666 }}</div>
+            <div class="web-name">{{ webInfo.name }}</div>
             <div class="web-info">
                 <div class="blog-info-box">
                     <span>文章</span>
-                    <span class="blog-info-num">{{ 999 }}</span>
+                    <span class="blog-info-num">{{ webInfo.articleNum }}</span>
                 </div>
                 <div class="blog-info-box">
                     <span>分类</span>
-                    <span class="blog-info-num">{{ 888 }}</span>
+                    <span class="blog-info-num">{{
+                        webInfo.classification
+                    }}</span>
                 </div>
                 <div class="blog-info-box">
                     <span>访问量</span>
                     <span class="blog-info-num">{{ 9999 }}</span>
                 </div>
             </div>
-            <a class="collection-btn">
-                <i class="el-icon-star-off" style="margin-right: 2px"></i>朋友圈
+            <a
+                class="collection-btn"
+                href="https://github.com/maticalboy"
+                target="_blank"
+            >
+                <i class="el-icon-github" style="margin-right: 2px"></i>github
             </a>
         </div>
 
@@ -127,6 +133,7 @@
     </div>
 </template>
 <script>
+import { throttle } from "@/utils/common/debounce_throttle";
 export default {
     name: "AsidePost",
     props: {
@@ -134,13 +141,16 @@ export default {
             type: Object,
             default: () => {
                 return {
-                    avatar: require("@/assets/logo.png"),
+                    avatar: require("@/assets/images/home/avatar.jpg"),
+                    name: "陈饱饱",
+                    articleNum: 0,
+                    classification: 0,
                 };
             },
         },
-        articleSearch:{
-            type:'',
-            default:'',
+        articleSearch: {
+            type: "",
+            default: "",
         },
         recommendArticles: {
             type: Array,
@@ -171,6 +181,11 @@ export default {
             },
         },
     },
+    methods: {
+        selectArticle: throttle(function () {
+            this.$message("当前搜索不可用");
+        }, 3000),
+    },
 };
 </script>
 <style lang="less" scoped>
@@ -188,7 +203,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-radius: 10px;
+    border-radius: .625rem;
     position: relative;
     overflow: hidden;
     .user-avatar {
@@ -197,12 +212,16 @@ export default {
         user-select: none;
     }
     .user-avatar:hover {
-        transform: rotate(360deg);
+        transform: rotate(666turn);
+        transition-delay: 1s;
+        transition-property: all;
+        transition-duration: 59s;
+        transition-timing-function: cubic-bezier(0.34, 0, 0.84, 1);
     }
     .web-name {
-        font-size: 30px;
+        font-size: 1.875rem;
         font-weight: bold;
-        margin: 20px 0;
+        margin: 1.25rem 0;
     }
     .web-info {
         width: 80%;
@@ -215,7 +234,7 @@ export default {
             align-items: center;
             justify-content: space-around;
             .blog-info-num {
-                margin-top: 12px;
+                margin-top: .75rem;
             }
         }
     }
@@ -224,18 +243,19 @@ export default {
     }
     .collection-btn {
         position: relative;
-        margin-top: 12px;
+        margin-top: .75rem;
         background: var(--lightGreen);
         cursor: pointer;
         width: 65%;
-        height: 35px;
-        border-radius: 1rem;
+        height: 2.1875rem;
+        border-radius: 16px;
         text-align: center;
-        line-height: 35px;
+        line-height: 2.1875rem;
+        text-decoration: none;
         color: var(--white);
         overflow: hidden;
         z-index: 1;
-        margin-bottom: 25px;
+        margin-bottom: 1.5625rem;
         &::before {
             background: var(--gradualRed);
             position: absolute;
@@ -248,7 +268,7 @@ export default {
             transform-origin: 0;
             transition: transform 0.5s ease-out;
             transition-timing-function: cubic-bezier(0.45, 1.64, 0.47, 0.66);
-            border-radius: 1rem;
+            border-radius: 16px;
             z-index: -1;
         }
 
@@ -260,13 +280,13 @@ export default {
 
 .card-content2 {
     .card-content2-title {
-        font-size: 18px;
-        margin-bottom: 20px;
+        font-size: 1.125rem;
+        margin-bottom: 1.25rem;
     }
 
     .card-content2-icon {
         color: var(--red);
-        margin-right: 5px;
+        margin-right: .3125rem;
         animation: scale 1s ease-in-out infinite;
     }
 
@@ -277,15 +297,15 @@ export default {
 
     .aside-post-image {
         width: 40%;
-        border-radius: 0.2rem;
-        margin-right: 8px;
+        border-radius: 3.2px;
+        margin-right: .5rem;
         overflow: hidden;
     }
 
     .error-aside-image {
         background: var(--themeBackground);
         color: var(--white);
-        padding: 10px;
+        padding: .625rem;
         text-align: center;
         width: 100%;
         height: 100%;
@@ -299,31 +319,31 @@ export default {
     }
 
     .aside-post-date {
-        margin-bottom: 20px;
+        margin-bottom: 1.25rem;
         color: var(--greyFont);
-        font-size: 12px;
+        font-size: .75rem;
     }
 }
 
 .search {
     .ais-SearchBox-input {
-        padding: 0 14px;
-        height: 30px;
-        width: calc(100% - 50px);
+        padding: 0 .875rem;
+        height: 1.875rem;
+        width: calc(100% - 3.125rem);
         outline: 0;
-        border: 2px solid var(--lightGreen);
+        border: .125rem solid var(--lightGreen);
         border-right: 0;
-        border-radius: 40px 0 0 40px;
+        border-radius: 2.5rem 0 0 2.5rem;
         color: var(--maxGreyFont);
         background: var(--white);
     }
 
     .ais-SearchBox-submit {
-        height: 30px;
-        width: 50px;
-        border: 2px solid var(--lightGreen);
+        height: 1.875rem;
+        width: 3.125rem;
+        border: .125rem solid var(--lightGreen);
         border-left: 0;
-        border-radius: 0 40px 40px 0;
+        border-radius: 0 2.5rem 2.5rem 0;
         background: var(--white);
         cursor: pointer;
     }

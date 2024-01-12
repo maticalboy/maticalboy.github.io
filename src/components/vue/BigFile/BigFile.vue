@@ -52,7 +52,7 @@
 	</div>
 </template>
 <script>
-import { read } from '@/utils/readFile';
+import { read } from '@/utils/vue2/readFile';
 import axios from 'axios';
 import SparkMD5 from 'spark-md5';
 const CancelToken = axios.CancelToken;

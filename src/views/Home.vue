@@ -73,7 +73,12 @@
                 <div class="aside">
                     <Aside></Aside>
                 </div>
-                <div></div>
+                <div class="main">
+                    <article-card
+                        v-for="(item, index) in 10"
+                        :key="index"
+                    ></article-card>
+                </div>
             </div>
         </div>
         <!-- 页脚 -->
@@ -89,6 +94,7 @@ export default {
     components: {
         Printer: () => import("@/components/common/printer"),
         Aside: () => import("@/components/Home/Aside"),
+        ArticleCard: () => import("@/components/Home/ArticleCard"),
     },
     data() {
         return {
@@ -283,11 +289,21 @@ export default {
         position: relative;
         height: 100%;
         width: 100%;
+        display: flex;
+        justify-content: space-between;
         .aside {
             width: 300px;
-            position: absolute;
-            left: 0;
-            top: 0;
+            height: 100%;
+            padding-right: 50px;
+        }
+        .main {
+            height: 100%;
+            display: flex;
+            flex: 1;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            flex-direction: row;
+            overflow-y: auto;
         }
     }
 }
