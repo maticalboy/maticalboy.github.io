@@ -2,7 +2,7 @@
  * @Author: “chenjinwei” “507725948@qq.com”
  * @Date: 2023-10-26 11:49:01
  * @LastEditors: “chenjinwei” “507725948@qq.com”
- * @LastEditTime: 2023-10-26 17:09:08
+ * @LastEditTime: 2024-01-15 08:53:10
  * @FilePath: \vue2-template\public\index.html
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -13,6 +13,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
         <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+        <!-- 引入音乐播放器 -->
+        <link href="https://cdn.bootcdn.net/ajax/libs/aplayer/1.10.1/APlayer.min.css" rel="stylesheet">
+        <script src="https://cdn.bootcdn.net/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
+        <!-- require MetingJS -->
+        <script src="https://cdn.bootcdn.net/ajax/libs/meting/2.0.1/Meting.min.js"></script>
         <title><%= htmlWebpackPlugin.options.title %></title>
         <style type="text/css">
             #Loading {

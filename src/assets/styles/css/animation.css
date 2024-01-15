@@ -25,6 +25,7 @@
         opacity: 0;
         transform: translateY(-20%)
     }
+
     100% {
         opacity: 1;
         transform: translateY(0)
@@ -37,6 +38,7 @@
         opacity: 0;
         transform: translateY(20%)
     }
+
     100% {
         opacity: 1;
         transform: translateY(0)
@@ -207,5 +209,17 @@
     100% {
         transform: translateX(150%);
         opacity: 0
+    }
+}
+
+/* 字体间距变化 */
+@keyframes showup {
+    0% {
+        filter: blur(10px);
+    }
+
+    100% {
+        letter-spacing: 10px;
+        filter: blur(2px);
     }
 }

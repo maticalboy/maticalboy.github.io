@@ -74,10 +74,21 @@
                     <Aside></Aside>
                 </div>
                 <div class="main">
-                    <article-card
+                    <!-- <article-card
                         v-for="(item, index) in 10"
                         :key="index"
-                    ></article-card>
+                    ></article-card> -->
+                    <meting-js
+                        server="netease"
+                        type="playlist"
+                        id="2568465160"
+                        list-max-height="720px"
+                        lrc-type="0"
+                    >
+                    </meting-js>
+                </div>
+                <div style="width:500px;height:300px;">
+                    <my-text :content="'Mr.Chen'"></my-text>
                 </div>
             </div>
         </div>
@@ -95,6 +106,7 @@ export default {
         Printer: () => import("@/components/common/printer"),
         Aside: () => import("@/components/Home/Aside"),
         ArticleCard: () => import("@/components/Home/ArticleCard"),
+        MyText: () => import("@/components/common/MyText"),
     },
     data() {
         return {
