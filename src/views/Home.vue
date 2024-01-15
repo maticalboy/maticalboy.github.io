@@ -74,10 +74,6 @@
                     <Aside></Aside>
                 </div>
                 <div class="main">
-                    <!-- <article-card
-                        v-for="(item, index) in 10"
-                        :key="index"
-                    ></article-card> -->
                     <meting-js
                         server="netease"
                         type="playlist"
@@ -87,8 +83,28 @@
                     >
                     </meting-js>
                 </div>
-                <div style="width:500px;height:300px;">
-                    <my-text :content="'Mr.Chen'"></my-text>
+                <div>
+                    <div style="width: 500px; height: 300px">
+                        <my-text :content="'Mr.Chen'"></my-text>
+                    </div>
+                    <div class="content">
+                        <div style="width: 499px; height: 246px">
+                            <image-verify
+                                :cutPathList="cutPathList"
+                                :passDiff="passDiff"
+                                :isRandomPath="isRandomPath"
+                                :failedText="failedText"
+                                :fillStyle="fillStyle"
+                                :strokeStyle="strokeStyle"
+                                @start="start"
+                                @end="end"
+                            >
+                            </image-verify>
+                        </div>
+                        <div class="second-show">
+                            {{ second ? "已用时：" + second : "" }}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -107,6 +123,7 @@ export default {
         Aside: () => import("@/components/Home/Aside"),
         ArticleCard: () => import("@/components/Home/ArticleCard"),
         MyText: () => import("@/components/common/MyText"),
+        ImageVerify: () => import("@/components/common/ImageVerify"),
     },
     data() {
         return {
@@ -125,6 +142,30 @@ export default {
             ],
             // 滚轮上一次滚动的距离
             lastScrollTop: 0,
+            //验证码
+            cutPathList: [
+                { x: 378, y: 68 },
+                { x: 398, y: 67 },
+                { x: 398, y: 81 },
+                { x: 415, y: 80 },
+                { x: 415, y: 96 },
+                { x: 398, y: 96 },
+                { x: 398, y: 108 },
+                { x: 380, y: 108 },
+                { x: 379, y: 94 },
+                { x: 359.99999999999994, y: 94 },
+                { x: 359, y: 83 },
+                { x: 378, y: 82 },
+                { x: 376, y: 69 },
+            ],
+
+            passDiff: 3,
+            isRandomPath: true,
+            failedText: "验证失败，请重新尝试",
+            fillStyle: "#7AABD9",
+            strokeStyle: "red",
+            second: "",
+            startTime: "",
         };
     },
     mounted() {
@@ -146,16 +187,10 @@ export default {
                     scrollTop > this.lastScrollTop ? "down" : "up";
                 const scrollDistance = Math.abs(scrollTop - this.lastScrollTop);
 
-                console.log(
-                    `滚动方向：${scrollDirection}，滚动距离：${scrollDistance}px`
-                );
-
                 this.lastScrollTop = scrollTop;
                 if (scrollDirection == "down" && scrollDistance > 60) {
-                    console.log("向下滚动");
                     header.classList.add("sticky");
                 } else if (scrollDirection == "up" && scrollDistance > 60) {
-                    console.log("向上滚动");
                     header.classList.remove("sticky");
                 }
             });
@@ -232,6 +267,13 @@ export default {
         },
         travel(item) {
             this.$router.push(item.url);
+        },
+        start() {
+            this.startTime = new Date().getTime();
+        },
+        end() {
+            const second = (new Date().getTime() - this.startTime) / 1000;
+            this.second = parseFloat(second).toFixed(1) + "s";
         },
     },
 };

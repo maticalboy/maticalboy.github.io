@@ -209,13 +209,6 @@ export default {
          * @return {*}
          */
         handleCheckAllChange(val, position) {
-            console.log(
-                val,
-                position,
-                this.formInfo[position[0]][position[1]].checks.map((item) => {
-                    return item.value;
-                })
-            );
             this.formInfo[position[0]][position[1]].value = val
                 ? this.formInfo[position[0]][position[1]].checks.map((item) => {
                       return item.label;
@@ -230,7 +223,6 @@ export default {
          */
         handleCheckedCitiesChange(value, position) {
             let checkedCount = value.length;
-            console.log(value);
             this.formInfo[position[0]][position[1]].checkAll =
                 checkedCount ===
                 this.formInfo[position[0]][position[1]].checks.length;
