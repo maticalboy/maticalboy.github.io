@@ -28,6 +28,8 @@ export default class MyCacuateAreaInteractionContainor {
         this.idleTip = "Click to start measuring";
         // 删除的图标
         this.deleteImg = require("@/assets/images/openlayers/delete.png");
+        // 只有一个点的元素
+        this.pointFeature = []
         /**
          * 点默认样式
          */
@@ -197,6 +199,12 @@ export default class MyCacuateAreaInteractionContainor {
             // 获取绘制图形 坐标信息
             this.sktch = e.feature;
 
+            let arr = this.sktch.getGeometry().getCoordinates()[0];
+            // 判断是否是单点 如果是单点 直接返回 之后还要删除当前的单点要素
+            if (arr.length < 4 || (arr[1][0] == arr[2][0] && arr[1][1] == arr[2][1])) {
+                this.pointFeature.push(e.feature);
+                return;
+            }
             // 获取内部点
             let point = e.feature.getGeometry().getInteriorPoint().getCoordinates();
             let imageElement = document.createElement("img");
@@ -206,7 +214,7 @@ export default class MyCacuateAreaInteractionContainor {
             // 添加删除按钮
             const overlay = new Overlay({
                 element: imageElement, // 图片元素作为覆盖物的内容
-                position: [point[0],point[1]], // 覆盖物的位置
+                position: [point[0], point[1]], // 覆盖物的位置
                 positioning: "center-center", // 覆盖物的定位方式
                 offset: [15, 2.5],
             });

@@ -10,11 +10,14 @@ import { Vector as VectorSource } from "ol/source";
 import Point from "ol/geom/Point";
 import LineString from "ol/geom/LineString";
 import { getLength } from "ol/sphere";
-import { Draw } from "ol/interaction";
+import { Draw, Modify } from "ol/interaction";
 import { Overlay } from "ol";
 export default class MyCacuateInteractionContainor {
     constructor(props) {
         this.vectorSource = new VectorSource();
+        this.modifyInteraction = new Modify({
+            source: this.vectorSource, style: this.modifyStyle, insertVertexCondition: () => false, // 如果返回true，可以增加节点
+        });
         this.drawInteraction = this.createDrawInteraction();
         this.vectorLayer = new VectorLayer({
             source: this.vectorSource,
@@ -137,6 +140,33 @@ export default class MyCacuateInteractionContainor {
                 offsetY: 45,
             }),
         });
+        /**
+         * 修改提示语的样式
+         */
+        this.modifyStyle = new Style({
+            image: new CircleStyle({
+                radius: 5,
+                stroke: new Stroke({
+                    color: 'rgba(0, 0, 0, 0.7)'
+                }),
+                fill: new Fill({
+                    color: 'rgba(0, 0, 0, 0.4)'
+                })
+            }),
+            text: new Text({
+                text: 'Drag to modifyInteraction',
+                font: '12px Calibri,sans-serif',
+                fill: new Fill({
+                    color: 'rgba(255, 255, 255, 1)'
+                }),
+                backgroundFill: new Fill({
+                    color: 'rgba(0, 0, 0, 0.7)'
+                }),
+                padding: [2, 2, 2, 2],
+                textAlign: 'left',
+                offsetX: 15
+            })
+        });
     }
     /**
      * @description: 创建交互
@@ -151,13 +181,23 @@ export default class MyCacuateInteractionContainor {
             },
         });
         drawInteraction.setActive(false);
+        this.modifyInteraction.setActive(false);
         // 提示语 初始化
         this.tip = this.idleTip;
         drawInteraction.on("drawstart", (e) => {
             this.tip = this.activeTip;
+            this.modifyInteraction.setActive(false);
         });
         // 绘制完毕 保存所有的坐标信息
         drawInteraction.on("drawend", (e) => {
+            // 设置修改的样式 在终点
+            this.modifyStyle.setGeometry(this.tipPoint);
+            // 绘制完毕 允许修改
+            this.modifyInteraction.setActive(true);
+            // 设置修改的样式 在拖拽点
+            this.modifyInteraction.getMap().once('pointermove', () => {
+                this.modifyStyle.setGeometry();
+            });
             // 为当前要素设置一个唯一ID
             const ID = new Date().getTime();
             // 绘制完毕提示语 初始化
@@ -282,7 +322,8 @@ export default class MyCacuateInteractionContainor {
                 // 线段数+1
                 count++;
             });
-        } else if (type === "Point") {
+        } else if (type === "Point" &&
+        !this.modifyInteraction.getOverlay().getSource().getFeatures().length) {
             this.tipStyle.getText().setText(this.tip);
             styles.push(this.tipStyle);
         }
