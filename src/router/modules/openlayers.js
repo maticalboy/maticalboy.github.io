@@ -4,6 +4,12 @@ export default {
     component: () => import('@/layout/openlayers/example'),
     children: [
         {
+            path: 'veryBigProgram',
+            name: 'VeryBigProgram',
+            title: "openlayers总结",
+            component: () => import('@/components/openlayers/VeryBigProgram/index')
+        },
+        {
             path: 'firstMap',
             name: 'FirstMap',
             title: "地图",
