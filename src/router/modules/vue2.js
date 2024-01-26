@@ -2,7 +2,7 @@
  * @Author: “chenjinwei” “507725948@qq.com”
  * @Date: 2023-12-02 11:24:59
  * @LastEditors: “chenjinwei” “507725948@qq.com”
- * @LastEditTime: 2024-01-15 16:10:46
+ * @LastEditTime: 2024-01-26 09:39:27
  * @FilePath: \vue2-template\src\router\modules\vue2.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -40,6 +40,11 @@ export default {
             path:'dragUpload',
             name:'DragUpload',
             component:()=>import('@/components/vue/DragUpload/index')
+        },
+        {
+            path:'markDown',
+            name:'MarkDown',
+            component:()=>import('@/components/vue/MarkDown/index')
         }
     ]
 }
