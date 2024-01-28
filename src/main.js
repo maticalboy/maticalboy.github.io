@@ -25,6 +25,10 @@ import '@/assets/styles/css/animation.css'
 import '@/assets/styles/css/color.css'
 import '@/assets/styles/css/common.less'
 import '@/assets/styles/css/element.less'
+// 引入mavon-editor
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+Vue.use(mavonEditor)
 new Vue({
     router,
     store,
