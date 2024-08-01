@@ -115,10 +115,13 @@ export default {
                 { name: "three", url: "/three" },
                 { name: "openlayers", url: "/openlayers" },
                 { name: "vue2", url: "/vue2" },
+                {
+                    name: "工作学习",
+                    url: "/work",
+                },
             ],
             // 滚轮上一次滚动的距离
             lastScrollTop: 0,
-
         };
     },
     mounted() {
@@ -584,6 +587,4 @@ export default {
         box-shadow: 0 0 5px var(--themeBackground);
     }
 }
-
-
 </style>
