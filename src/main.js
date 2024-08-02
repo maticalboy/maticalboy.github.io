@@ -2,7 +2,7 @@
  * @Author: “chenjinwei” “507725948@qq.com”
  * @Date: 2023-10-26 11:49:01
  * @LastEditors: “chenjinwei” “507725948@qq.com”
- * @LastEditTime: 2024-01-12 16:06:31
+ * @LastEditTime: 2024-08-02 11:16:11
  * @FilePath: \vue2-template\src\main.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -28,6 +28,10 @@ import '@/assets/styles/css/element.less'
 // 引入mavon-editor
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
+import drawInteraction from "../src/utils/openlayers/HAEditDrawInteraction"
+Vue.prototype.$global = {
+    drawInteraction:new drawInteraction()
+}
 Vue.use(mavonEditor)
 new Vue({
     router,

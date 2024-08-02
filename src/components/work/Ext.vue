@@ -1,5 +1,79 @@
 <template>
-    <div id="map" class="map"></div>
+    <div style="height: 100%">
+        <div id="map" class="map"></div>
+        <vue-drag-resize
+            :h="30"
+            :isActive="false"
+            :isDraggable="true"
+            :isResizable="false"
+            :minh="1"
+            :minw="1"
+            :stickSize="6"
+            :w="388"
+            :x="600"
+            :y="37"
+            :z="1000"
+            key="toolCreateFeature"
+            style="border: 0; background-color: #fff"
+        >
+            <div class="toolbar">
+                <div style="display: flex; align-items: center">
+                    <el-select
+                        placeholder="请选择图层"
+                        size="mini"
+                        v-model="currentLayerId"
+                        class="custom-select-color"
+                    >
+                        <el-option
+                            v-for="item in layers"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.id"
+                        >
+                        </el-option>
+                    </el-select>
+                    <el-select
+                        placeholder="请选择绘制方式"
+                        size="mini"
+                        v-model="currentDrawGraphicType"
+                        class="custom-select-color"
+                        @change="changeDrawGraphicType"
+                    >
+                        <el-option
+                            v-for="item in DrawGraphicTypeList"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.id"
+                        >
+                        </el-option>
+                    </el-select>
+                    <el-select
+                        placeholder="请选择绘制模式"
+                        size="mini"
+                        v-model="currentDrawMode"
+                        class="custom-select-color"
+                        @change="changeDrawGraphicType"
+                    >
+                        <el-option
+                            v-for="item in DrawModeList"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.id"
+                        >
+                        </el-option>
+                    </el-select>
+                </div>
+                <div class="buttons">
+                    <div @click="startDraw">
+                        <span>绘</span>
+                    </div>
+                    <div @click="handleSelectedFeature">
+                        <span>处</span>
+                    </div>
+                </div>
+            </div>
+        </vue-drag-resize>
+    </div>
 </template>
 <script>
 import "ol/ol.css";
@@ -27,21 +101,77 @@ import {
 } from "ol/style";
 import { OSM, TileArcGISRest } from "ol/source";
 import ExtTransform from "ol-ext/interaction/Transform";
+
+import VueDragResize from "vue-drag-resize";
 export default {
+    components: {
+        VueDragResize,
+    },
     data() {
         return {
             map: null,
             center: [116.39702518856394, 39.918590567855425], //北京故宫的经纬度
             centerSize: 11.5,
             projection: "EPSG:4326",
+            layers: [],
+            currentLayer: null,
+            currentLayerId: undefined,
+            currentDrawGraphicType: "Square",
+            DrawGraphicTypeList: [
+                {
+                    id: "Square",
+                    name: "矩形",
+                },
+                {
+                    id: "circle",
+                    name: "圆形",
+                },
+                {
+                    id: "polygon",
+                    name: "多边形",
+                },
+                {
+                    id: "lasso",
+                    name: "套索",
+                },
+            ],
+            currentDrawMode: "new",
+            DrawModeList: [
+                {
+                    id: "new",
+                    name: "新建",
+                },
+                {
+                    id: "merge",
+                    name: "融合",
+                },
+                {
+                    id: "resection",
+                    name: "切除",
+                },
+                {
+                    id: "intersection",
+                    name: "交集",
+                },
+            ],
         };
     },
     mounted() {
         this.initMap();
         this.createPolygon();
-        this.onEdit()
+        this.onEdit();
     },
     methods: {
+        handleSelectedFeature() {},
+        startDraw() {
+            this.$global.drawInteraction.setActive(true);
+        },
+        changeDrawGraphicType() {
+            this.$global.drawInteraction.currentDrawGraphicType =
+                this.currentDrawGraphicType;
+            this.$global.drawInteraction.currentDrawMode = this.currentDrawMode;
+            this.$global.drawInteraction.initDrawInteraction(this.currentDrawGraphicType)
+        },
         //初始化地图
         initMap() {
             this.map = new Map({
@@ -69,6 +199,14 @@ export default {
                     zoom: 8, // 地图缩放级别（打开页面时默认级别）
                 }),
             });
+            this.$nextTick(() => {
+                this.map.addInteraction(this.$global.drawInteraction);
+                this.$global.drawInteraction.initVectorLayer();
+                this.$global.drawInteraction.initDrawInteraction(
+                    this.currentDrawGraphicType
+                );
+            });
+            console.log(this.$global.drawInteraction);
         },
         //创建多边形
         createPolygon() {
@@ -103,6 +241,7 @@ export default {
         },
         //操作事件
         onEdit() {
+            let dragLayer = this.dragLayer;
             const transform = new ExtTransform({
                 enableRotatedTransform: false,
                 hitTolerance: 2,
@@ -112,7 +251,7 @@ export default {
                 rotate: true, // 旋转
                 translateFeature: false,
                 noFlip: true,
-                // layers: [],
+                layers: [dragLayer],
             });
             this.map.addInteraction(transform);
 
