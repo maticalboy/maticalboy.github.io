@@ -25,10 +25,12 @@ export default class HAEditDrawInteraction extends Interaction {
         this.drawInteraction = null;
         // 矢量图层
         this.vectorLayer = null;
+        // 拖拽的图层
         this.dragLayer = null;
+        // 当前feature选中的样式
         this.selectedStyle = new Style({
             stroke: new Stroke({
-                color: [255, 0, 0, 0.6],
+                color: '#0e97fa',
                 width: 3,
             }),
             fill: new Fill({
@@ -36,9 +38,10 @@ export default class HAEditDrawInteraction extends Interaction {
             }),
             zIndex: 1,
         });
+        // 默认样式
         this.defaultStyle = new Style({
             stroke: new Stroke({
-                color: "#0e97fa",
+                // color: "#0e97fa",
                 width: 10,
             }),
             fill: new Fill({
@@ -49,8 +52,11 @@ export default class HAEditDrawInteraction extends Interaction {
         this.currentDrawGraphicType = "polygon"
         // 绘制模式
         this.currentDrawMode = "new"
-        // 默认样式
-        // this.style = this.getDefaultStyleFunction()
+        // 是否保留上一个绘制的feature
+        this.save = true
+        // 图层是否可见
+        this.visible = true
+        this.defaultColor = "rgba(255, 69, 0, 0.68)"
     }
     /**
      * @description: 初始化栅格图层上用于绘制交互的矢量图层
@@ -81,7 +87,6 @@ export default class HAEditDrawInteraction extends Interaction {
     initDrawInteraction(type) {
         if (this.drawInteraction) this.getMap().removeInteraction(this.drawInteraction)
         let source = this.vectorLayer.getSource();
-        console.log(6969, type)
         switch (type) {
             case "Square":
                 this.drawInteraction = new Draw({
@@ -101,7 +106,6 @@ export default class HAEditDrawInteraction extends Interaction {
                     source: source,
                     type: "Polygon",
                 });
-                console.log(this.drawInteraction)
                 break;
             case "lasso":
                 this.drawInteraction = new Draw({
@@ -118,7 +122,6 @@ export default class HAEditDrawInteraction extends Interaction {
                 .getSource()
                 .getFeatures()
                 .map((item) => {
-                    console.log(item)
                     if (item.getGeometry().get("clear") == true) {
                         this.vectorLayer.getSource().removeFeature(item)
                     }
@@ -132,9 +135,6 @@ export default class HAEditDrawInteraction extends Interaction {
                 .filter((item) => {
                     return item.get("selected");
                 })[0];
-            console.log(this.vectorLayer
-                .getSource()
-                .getFeatures())
             // 根据绘制模式重新生成最新的feature
             let operateFeature;
 
@@ -142,8 +142,15 @@ export default class HAEditDrawInteraction extends Interaction {
             switch (this.currentDrawMode) {
                 case "new":
                     currentFeature?.set("selected", false);
+                    currentFeature?.setStyle(this.defaultStyle)
+                    let defaultStyle = this.getDefaultStyle()
+                    currentFeature?.setStyle(defaultStyle)
                     event.feature.set("selected", true);
                     operateFeature = event.feature;
+                    // 如果是不保留之前的feature
+                    if (!this.save) {
+                        this.vectorLayer.getSource().clear()
+                    }
                     break;
                 case "merge":
                 case "resection":
@@ -158,13 +165,26 @@ export default class HAEditDrawInteraction extends Interaction {
                 default:
                     break;
             }
+            // 将当前新的feature进行样式修改
             operateFeature.setStyle(this.selectedStyle);
-            // 确保操作完的要素已经加载在图层上
-            // this.$nextTick(() => {
-            //     this.upDateSelectedStatus();
-            // });
-            this.upDateSelectedStatus();
+            // 只可以确保之前的feature样式得到修改
+            // this.upDateSelectedStatus();
+            console.log(this.vectorLayer
+                .getSource()
+                .getFeatures())
         });
+    }
+    getDefaultStyle() {
+        return new Style({
+            stroke: new Stroke({
+                color: this.defaultColor,
+                width: 10,
+            }),
+            fill: new Fill({
+                color: [0, 0, 0, 0.2],
+            }),
+        }
+        )
     }
     /**
      * @description: 更新当前图层矢量要素的样式
@@ -175,9 +195,9 @@ export default class HAEditDrawInteraction extends Interaction {
             .getSource()
             .getFeatures()
             .map((item) => {
-                console.log(item,'pppp')
                 if (item.get("selected")) {
                     item.setStyle(this.selectedStyle);
+                    item.getStyle().getStroke().setColor(this.activeColor)
                 } else {
                     item.setStyle(this.defaultStyle);
                 }
@@ -213,31 +233,21 @@ export default class HAEditDrawInteraction extends Interaction {
         let operateFeature = new Feature({});
         operateFeature.setGeometry(operateGeometry);
         operateFeature.set("selected", true);
-        // this.$nextTick(() => {
-        //     // 需要删除当前正在绘制的feature和选中的feature,使用nexttick确保新绘制的已经添加到图层中
-        //     let vectorLayer = this.vectorLayer;
-        //     vectorLayer.getSource().removeFeature(feature1);
-        //     vectorLayer.getSource().removeFeature(feature2);
-        //     vectorLayer.getSource().addFeature(operateFeature);
-        //     this.upDateSelectedStatus();
-        // });
         // 需要删除当前正在绘制的feature和选中的feature,使用nexttick确保新绘制的已经添加到图层中
         let vectorLayer = this.vectorLayer;
-        // vectorLayer.getSource().removeFeature(feature1);
+        vectorLayer.getSource().removeFeature(feature1);
         // vectorLayer.getSource().removeFeature(feature2);
-        feature1.getGeometry().set("clear",true)
-        if(feature1.getGeometry().getType()== "Circle"){
-            feature1.getGeometry().setRadius(0)
-        }else{
-            feature1.getGeometry().setCoordinates([])
-        }
-        feature2.getGeometry().set("clear",true)
-        if(feature2.getGeometry().getType()== "Circle"){
+        // feature2是当前正在绘制的feature,无法删除
+        feature2.getGeometry().set("clear", true)
+        if (feature2.getGeometry().getType() == "Circle") {
             feature2.getGeometry().setRadius(0)
-        }else{
+        } else {
             feature2.getGeometry().setCoordinates([])
         }
-
+        // 如果是不保留之前的feature
+        if (!this.save) {
+            this.vectorLayer.getSource().clear()
+        }
         vectorLayer.getSource().addFeature(operateFeature);
         return operateFeature;
     }
@@ -271,82 +281,5 @@ export default class HAEditDrawInteraction extends Interaction {
     getActive() {
         return this.active
     }
-    /**
-     * 创建编辑样式
-     * @returns {Object<import("../geom/Geometry.js").Type, Array<Style>>}
-     */
-    // createEditingStyle() {
-    //     /** @type {Object<import("../geom/Geometry.js").Type, Array<Style>>} */
-    //     const styles = {};
-    //     const white = [255, 255, 255, 1];
-    //     const blue = [0, 153, 255, 1];
-    //     const red = [255, 0, 0, 1];
-    //     const width = 1;
-    //     styles['Polygon'] = [
-    //         new Style({
-    //             fill: new Fill({
-    //                 color: [255, 255, 255, 0.5],
-    //             }),
-    //             stroke: new Stroke({
-    //                 color: red,
-    //                 width: width,
-    //                 lineDash: [5, 5],
-    //             })
-    //         }),
-    //     ];
-    //     styles['MultiPolygon'] = styles['Polygon'];
 
-    //     styles['LineString'] = [
-    //         new Style({
-    //             stroke: new Stroke({
-    //                 color: white,
-    //                 width: width + 2,
-    //             }),
-    //         }),
-    //         new Style({
-    //             stroke: new Stroke({
-    //                 color: red,
-    //                 width: width,
-    //                 lineDash: [5, 5],
-    //             }),
-    //         }),
-    //     ];
-    //     styles['MultiLineString'] = styles['LineString'];
-
-    //     styles['Circle'] = styles['Polygon'].concat(styles['LineString']);
-
-    //     styles['Point'] = [
-    //         new Style({
-    //             image: new CircleStyle({
-    //                 radius: 6,
-    //                 fill: new Fill({
-    //                     color: blue,
-    //                 }),
-    //                 stroke: new Stroke({
-    //                     color: white,
-    //                     width: 1.5,
-    //                 }),
-    //             }),
-    //             zIndex: Infinity,
-    //         }),
-    //     ];
-    //     styles['MultiPoint'] = styles['Point'];
-
-    //     styles['GeometryCollection'] = styles['Polygon'].concat(
-    //         styles['LineString'],
-    //         styles['Point']
-    //     );
-
-    //     return styles;
-    // }
-    /**
-     * 获取默认样式
-     * @returns {function(*, *): *}
-     */
-    getDefaultStyleFunction() {
-        const styles = this.createEditingStyle();
-        return function (feature, resolution) {
-            return styles[feature.getGeometry().getType()];
-        };
-    }
 }

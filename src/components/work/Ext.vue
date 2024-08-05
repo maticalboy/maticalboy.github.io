@@ -9,7 +9,7 @@
             :minh="1"
             :minw="1"
             :stickSize="6"
-            :w="388"
+            :w="688"
             :x="600"
             :y="37"
             :z="1000"
@@ -64,13 +64,38 @@
                     </el-select>
                 </div>
                 <div class="buttons">
-                    <div @click="startDraw">
+                    <div @click="startDraw" :class="{ selected: drawStatus }">
                         <span>绘</span>
+                    </div>
+                    <div @click="closeDraw">
+                        <span>关</span>
+                    </div>
+                    <div @click="save" :class="{ selected: saveStatus }">
+                        <span>保</span>
+                    </div>
+                    <div @click="remove">
+                        <span>移</span>
+                    </div>
+                    <div @click="removeAll">
+                        <span>全</span>
+                    </div>
+                    <div @click="clear">
+                        <span>清</span>
+                    </div>
+                    <div @click="visible" :class="{ selected: visibleStatus }">
+                        <span>见</span>
                     </div>
                     <div @click="handleSelectedFeature">
                         <span>处</span>
                     </div>
                 </div>
+                <el-color-picker
+                    v-model="color"
+                    show-alpha
+                    :predefine="predefineColors"
+                    @change="changeColor"
+                >
+                </el-color-picker>
             </div>
         </vue-drag-resize>
     </div>
@@ -154,23 +179,97 @@ export default {
                     name: "交集",
                 },
             ],
+            drawStatus: false,
+            saveStatus: true,
+            visibleStatus: true,
+            color: "rgba(255, 69, 0, 0.68)",
+            predefineColors: [
+                "#ff4500",
+                "#ff8c00",
+                "#ffd700",
+                "#90ee90",
+                "#00ced1",
+                "#1e90ff",
+                "#c71585",
+                "rgba(255, 69, 0, 0.68)",
+                "rgb(255, 120, 0)",
+                "hsv(51, 100, 98)",
+                "hsva(120, 40, 94, 0.5)",
+                "hsl(181, 100%, 37%)",
+                "hsla(209, 100%, 56%, 0.73)",
+                "#c7158577",
+            ],
         };
     },
     mounted() {
         this.initMap();
-        this.createPolygon();
-        this.onEdit();
+        // this.createPolygon();
+        // this.onEdit();
     },
     methods: {
         handleSelectedFeature() {},
         startDraw() {
+            this.$global.drawInteraction.currentDrawGraphicType =
+                this.currentDrawGraphicType;
+            this.$global.drawInteraction.currentDrawMode = this.currentDrawMode;
             this.$global.drawInteraction.setActive(true);
+            this.drawStatus = true;
+        },
+        closeDraw() {
+            this.$global.drawInteraction.setActive(false);
+            this.drawStatus = false;
+        },
+        save() {
+            this.$global.drawInteraction.save =
+                !this.$global.drawInteraction.save;
+            this.saveStatus = this.$global.drawInteraction.save;
+        },
+        visible() {
+            this.$global.drawInteraction.visible =
+                !this.$global.drawInteraction.visible;
+            this.visibleStatus = this.$global.drawInteraction.visible;
+            this.$global.drawInteraction.vectorLayer.setVisible(
+                this.$global.drawInteraction.visible
+            );
+        },
+        clear() {
+            let vectorLayer = this.$global.drawInteraction.vectorLayer;
+            // 首先获取当前选中的feature
+            let currentFeatures = vectorLayer
+                .getSource()
+                .getFeatures()
+                .filter((item) => {
+                    return item.get("selected");
+                });
+            if (!currentFeatures.length) return;
+            currentFeatures[0].set("selected", false);
         },
         changeDrawGraphicType() {
             this.$global.drawInteraction.currentDrawGraphicType =
                 this.currentDrawGraphicType;
             this.$global.drawInteraction.currentDrawMode = this.currentDrawMode;
-            this.$global.drawInteraction.initDrawInteraction(this.currentDrawGraphicType)
+            this.$global.drawInteraction.initDrawInteraction(
+                this.currentDrawGraphicType
+            );
+        },
+        remove() {
+            let vectorLayer = this.$global.drawInteraction.vectorLayer;
+            // 首先获取当前选中的feature
+            let currentFeatures = vectorLayer
+                .getSource()
+                .getFeatures()
+                .filter((item) => {
+                    return item.get("selected");
+                });
+            if (!currentFeatures.length) return;
+            vectorLayer.getSource().removeFeature(currentFeatures[0]);
+        },
+        removeAll() {
+            let vectorLayer = this.$global.drawInteraction.vectorLayer;
+            vectorLayer.getSource().clear();
+        },
+        changeColor(color) {
+            this.$global.drawInteraction.defaultColor = color;
         },
         //初始化地图
         initMap() {
@@ -206,7 +305,6 @@ export default {
                     this.currentDrawGraphicType
                 );
             });
-            console.log(this.$global.drawInteraction);
         },
         //创建多边形
         createPolygon() {
@@ -303,5 +401,44 @@ export default {
     height: 100%;
     width: 100%;
     overflow-x: hidden;
+}
+@img-height: 30px;
+.toolbar {
+    width: 688px;
+    background-color: #fff;
+    box-shadow: 0 0 7px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+    padding: 4px 8px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    .buttons {
+        flex: 1;
+        display: flex;
+        margin-left: 2px;
+        justify-content: space-evenly;
+        align-items: center;
+        line-height: @img-height;
+
+        div:not(.el-divider.el-divider--vertical) {
+            width: 22px;
+            height: 22px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+
+            &:hover {
+                background-color: rgba(51, 112, 255, 0.05);
+                cursor: pointer;
+            }
+        }
+        .selected {
+            background-color: aquamarine;
+            &:hover {
+                background-color: aquamarine !important;
+            }
+        }
+    }
 }
 </style>
