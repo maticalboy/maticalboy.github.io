@@ -29,8 +29,10 @@ import '@/assets/styles/css/element.less'
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 import drawInteraction from "../src/utils/openlayers/HAEditDrawInteraction"
+import dragInteraction from "../src/utils/openlayers/HAEditDragInteraction";
 Vue.prototype.$global = {
-    drawInteraction:new drawInteraction()
+    drawInteraction:new drawInteraction(),
+    dragInteraction:new dragInteraction()
 }
 Vue.use(mavonEditor)
 new Vue({

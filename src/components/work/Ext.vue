@@ -85,6 +85,9 @@
                     <div @click="visible" :class="{ selected: visibleStatus }">
                         <span>见</span>
                     </div>
+                    <div @click="drag" :class="{ selected: dragStatus }">
+                        <span>托</span>
+                    </div>
                     <div @click="handleSelectedFeature">
                         <span>处</span>
                     </div>
@@ -128,6 +131,7 @@ import { OSM, TileArcGISRest } from "ol/source";
 import ExtTransform from "ol-ext/interaction/Transform";
 
 import VueDragResize from "vue-drag-resize";
+import dragInteraction from "@/utils/openlayers/HAEditDragInteraction";
 export default {
     components: {
         VueDragResize,
@@ -182,6 +186,7 @@ export default {
             drawStatus: false,
             saveStatus: true,
             visibleStatus: true,
+            dragStatus: false,
             color: "rgba(255, 69, 0, 0.68)",
             predefineColors: [
                 "#ff4500",
@@ -231,6 +236,35 @@ export default {
             this.$global.drawInteraction.vectorLayer.setVisible(
                 this.$global.drawInteraction.visible
             );
+        },
+        acb(a, b) {
+            b.getSource().clear()
+            let features = a.getSource().getFeatures();
+            let Newfeatures = [];
+            features.map((item) => {
+                Newfeatures.push(item.clone());
+            });
+            b.getSource().addFeatures(Newfeatures);
+        },
+        drag() {
+            this.dragStatus = !this.dragStatus;
+            if (this.dragStatus) {
+                // 将矢量图层上的feature复制一份放入drag图层上
+                // this.$global.drawInteraction.dragLayer.setSource(
+                //     this.$global.drawInteraction.vectorLayer.getSource()
+                // );
+                this.acb(this.$global.drawInteraction.vectorLayer,this.$global.drawInteraction.dragLayer)
+                // 关闭绘制交互
+                this.closeDraw();
+            } else {
+                // 将drag图层上的feature替换到适量图层上
+                // this.$global.drawInteraction.vectorLayer.setSource(
+                //     this.$global.drawInteraction.dragLayer.getSource()
+                // );
+                this.acb(this.$global.drawInteraction.dragLayer,this.$global.drawInteraction.vectorLayer)
+                this.$global.drawInteraction.dragLayer.getSource().clear()
+            }
+            this.$global.dragInteraction.setActive(this.dragStatus);
         },
         clear() {
             let vectorLayer = this.$global.drawInteraction.vectorLayer;
@@ -304,6 +338,7 @@ export default {
                 this.$global.drawInteraction.initDrawInteraction(
                     this.currentDrawGraphicType
                 );
+                this.onEdit();
             });
         },
         //创建多边形
@@ -339,8 +374,8 @@ export default {
         },
         //操作事件
         onEdit() {
-            let dragLayer = this.dragLayer;
-            const transform = new ExtTransform({
+            let dragLayer = this.$global.drawInteraction.dragLayer;
+            this.$global.dragInteraction = new dragInteraction({
                 enableRotatedTransform: false,
                 hitTolerance: 2,
                 translate: true, // 拖拽
@@ -351,18 +386,21 @@ export default {
                 noFlip: true,
                 layers: [dragLayer],
             });
-            this.map.addInteraction(transform);
-
+            this.map.addInteraction(this.$global.dragInteraction);
+            this.$global.dragInteraction.setActive(false);
             //开始事件
-            transform.on(["rotatestart", "translatestart"], function (e) {
-                // Rotation
-                let startangle = e.feature.get("angle") || 0;
-                // Translation
-                console.log(1111);
-                console.log(startangle);
-            });
+            this.$global.dragInteraction.on(
+                ["rotatestart", "translatestart"],
+                function (e) {
+                    // Rotation
+                    let startangle = e.feature.get("angle") || 0;
+                    // Translation
+                    console.log(1111);
+                    console.log(startangle);
+                }
+            );
             //旋转
-            transform.on("rotating", function (e) {
+            this.$global.dragInteraction.on("rotating", function (e) {
                 console.log(2222);
                 console.log(
                     "rotate: " +
@@ -374,19 +412,19 @@ export default {
                 console.log(e);
             });
             //移动
-            transform.on("translating", function (e) {
+            this.$global.dragInteraction.on("translating", function (e) {
                 console.log(3333);
                 console.log(e.delta);
                 console.log(e);
             });
             //拖拽事件
-            transform.on("scaling", function (e) {
+            this.$global.dragInteraction.on("scaling", function (e) {
                 console.log(4444);
                 console.log(e.scale);
                 console.log(e);
             });
             //事件结束
-            transform.on(
+            this.$global.dragInteraction.on(
                 ["rotateend", "translateend", "scaleend"],
                 function (e) {
                     console.log(5555);
