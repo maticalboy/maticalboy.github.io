@@ -132,6 +132,11 @@ import ExtTransform from "ol-ext/interaction/Transform";
 
 import VueDragResize from "vue-drag-resize";
 import dragInteraction from "@/utils/openlayers/HAEditDragInteraction";
+import HARasterScheme from "HAStyleComponent/src/style/HARasterScheme";
+import HASchemeType from "HAStyleComponent/src/style/HASchemeType";
+import tifInfo from "@/assets/data/openlayers/tif.json";
+import ImageCanvasSource from "ol/source/ImageCanvas";
+import { Image as OLImageLayer } from "ol/layer";
 export default {
     components: {
         VueDragResize,
@@ -204,6 +209,8 @@ export default {
                 "hsla(209, 100%, 56%, 0.73)",
                 "#c7158577",
             ],
+            previewImg: null,
+            imageLayer: null,
         };
     },
     mounted() {
@@ -238,7 +245,7 @@ export default {
             );
         },
         acb(a, b) {
-            b.getSource().clear()
+            b.getSource().clear();
             let features = a.getSource().getFeatures();
             let Newfeatures = [];
             features.map((item) => {
@@ -248,23 +255,35 @@ export default {
         },
         drag() {
             this.dragStatus = !this.dragStatus;
+            this.$global.dragInteraction.setActive(this.dragStatus);
             if (this.dragStatus) {
                 // 将矢量图层上的feature复制一份放入drag图层上
-                // this.$global.drawInteraction.dragLayer.setSource(
-                //     this.$global.drawInteraction.vectorLayer.getSource()
-                // );
-                this.acb(this.$global.drawInteraction.vectorLayer,this.$global.drawInteraction.dragLayer)
+                this.acb(
+                    this.$global.drawInteraction.vectorLayer,
+                    this.$global.drawInteraction.dragLayer
+                );
                 // 关闭绘制交互
                 this.closeDraw();
+                // 查看当前是否存在选中的feature,存在的话手动点击feature
+                // 首先获取当前选中的feature
+                let currentFeatures = this.$global.drawInteraction.vectorLayer
+                    .getSource()
+                    .getFeatures()
+                    .filter((item) => {
+                        return item.get("selected");
+                    });
+                if (currentFeatures.length) {
+                    this.$global.dragInteraction.setSelection(currentFeatures);
+                }
+                // this.initPreview();
             } else {
                 // 将drag图层上的feature替换到适量图层上
-                // this.$global.drawInteraction.vectorLayer.setSource(
-                //     this.$global.drawInteraction.dragLayer.getSource()
-                // );
-                this.acb(this.$global.drawInteraction.dragLayer,this.$global.drawInteraction.vectorLayer)
-                this.$global.drawInteraction.dragLayer.getSource().clear()
+                this.acb(
+                    this.$global.drawInteraction.dragLayer,
+                    this.$global.drawInteraction.vectorLayer
+                );
+                this.$global.drawInteraction.dragLayer.getSource().clear();
             }
-            this.$global.dragInteraction.setActive(this.dragStatus);
         },
         clear() {
             let vectorLayer = this.$global.drawInteraction.vectorLayer;
@@ -339,38 +358,72 @@ export default {
                     this.currentDrawGraphicType
                 );
                 this.onEdit();
+                // 使用canvasSource生成预览图片
+                this.imageLayer = new OLImageLayer();
             });
         },
-        //创建多边形
-        createPolygon() {
-            //添加图层，并设置点范围
-            const polygon = new Feature({
-                geometry: new Polygon([
-                    [
-                        [116.39314093500519, 40.0217660530101],
-                        [116.47762344990831, 39.921746523871924],
-                        [116.33244947314951, 39.89892653421418],
-                        [116.30623076162784, 40.00185925352143],
-                    ],
-                ]),
+        /**
+         * @description: 生成预览图
+         * @return {*}
+         */
+        initPreview() {
+            // 获取栅格数据
+            let data = tifInfo.dataList;
+            let bands = tifInfo.bandInfoVo;
+            let transformMatrix = tifInfo.transform;
+            if (data !== undefined) {
+                this.previewImg = new Image();
+                this.previewImg.src = new HARasterScheme(
+                    HASchemeType.RGB,
+                    bands
+                ).createImageData(data, null);
+                this.image.onload = () => {
+                    this.initSource(transformMatrix);
+                };
+            }
+        },
+        initSource(transformMatrix) {
+            let imageSource = new ImageCanvasSource({
+                canvasFunction: (
+                    extent,
+                    resolution,
+                    pixelRatio,
+                    size,
+                    projection
+                ) => {
+                    // 初始化 canvas
+                    const canvas = document.createElement("canvas");
+                    canvas.style.display = "block";
+                    const ctx = canvas.getContext("2d");
+                    canvas.width = size[0];
+                    canvas.height = size[1];
+
+                    // 确保和 ArcGIS 上显示的一致
+                    let pix0 = [0, 0];
+                    if (this.map !== undefined) {
+                        pix0 = this.map.getPixelFromCoordinate([0, 0]);
+                    }
+                    ctx.translate(pix0[0] * pixelRatio, pix0[1] * pixelRatio);
+                    ctx.scale(1 / resolution, 1 / resolution);
+
+                    // 获取当前展示图层的变换矩阵
+                    const [m0, m1, m2, m3, m4, m5] = transformMatrix;
+                    // 关键变换
+                    ctx.transform(
+                        (m0 / window.devicePixelRatio) * pixelRatio,
+                        (-m1 / window.devicePixelRatio) * pixelRatio,
+                        (-m2 / window.devicePixelRatio) * pixelRatio,
+                        (m3 / window.devicePixelRatio) * pixelRatio,
+                        m4 * pixelRatio,
+                        -m5 * pixelRatio
+                    );
+                    ctx.drawImage(this.previewImg, 0, 0);
+                    return canvas;
+                },
+                ratio: 1,
+                //projection: this.projection,
             });
-            //设置样式
-            polygon.setStyle(
-                new Style({
-                    stroke: new Stroke({
-                        width: 4,
-                        color: [255, 0, 0, 1],
-                    }),
-                })
-            );
-            //将图形加到地图上
-            this.map.addLayer(
-                new VectorLayer({
-                    source: new VectorSource({
-                        features: [polygon],
-                    }),
-                })
-            );
+            this.imageLayer.setSource(imageSource);
         },
         //操作事件
         onEdit() {
