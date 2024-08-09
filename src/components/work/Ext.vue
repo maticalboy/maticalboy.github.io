@@ -108,35 +108,22 @@ import "ol/ol.css";
 import View from "ol/View";
 import Map from "ol/Map";
 import TileLayer from "ol/layer/Tile";
-import Overlay from "ol/Overlay";
 import XYZ from "ol/source/XYZ";
 import {
     Vector as SourceVec,
     Cluster,
     Vector as VectorSource,
+    ImageStatic,
 } from "ol/source";
-import { Feature } from "ol";
-import { Vector as LayerVec, Vector as VectorLayer } from "ol/layer";
-import { Point, LineString, Polygon } from "ol/geom";
-
-import {
-    Style,
-    Icon,
-    Fill,
-    Stroke,
-    Text,
-    Circle as CircleStyle,
-} from "ol/style";
-import { OSM, TileArcGISRest } from "ol/source";
-import ExtTransform from "ol-ext/interaction/Transform";
 
 import VueDragResize from "vue-drag-resize";
 import dragInteraction from "@/utils/openlayers/HAEditDragInteraction";
-import HARasterScheme from "HAStyleComponent/src/style/HARasterScheme";
-import HASchemeType from "HAStyleComponent/src/style/HASchemeType";
+// import HARasterScheme from "HAStyleComponent/src/style/HARasterScheme";
 import tifInfo from "@/assets/data/openlayers/tif.json";
-import ImageCanvasSource from "ol/source/ImageCanvas";
 import { Image as OLImageLayer } from "ol/layer";
+// import HABandInfo from "HAStyleComponent/src/style/HABandInfo";
+// import HAStatistics from "HAStyleComponent/src/style/HAStatistics";
+import { transform } from "ol/proj";
 export default {
     components: {
         VueDragResize,
@@ -226,10 +213,16 @@ export default {
             this.$global.drawInteraction.currentDrawMode = this.currentDrawMode;
             this.$global.drawInteraction.setActive(true);
             this.drawStatus = true;
+            this.closeDrag();
         },
         closeDraw() {
             this.$global.drawInteraction.setActive(false);
             this.drawStatus = false;
+        },
+        closeDrag() {
+            this.dragStatus = false;
+            this.$global.dragInteraction.setActive(this.dragStatus);
+            this.$global.drawInteraction.dragLayer.getSource().clear();
         },
         save() {
             this.$global.drawInteraction.save =
@@ -243,8 +236,15 @@ export default {
             this.$global.drawInteraction.vectorLayer.setVisible(
                 this.$global.drawInteraction.visible
             );
+            this.$global.drawInteraction.dragLayer.setVisible(
+                this.$global.drawInteraction.visible
+            );
         },
         acb(a, b) {
+            console.log(
+                a.getSource().getFeatures(),
+                b.getSource().getFeatures()
+            );
             b.getSource().clear();
             let features = a.getSource().getFeatures();
             let Newfeatures = [];
@@ -257,6 +257,9 @@ export default {
             this.dragStatus = !this.dragStatus;
             this.$global.dragInteraction.setActive(this.dragStatus);
             if (this.dragStatus) {
+                // 使用canvasSource生成预览图片
+                this.imageLayer = new OLImageLayer({});
+                this.map.addLayer(this.imageLayer);
                 // 将矢量图层上的feature复制一份放入drag图层上
                 this.acb(
                     this.$global.drawInteraction.vectorLayer,
@@ -266,7 +269,7 @@ export default {
                 this.closeDraw();
                 // 查看当前是否存在选中的feature,存在的话手动点击feature
                 // 首先获取当前选中的feature
-                let currentFeatures = this.$global.drawInteraction.vectorLayer
+                let currentFeatures = this.$global.drawInteraction.dragLayer
                     .getSource()
                     .getFeatures()
                     .filter((item) => {
@@ -275,17 +278,18 @@ export default {
                 if (currentFeatures.length) {
                     this.$global.dragInteraction.setSelection(currentFeatures);
                 }
-                // this.initPreview();
             } else {
+                this.closeDrag();
                 // 将drag图层上的feature替换到适量图层上
-                this.acb(
-                    this.$global.drawInteraction.dragLayer,
-                    this.$global.drawInteraction.vectorLayer
-                );
-                this.$global.drawInteraction.dragLayer.getSource().clear();
+                // this.acb(
+                //     this.$global.drawInteraction.dragLayer,
+                //     this.$global.drawInteraction.vectorLayer
+                // );
+                // this.$global.drawInteraction.dragLayer.getSource().clear();
             }
         },
         clear() {
+            let defaultStyle = this.$global.drawInteraction.getDefaultStyle();
             let vectorLayer = this.$global.drawInteraction.vectorLayer;
             // 首先获取当前选中的feature
             let currentFeatures = vectorLayer
@@ -296,6 +300,7 @@ export default {
                 });
             if (!currentFeatures.length) return;
             currentFeatures[0].set("selected", false);
+            currentFeatures[0].setStyle(defaultStyle);
         },
         changeDrawGraphicType() {
             this.$global.drawInteraction.currentDrawGraphicType =
@@ -316,10 +321,26 @@ export default {
                 });
             if (!currentFeatures.length) return;
             vectorLayer.getSource().removeFeature(currentFeatures[0]);
+            let vectorLayer1 = this.$global.drawInteraction.dragLayer;
+            // 首先获取当前选中的feature
+            let currentFeatures1 = vectorLayer1
+                .getSource()
+                .getFeatures()
+                .filter((item) => {
+                    return item.get("selected");
+                });
+            if (!currentFeatures1.length) return;
+            // 如果移除的当前feature上有拖拽图片 需要清空选中
+            if (currentFeatures1[0].get("dragged")) {
+                this.$global.dragInteraction.setSelection([]);
+            }
+            vectorLayer1.getSource().removeFeature(currentFeatures1[0]);
         },
         removeAll() {
             let vectorLayer = this.$global.drawInteraction.vectorLayer;
             vectorLayer.getSource().clear();
+            let vectorLayer1 = this.$global.drawInteraction.dragLayer;
+            vectorLayer1.getSource().clear();
         },
         changeColor(color) {
             this.$global.drawInteraction.defaultColor = color;
@@ -345,9 +366,13 @@ export default {
                 ],
                 view: new View({
                     // 地图视图
-                    projection: "EPSG:4326", // 坐标系，有EPSG:4326和EPSG:3857
-                    center: [116.064839, 40.548857], // 深圳坐标
-                    minZoom: 6, // 地图缩放最小级别
+                    projection: "EPSG:3857", // 坐标系，有EPSG:4326和EPSG:3857
+                    center: transform(
+                        [116.064839, 40.548857],
+                        "EPSG:4326",
+                        "EPSG:3857"
+                    ), // 深圳坐标
+                    // minZoom: 6, // 地图缩放最小级别
                     zoom: 8, // 地图缩放级别（打开页面时默认级别）
                 }),
             });
@@ -357,73 +382,67 @@ export default {
                 this.$global.drawInteraction.initDrawInteraction(
                     this.currentDrawGraphicType
                 );
-                this.onEdit();
-                // 使用canvasSource生成预览图片
-                this.imageLayer = new OLImageLayer();
+                // this.onEdit();
             });
         },
         /**
          * @description: 生成预览图
          * @return {*}
          */
-        initPreview() {
+        initPreview(feature) {
             // 获取栅格数据
             let data = tifInfo.dataList;
-            let bands = tifInfo.bandInfoVo;
-            let transformMatrix = tifInfo.transform;
-            if (data !== undefined) {
-                this.previewImg = new Image();
-                this.previewImg.src = new HARasterScheme(
-                    HASchemeType.RGB,
-                    bands
-                ).createImageData(data, null);
-                this.image.onload = () => {
-                    this.initSource(transformMatrix);
-                };
+            let noData =
+                tifInfo.bandInfoVo[0].rasterStatisticsInfoVo.noDataValue;
+            let projection = tifInfo.projection;
+            let extent = feature.getGeometry().getExtent();
+            // extent = [116, 40, 130, 45];
+            let bands = [];
+            for (let i = 0; i < tifInfo.bandInfoVo.length; i++) {
+                let band = new HABandInfo({
+                    name: tifInfo.bandInfoVo[i].bandName,
+                    statistics: new HAStatistics({
+                        valueType:
+                            tifInfo.bandInfoVo[i].rasterStatisticsInfoVo
+                                .dataType,
+                        min: tifInfo.bandInfoVo[i].rasterStatisticsInfoVo
+                            .minValue,
+                        max: tifInfo.bandInfoVo[i].rasterStatisticsInfoVo
+                            .maxValue,
+                        enableUniqueValue:
+                            tifInfo.bandInfoVo[i].rasterStatisticsInfoVo
+                                .enableUniqueValue,
+                        uniqueValues:
+                            tifInfo.bandInfoVo[i].rasterStatisticsInfoVo
+                                .uniqueValue,
+                        uniqueValueCount:
+                            tifInfo.bandInfoVo[i].rasterStatisticsInfoVo
+                                .uniqueValueCount,
+                        totalCount:
+                            tifInfo.bandInfoVo[i].rasterStatisticsInfoVo
+                                .totalCount,
+                        histogram:
+                            tifInfo.bandInfoVo[i].rasterStatisticsInfoVo
+                                .histogram,
+                    }),
+                });
+                bands.push(band);
             }
-        },
-        initSource(transformMatrix) {
-            let imageSource = new ImageCanvasSource({
-                canvasFunction: (
-                    extent,
-                    resolution,
-                    pixelRatio,
-                    size,
-                    projection
-                ) => {
-                    // 初始化 canvas
-                    const canvas = document.createElement("canvas");
-                    canvas.style.display = "block";
-                    const ctx = canvas.getContext("2d");
-                    canvas.width = size[0];
-                    canvas.height = size[1];
-
-                    // 确保和 ArcGIS 上显示的一致
-                    let pix0 = [0, 0];
-                    if (this.map !== undefined) {
-                        pix0 = this.map.getPixelFromCoordinate([0, 0]);
-                    }
-                    ctx.translate(pix0[0] * pixelRatio, pix0[1] * pixelRatio);
-                    ctx.scale(1 / resolution, 1 / resolution);
-
-                    // 获取当前展示图层的变换矩阵
-                    const [m0, m1, m2, m3, m4, m5] = transformMatrix;
-                    // 关键变换
-                    ctx.transform(
-                        (m0 / window.devicePixelRatio) * pixelRatio,
-                        (-m1 / window.devicePixelRatio) * pixelRatio,
-                        (-m2 / window.devicePixelRatio) * pixelRatio,
-                        (m3 / window.devicePixelRatio) * pixelRatio,
-                        m4 * pixelRatio,
-                        -m5 * pixelRatio
-                    );
-                    ctx.drawImage(this.previewImg, 0, 0);
-                    return canvas;
-                },
-                ratio: 1,
-                //projection: this.projection,
-            });
-            this.imageLayer.setSource(imageSource);
+            if (data !== undefined) {
+                let scheme = JSON.parse(tifInfo.layerStyle.replace(/'/g, '"'));
+                let schemes;
+                if (scheme !== null && scheme !== "") {
+                    schemes = HARasterScheme.parseScheme(scheme);
+                }
+                let base64 = schemes.createImageData(data, noData);
+                let rasterSource = new ImageStatic({
+                    url: base64,
+                    projection: projection,
+                    interpolate: false,
+                    imageExtent: extent,
+                });
+                this.imageLayer.setSource(rasterSource);
+            }
         },
         //操作事件
         onEdit() {
@@ -441,6 +460,7 @@ export default {
             });
             this.map.addInteraction(this.$global.dragInteraction);
             this.$global.dragInteraction.setActive(false);
+
             //开始事件
             this.$global.dragInteraction.on(
                 ["rotatestart", "translatestart"],
@@ -452,6 +472,37 @@ export default {
                     console.log(startangle);
                 }
             );
+            // 确认事件
+            this.$global.dragInteraction.on("confirm", (e) => {
+                console.log("-----");
+                let length = this.$global.drawInteraction.dragLayer
+                    .getSource()
+                    .getFeatures().length;
+                if (length) {
+                    // 将drag图层上的feature替换到适量图层上
+                    this.acb(
+                        this.$global.drawInteraction.dragLayer,
+                        this.$global.drawInteraction.vectorLayer
+                    );
+                    // 每次确认之后，需要新添加图片图层
+                }
+            });
+            // 选中事件
+            this.$global.dragInteraction.on("select", (e) => {
+                console.log("e.features");
+                // 首先获取当前选中的feature
+                let currentFeatures = e.features.getArray();
+                if (!currentFeatures.length) return;
+                this.initPreview(currentFeatures[0]);
+                // 需要先将所有的feature置为false
+                this.$global.drawInteraction.dragLayer
+                    .getSource()
+                    .getFeatures()
+                    .map((item) => {
+                        item.set("dragged", false);
+                    });
+                currentFeatures[0].set("dragged", true);
+            });
             //旋转
             this.$global.dragInteraction.on("rotating", function (e) {
                 console.log(2222);
@@ -465,7 +516,7 @@ export default {
                 console.log(e);
             });
             //移动
-            this.$global.dragInteraction.on("translating", function (e) {
+            this.$global.dragInteraction.on("translating", (e) => {
                 console.log(3333);
                 console.log(e.delta);
                 console.log(e);
@@ -479,8 +530,8 @@ export default {
             //事件结束
             this.$global.dragInteraction.on(
                 ["rotateend", "translateend", "scaleend"],
-                function (e) {
-                    console.log(5555);
+                (e) => {
+                    this.initPreview(e.feature);
                 }
             );
         },

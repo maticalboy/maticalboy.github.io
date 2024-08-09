@@ -168,7 +168,7 @@ var ol_interaction_Transform = class olinteractionTransform extends ol_interacti
         options = options || {}
         // Style
         var stroke = options.pointStroke || new ol_style_Stroke({ color: [255, 0, 0, 1], width: 1 })
-        const featureStroke = new ol_style_Stroke({color: [43, 255, 255, 1], width: 2});
+        const featureStroke = new ol_style_Stroke({ color: [43, 255, 255, 1], width: 2 });
         var strokedash = options.stroke || new ol_style_Stroke({ color: [255, 0, 0, 1], width: 1, lineDash: [4, 4] })
         var fill0 = options.fill || new ol_style_Fill({ color: [255, 0, 0, 0.01] })
         var fill = options.pointFill || new ol_style_Fill({ color: [255, 255, 255, 0.8] })
@@ -201,8 +201,8 @@ var ol_interaction_Transform = class olinteractionTransform extends ol_interacti
         }
         //Feature顶点样式
         let vertexPt = new ol_style_Circle({
-            fill: new ol_style_Fill({color: [0, 255, 255, 1]}),
-            stroke: new ol_style_Stroke({color: [0, 255, 255, 1], width: 1}),
+            fill: new ol_style_Fill({ color: [0, 255, 255, 1] }),
+            stroke: new ol_style_Stroke({ color: [0, 255, 255, 1], width: 1 }),
             radius: 5
         })
         //旋转时的中心点样式
@@ -590,12 +590,17 @@ var ol_interaction_Transform = class olinteractionTransform extends ol_interacti
                 if (!this.addFn_(evt))
                     this.selection_.clear()
                 var index = this.selection_.getArray().indexOf(feature)
-                if (index < 0)
+                if (index < 0) {
                     this.selection_.push(feature)
+                    // 切换选中的拖拽的feature
+                    this.dispatchEvent({ type: 'confirm' })
+                }
                 else
                     this.selection_.removeAt(index)
             } else {
                 this.selection_.clear()
+                // 点击空白处确认
+                this.dispatchEvent({ type: 'confirm' })
             }
             this.ispt_ = this.selection_.getLength() === 1 ? (this.selection_.item(0).getGeometry().getType() == "Point") : false
             this.iscircle_ = (this.selection_.getLength() === 1 ? (this.selection_.item(0).getGeometry().getType() == "Circle") : false)
