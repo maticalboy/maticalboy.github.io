@@ -70,6 +70,9 @@
                     <div @click="closeDraw">
                         <span>关</span>
                     </div>
+                    <div @click="select">
+                        <span>选</span>
+                    </div>
                     <div @click="save" :class="{ selected: saveStatus }">
                         <span>保</span>
                     </div>
@@ -118,11 +121,11 @@ import {
 
 import VueDragResize from "vue-drag-resize";
 import dragInteraction from "@/utils/openlayers/HAEditDragInteraction";
-// import HARasterScheme from "HAStyleComponent/src/style/HARasterScheme";
+import HARasterScheme from "HAStyleComponent/src/style/HARasterScheme";
 import tifInfo from "@/assets/data/openlayers/tif.json";
 import { Image as OLImageLayer } from "ol/layer";
-// import HABandInfo from "HAStyleComponent/src/style/HABandInfo";
-// import HAStatistics from "HAStyleComponent/src/style/HAStatistics";
+import HABandInfo from "HAStyleComponent/src/style/HABandInfo";
+import HAStatistics from "HAStyleComponent/src/style/HAStatistics";
 import { transform } from "ol/proj";
 export default {
     components: {
@@ -202,11 +205,10 @@ export default {
     },
     mounted() {
         this.initMap();
-        // this.createPolygon();
-        // this.onEdit();
     },
     methods: {
         handleSelectedFeature() {},
+        select() {},
         startDraw() {
             this.$global.drawInteraction.currentDrawGraphicType =
                 this.currentDrawGraphicType;
@@ -241,10 +243,6 @@ export default {
             );
         },
         acb(a, b) {
-            console.log(
-                a.getSource().getFeatures(),
-                b.getSource().getFeatures()
-            );
             b.getSource().clear();
             let features = a.getSource().getFeatures();
             let Newfeatures = [];
@@ -259,6 +257,8 @@ export default {
             if (this.dragStatus) {
                 // 使用canvasSource生成预览图片
                 this.imageLayer = new OLImageLayer({});
+                this.imageLayer.set("editable", true);
+                this.imageLayer.set("layerId", "fatherId");
                 this.map.addLayer(this.imageLayer);
                 // 将矢量图层上的feature复制一份放入drag图层上
                 this.acb(
@@ -382,7 +382,25 @@ export default {
                 this.$global.drawInteraction.initDrawInteraction(
                     this.currentDrawGraphicType
                 );
-                // this.onEdit();
+                this.onEdit();
+                this.map.on("moveend", () => {
+                    this.loadRasterOfAllLayer();
+                });
+            });
+        },
+        loadRasterOfAllLayer() {
+            let layers = this.map
+                .getLayers()
+                .getArray()
+                .filter((item) => item.get("editable"));
+            if (layers.length) return;
+            layers.map((item) => {
+                // 获取栅格数据
+                let data = tifInfo.dataList;
+                let noData =
+                    tifInfo.bandInfoVo[0].rasterStatisticsInfoVo.noDataValue;
+                let projection = tifInfo.projection;
+                let extent = feature.getGeometry().getExtent();
             });
         },
         /**
@@ -396,6 +414,7 @@ export default {
                 tifInfo.bandInfoVo[0].rasterStatisticsInfoVo.noDataValue;
             let projection = tifInfo.projection;
             let extent = feature.getGeometry().getExtent();
+            this.imageLayer.set("geometry", feature.getGeometry());
             // extent = [116, 40, 130, 45];
             let bands = [];
             for (let i = 0; i < tifInfo.bandInfoVo.length; i++) {
@@ -494,6 +513,7 @@ export default {
                 let currentFeatures = e.features.getArray();
                 if (!currentFeatures.length) return;
                 this.initPreview(currentFeatures[0]);
+                // this.imageLayer.getSource().setImageExtent(currentFeatures[0].getGeometry().getExtent())
                 // 需要先将所有的feature置为false
                 this.$global.drawInteraction.dragLayer
                     .getSource()
@@ -531,7 +551,8 @@ export default {
             this.$global.dragInteraction.on(
                 ["rotateend", "translateend", "scaleend"],
                 (e) => {
-                    this.initPreview(e.feature);
+                    // this.initPreview(e.feature);
+                    // this.imageLayer.getSource().setImageExtent(e.feature.getGeometry().getExtent())
                 }
             );
         },

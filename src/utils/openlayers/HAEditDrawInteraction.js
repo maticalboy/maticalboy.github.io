@@ -11,13 +11,13 @@ import CircleStyle from 'ol/style/Circle';
 import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
 import { Feature } from "ol";
-import jsts from "../../utils/common/jsts";
+// import jsts from "../../utils/common/jsts";
 export default class HAEditDrawInteraction extends Interaction {
     constructor() {
         super({
             handleEvent: function (mapBrowserEvent) {
                 return true
-            }
+            },
         });
         // 当前交互是否激活
         this.active = false;
@@ -56,7 +56,17 @@ export default class HAEditDrawInteraction extends Interaction {
         this.save = true
         // 图层是否可见
         this.visible = true
+        // 默认样式颜色
         this.defaultColor = "rgba(255, 69, 0, 0.68)"
+        // 选择功能是否开启
+        this.selectStatus = false;
+    }
+    /**
+     * @description: 给地图添加点击事件 选中feature
+     * @return {*}
+     */
+    addSelectEvent(){
+
     }
     /**
      * @description: 初始化栅格图层上用于绘制交互的矢量图层
@@ -208,6 +218,7 @@ export default class HAEditDrawInteraction extends Interaction {
      * @return {*}
      */
     operateFeature(feature1, feature2, type) {
+        return
         let geometry1 = feature1.getGeometry();
         let geometry2 = feature2.getGeometry();
         if (feature1.getGeometry().getType() != "Polygon") {
@@ -218,15 +229,15 @@ export default class HAEditDrawInteraction extends Interaction {
         }
         let operateGeometry;
         switch (type) {
-            case "merge":
-                operateGeometry = jsts.union(geometry1, geometry2);
-                break;
-            case "resection":
-                operateGeometry = jsts.getDifference(geometry1, geometry2);
-                break;
-            case "intersection":
-                operateGeometry = jsts.intersects(geometry1, geometry2);
-                break;
+            // case "merge":
+            //     operateGeometry = jsts.union(geometry1, geometry2);
+            //     break;
+            // case "resection":
+            //     operateGeometry = jsts.getDifference(geometry1, geometry2);
+            //     break;
+            // case "intersection":
+            //     operateGeometry = jsts.intersects(geometry1, geometry2);
+            //     break;
             default:
                 break;
         }
