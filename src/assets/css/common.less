@@ -1,0 +1,101 @@
+
+// span标签的字体大小设为12px
+span {
+  font-size: 12px;
+}
+
+
+
+
+
+
+/******************* 自定义样式开始 **********************/
+// 通用垂直居中容器
+.vertical-center-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+// 通用内边距 10px
+.p-10 {
+  padding: 10px;
+}
+
+// 文件选择器按钮
+.file-picker-button {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  line-height: 22px;
+  cursor: pointer;
+  display: inline-block;
+  margin: 1px 0 0 3px;
+  // transform: translate(6px,1px);
+  img{
+    transform: translate(3px,3px);
+  }
+  &:hover{
+    background: #E4ECEF;
+  }
+}
+
+
+// dialog的遮罩层禁止点击
+.dialog-disabled {
+  .el-dialog__wrapper {
+    pointer-events: none;
+  }
+
+  /*抽屉弹出时，可以点击抽屉里的东西*/
+  .el-dialog  {
+    pointer-events: auto;
+  }
+}
+
+// 右侧属性面板相关样式
+.attribute-container {
+  height: 100%;
+  .layer-card {
+    height: 280px;
+  }
+
+  .property-card {
+    height: calc(100% - 280px);
+  }
+  .title {
+    height: 24px;
+    // background-color: @g-color-f9;
+    border-bottom: 1px solid @g-color-f5;
+    border-top: @g-color-f5 solid 1px;
+    box-sizing: border-box;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+    .rect {
+      width: 3px;
+      height: 12px;
+      background-color: @g-color-primary;
+      margin-right: 5px;
+    }
+  }
+
+}
+
+
+
+
+// 鼠标指针为小手状态
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-default {
+  cursor: default;
+}
+
+
+.handsontable{
+  font-size: 12px !important;
+}
+/******************* 自定义样式结束 **********************/

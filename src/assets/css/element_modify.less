@@ -1,0 +1,790 @@
+
+/*
+ * 此文件的使用方式为：全局引入——在入口js文件内全局中引入。
+ * 示例：
+ * 在 src/entry/profile/profile.js 文件
+ * import 'element-ui/lib/theme-chalk/index.css'
+ * import '../../assets/css/element_modify.css'
+ * 原理：
+ *    全局引入，覆盖element原有样式
+ */
+//  按钮相关颜色
+@button-color-1: #3370ff;
+@button-color-2: rgba(51,112,255, 0.8);
+
+@border-color-1: #d4d4d4;
+@button-default-fill: rgba(212,212,212,0.8); //#d4d4d4
+
+@text-color-1: #333333;
+
+.text-default { font-size: 12px; } /* 通用字号 */
+
+/******************** card相关样式开始 **************************/
+
+/*
+ * card头样式
+ */
+.el-card__header .el-input__inner{
+  padding: 14px 20px;
+}
+
+/******************** card相关样式结束 **************************/
+
+
+/******************** 表格相关样式开始 **************************/
+/*
+ * 修改表格的默认字体、字号
+ */
+.el-table {
+  font-size: 12px;
+  font-family: "Microsoft YaHei";
+  color:#333333 !important;
+}
+
+//设置表头的样式
+.el-table th.el-table__cell.is-leaf {
+  background: #f9f9f9;
+  padding: 0;
+  font-family: Microsoft YaHei;
+  font-weight: normal;
+  color: #333333;
+}
+
+
+/* 仅设置表体单元格（不包含表头） */
+.el-table .el-table__body .el-table__cell {
+  height: 23px;
+  padding: 0;
+  font-family: Microsoft YaHei;
+}
+
+
+
+/******************** 表格相关样式结束 **************************/
+
+
+/******************** tree相关样式开始 **************************/
+
+// 树形节点的选中颜色
+.el-tree-node__content{
+  &:extend(.text-default);
+  line-height: 24px;
+  height: 24px;
+  box-sizing: border-box;
+  .el-tree-node__label{
+    &:extend(.text-default);
+    color: #333333;
+  }
+}
+.el-tree-node__content:hover{
+  background-color:#e5ecf0;
+}
+
+.el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content{
+  background-color: #cce8ff;
+}
+//设置树形节点展开图标颜色
+.el-tree-node__expand-icon {
+  color: #333;
+}
+
+.el-tree-node__expand-icon.is-leaf {
+  color: transparent;
+}
+
+/******************** tree相关样式结束 **************************/
+
+
+
+
+/******************** dialog对话框相关样式开始 **************************/
+
+/*
+ * 对话框头样式
+ */
+.el-dialog__header,
+.el-message-box__header{
+  display: flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 10px;
+  border-bottom: 1px solid #f5f5f5;
+  // box-sizing: border-box;
+}
+
+.el-dialog__headerbtn,
+.el-message-box__headerbtn{
+  top: auto;
+  right: 10px;
+}
+.el-dialog__headerbtn .el-dialog__close,
+.el-message-box__headerbtn .el-icon-close{
+  color: #333333;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/*
+ * 对话框标题样式
+ */
+.el-dialog__title,
+.el-message-box__title{
+  &:extend(.text-default);
+  font-weight: bold;
+  font-family: "Microsoft YaHei";
+  color: #333333;
+}
+
+/*
+ * 对话框体样式
+ */
+.el-dialog__body {
+  padding: 0;
+  min-height: 134px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: default;
+  &:extend(.text-default);
+}
+
+/*
+ * 对话框footer样式
+ */
+.el-dialog__footer {
+  padding: 0;
+  height: 34px;
+  border-top: 1px solid #EBEEF5;
+  &:extend(.text-default);
+  font-family: 'Microsoft YaHei';
+  box-sizing: content-box;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  cursor: default;
+  button{
+    width: fit-content;
+    min-width: 60px;
+    height: 24px;
+    line-height: 24px;
+    &:extend(.text-default);
+    padding: 0 10px;
+    border-radius: 2px;
+    box-sizing: border-box;
+    span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    img {
+      margin-right: 4px;
+    }
+  }
+  .el-button:last-of-type{
+    margin-right: 10px;
+  }
+}
+.el-dialog__footer .dialog-footer {
+  width: fit-content;
+  height: 100%;
+  align-items: center;
+  display: inline-flex;
+}
+/******************** dialog对话框相关样式结束 **************************/
+
+/******************** message对话框相关样式开始 **************************/
+
+// message对话框
+.el-message-box{
+  padding-bottom: 0;
+}
+.el-message-box__btns{
+  padding: 0 10px;
+  height: 34px;
+  button{
+    margin-top: 5px;
+    min-width: 60px;
+    height: 24px;
+    line-height: 24px;
+    &:extend(.text-default);
+    padding: 0 10px;
+    border-radius: 2px;
+    box-sizing: border-box;
+  }
+}
+.el-message-box__header{
+  border-bottom: none;
+}
+
+/******************** message对话框相关样式结束 **************************/
+
+/******************** form表单相关样式开始 **************************/
+/* 表单 */
+.el-form-item__label{
+  color: #333333;
+  &:extend(.text-default);
+  padding: 0 5px 0 0;
+  line-height: 24px;
+  /* text-align: justify; */
+  &+.el-form-item__content{
+    &:extend(.text-default);
+    // font-size: 0;
+  }
+}
+.el-form--label-top .el-form-item__label{
+  padding: 0;
+}
+.el-form-item--small .el-form-item__content,
+.el-form-item--small .el-form-item__label{
+  line-height: 24px;
+}
+.el-form-item,
+.el-form-item--mini.el-form-item,
+.el-form-item--small.el-form-item{
+  margin-bottom:16px;
+}
+
+.el-form-item__content{
+  // height: 24px;
+  line-height: 24px;
+}
+
+.el-form-item__error{
+  padding-top: 1px;
+  font-size: 10px;
+  line-height: 14px;
+}
+/******************** form表单相关样式结束 **************************/
+
+
+/******************** radio相关样式开始 **************************/
+
+// 单选框
+.el-radio{
+  line-height: 24px;
+  margin-right: 10px !important;
+  margin-left: 0px !important;
+  &.is-checked{
+    .el-radio__label{
+      color: @button-color-1;
+    }
+  }
+}
+.el-radio__input{
+  .el-radio__inner{
+    width: 12px;
+    height: 12px;
+    // transform: translateY(1px);
+    &::after{
+      width: 6px;
+      height: 6px;
+    }
+  }
+  &.is-checked{
+    .el-radio__inner{
+      background-color: @button-color-1;
+      border-color: @button-color-1;
+    }
+  }
+}
+.el-radio__label{
+  padding-left: 4px;
+  &:extend(.text-default);
+}
+.el-radio__original {
+  display: none !important; /* 隐藏原生 radio 输入，但仍然允许交互 */
+}
+/*解决多个单选框切换时报警告的问题*/
+.el-radio:focus:not(.is-focus):not(:active):not(.is-disabled) .el-radio__inner {
+  box-shadow: none !important;
+}
+
+.el-radio-group{
+  vertical-align: unset;
+}
+
+
+/******************** radio相关样式结束 **************************/
+
+
+
+/******************** checkbox相关样式开始 **************************/
+
+//复选框
+.el-checkbox{
+  // line-height: 24px;
+  &.is-checked{
+    .el-checkbox__label{
+      color: @button-color-1;
+    }
+  }
+}
+.el-checkbox__label{
+  &:extend(.text-default);
+  padding-left: 6px;
+  line-height: 18px;
+  color: #333333;
+}
+
+.el-checkbox__input{
+  &.is-checked{
+    .el-checkbox__inner{
+      background-color: @button-color-1;
+      border-color: @button-color-1;
+    }
+  }
+  &.is-focus{
+    .el-checkbox__inner{
+      border-color: @button-color-1;
+    }
+  }
+  &.is-indeterminate .el-checkbox__inner{
+    background-color: @button-color-1;
+    border-color: @button-color-1;
+  }
+  &.is-disabled .el-checkbox__inner{
+    opacity: 0.3;
+  }
+}
+.el-checkbox__inner{
+  width: 12px;
+  height: 12px;
+  &::after{
+    left: 3px;
+    top: 0;
+  }
+}
+
+/******************** checkbox相关样式结束 **************************/
+
+
+/******************** input框相关样式开始 **************************/
+
+
+/*去除number 的默认样式*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+
+
+/* input框、下拉框 */
+.el-input{
+  height: 24px;
+  line-height: 24px;
+  // font-size: 0;
+  &.is-disabled{
+    opacity: 0.4;
+    .el-input__inner{
+      border-color: #D4D4D4;
+      color: #333333;
+    }
+  }
+  .el-input__icon{
+    line-height: 24px;
+  }
+}
+
+.el-input__inner,.el-input--small .el-input__inner,.el-input--mini .el-input__inner{
+  &:extend(.text-default);
+  line-height: 24px !important;
+  height: 24px !important;
+  border-radius: 2px;
+  padding: 0 20px 0 6px;
+}
+
+//input-number
+.el-input-number,.el-input-number.is-controls-right,.el-input-number--small{
+  height: 24px;
+  &.is-disabled{
+    opacity: 0.4;
+    .el-input{
+      opacity: unset;
+    }
+  }
+  .el-input-number__increase{
+    top: 3px;
+  }
+  .el-input-number__decrease{
+    bottom: 2px;
+  }
+  .el-input-number__decrease,.el-input-number__increase{
+    border: none;
+    width: 12px;
+    background: none;
+    font-size: 10px;
+    line-height: 10px;
+    right: 6px;
+    i{
+      color: #333333;
+      // font-weight: bold;
+    }
+    &.is-disabled{
+      opacity: 0.3;
+    }
+    &:hover{
+      i{
+        color: @button-color-1;
+      }
+    }
+  }
+  .el-input__inner{
+    text-align: left !important;
+    padding-left: 5px;
+    padding-right: 20px;
+    height: 24px;
+    line-height: 24px;
+    border-radius: 2px;
+    border: 1px solid #D4D4D4;
+    box-sizing: border-box;
+  }
+}
+.el-input-number.is-controls-right[class*=small] [class*=decrease], .el-input-number.is-controls-right[class*=small] [class*=increase]{
+  line-height: 10px;
+}
+.el-input-number.is-controls-right[class*=mini] [class*=decrease], .el-input-number.is-controls-right[class*=mini] [class*=increase]{
+  line-height: 10px;
+}
+.el-input-number.is-controls-right .el-input-number__decrease [class*=el-icon], .el-input-number.is-controls-right .el-input-number__increase [class*=el-icon]{
+  transform: scale(1);
+}
+.el-input-number.is-without-controls .el-input__inner{
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.el-input.is-active .el-input__inner, .el-input__inner:focus {
+    border-color: #409EFF !important;
+}
+
+
+/******************** input框相关样式结束 **************************/
+/******************** select框相关样式开始 **************************/
+
+.el-select,
+.el-input-number{
+  width: 100%;
+}
+
+.el-select .el-input{
+  height: 24px;
+  line-height: 24px;
+  .el-select__caret{
+    line-height: 24px;
+  }
+  .el-input__icon{
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    color: #333333;
+    font-size: 10px;
+    // font-weight: bold;
+  }
+  .el-input__suffix{
+    right: 0;
+    height: 24px;
+    line-height: 24px;
+  }
+  .el-input__inner{
+    padding-right: 20px;
+  }
+  .is-disabled .el-input__inner{
+    height: 24px;
+    line-height: 24px;
+  }
+}
+
+// select框下拉面板样式
+.el-select-dropdown {
+  min-width: 80px;
+  .el-select-dropdown__empty {
+    font-size: 12px;
+  }
+  .el-select-dropdown__item {
+    font-size: 12px;
+    height: 24px;
+    box-sizing: border-box;
+    padding: 0 8px 0 15px;
+    line-height: 24px;
+    width: 100% !important;
+
+    &.selected {
+      color: #3370ff !important;
+      font-weight: 700;
+    }
+  }
+}
+
+.el-scrollbar__wrap {
+    overflow: auto !important;
+}
+/******************** select框相关样式结束 **************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***************** switch开关相关样式开始 ***************************/
+
+// 开关
+.el-switch{
+  .el-switch__core::after{
+    background-color: @button-color-1;
+  }
+  .el-switch__label{
+    color: #333333;
+    &:extend(.text-default);
+  }
+  &.is-checked {
+    .el-switch__core{
+      border-color: @button-color-1;
+      background-color: @button-color-1;
+      &::after{
+        background-color: #fff;
+      }
+    }
+  }
+}
+.el-switch__label * {
+  font-size: 12px;
+}
+
+
+/***************** switch开关相关样式结束 ***************************/
+/***************** Dropdown 下拉菜单相关样式开始 ***************************/
+
+.el-dropdown-menu__item {
+  height: 24px;
+  margin-bottom: 1px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  &:extend(.text-default);
+
+  img {
+    margin-right: 5px;
+  }
+
+  &:focus {
+    background-color: #f5f5f5 !important;
+    color: #333 !important;
+  }
+
+  &:hover {
+    background-color: #f5f5f5 !important;
+    color: #333 !important;
+  }
+}
+//分割线样式
+.el-dropdown-menu__item--divided {
+  margin-top: 0px;
+}
+
+.el-dropdown-menu__item--divided:before {
+  margin: 0px;
+}
+
+/***************** Dropdown 下拉菜单相关样式结束 ***************************/
+
+
+/***************** progress相关样式开始 ***************************/
+.el-progress__text{
+  &:extend(.text-default);
+}
+
+/***************** progress相关样式结束 ***************************/
+/***************** descriptions相关样式开始 ***************************/
+.el-descriptions{
+  &:extend(.text-default);
+}
+
+
+.el-descriptions__body .el-descriptions__table .el-descriptions-item__cell {
+  line-height: 1.15;
+}
+
+.el-descriptions-item__label:not(.is-bordered-label) {
+  margin-right: 0px;
+}
+
+.el-descriptions :not(.is-bordered) .el-descriptions-item__cell {
+  padding-bottom: 4px;
+}
+/***************** descriptions相关样式结束 ***************************/
+
+
+
+
+/***************** 按钮相关样式开始 ***************************/
+
+
+/* 修复所有 el-button 的 loading 布局问题 */
+.el-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+/*.el-button .el-icon-loading {
+  margin-right: 8px !important;
+}*/
+
+/*
+ * 按钮success样式
+ */
+/* .el-button{
+  width: 60px;
+  height: 24px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  border-radius: 2px;
+} */
+
+// default按钮样式
+.el-button--default {
+  color: @text-color-1;
+  border-color: @border-color-1;
+}
+
+.el-button--default:focus,
+.el-button--default:hover{
+  color: @text-color-1;
+  border-color: @border-color-1;
+  background-color: rgba(212,212,212,0.1);
+}
+
+.el-button--default.is-disabled,
+.el-button--default.is-disabled:focus,
+.el-button--default.is-disabled:hover{
+  color: @text-color-1;
+  border-color: @border-color-1;
+  opacity: 0.3;
+}
+.el-button--success, .el-button--success:focus, .el-button--success.is-active, .el-button--success:active{
+  color: #FFF;
+  border-color: @button-color-1;
+  background-color: @button-color-1;
+}
+
+.el-button--success:hover{
+  border-color: rgba(51,112,255, 0);
+  background-color: @button-color-2;
+}
+
+.el-button--success.is-disabled,
+.el-button--success.is-disabled:focus,
+.el-button--success.is-disabled:hover{
+  color: #FFF;
+  border-color: rgba(51,112,255, 0);
+  background-color: @button-color-1;
+  opacity: 0.3;
+}
+
+/*
+ * 按钮primary样式
+ */
+.el-button--primary {
+  color: #fff;
+  background-color: @button-color-1;
+  border-color: @button-color-1;
+}
+
+.el-button--primary:focus,
+.el-button--primary:hover{
+  color: #FFF;
+  border-color: rgba(51,112,255, 0);
+  background-color: @button-color-2;
+}
+
+.el-button--primary.is-disabled,
+.el-button--primary.is-disabled:focus,
+.el-button--primary.is-disabled:hover{
+  color: #FFF;
+  border-color: @button-color-1;
+  background-color: @button-color-1;
+  opacity: 0.3;
+}
+
+// primary plain样式
+.el-button--primary.is-plain,.el-button--success.is-plain{
+  color: @button-color-1;
+  background-color: #ffffff;
+  border-color: @button-color-1;
+}
+.el-button--primary.is-plain:focus,
+.el-button--primary.is-plain:hover,
+.el-button--success.is-plain:focus,
+.el-button--success.is-plain:hover{
+  color: @button-color-1;
+  border-color: @button-color-1;
+  background-color: rgba(51,112,255, 0.1);
+}
+.el-button--primary.is-plain.is-disabled,
+.el-button--primary.is-plain.is-disabled:focus,
+.el-button--primary.is-plain.is-disabled:hover,
+.el-button--success.is-plain.is-disabled,
+.el-button--success.is-plain.is-disabled:focus,
+.el-button--success.is-plain.is-disabled:hover{
+  color: @button-color-1;
+  background-color: #ffffff;
+  border-color: @button-color-1;
+  opacity: 0.3;
+}
+
+
+/*
+ * 按钮warning样式
+ */
+.el-button--warning {
+  color: #fff;
+  background-color: rgba(255, 162, 0, 1);
+  border-color:rgba(255, 162, 0, 1);
+}
+.el-button--warning.is-disabled,
+.el-button--warning.is-disabled:focus,
+.el-button--warning.is-disabled:hover{
+  color: #FFF;
+  border-color: rgba(255, 162, 0, 0.5);
+  background-color: rgba(255, 162, 0, 0.5);
+}
+
+/*
+ * 按钮warning样式
+ */
+.el-button--danger {
+  color: #fff;
+  background-color: rgba(255, 83, 83, 1);
+  border-color: rgba(255, 83, 83, 1);
+}
+.el-button--danger.is-disabled,
+.el-button--danger.is-disabled:focus,
+.el-button--danger.is-disabled:hover{
+  color: #FFF;
+  border-color: rgba(255, 83, 83, 0.5);
+  background-color: rgba(255, 83, 83, 0.5);
+}
+
+/***************** 按钮相关样式结束 ***************************/
+
+/*
+ * 消息提示 层级 设置最高
+ */
+.el-message{
+    z-index: 5008 !important;
+}

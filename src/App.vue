@@ -1,28 +1,31 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Wel111come to Your Vue.js App7s7987as987d9a7s9d7"/>
-  </div>
+    <div id="app">
+        <image-processing></image-processing>
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import ImageProcessing from "@/components/ImageProcessing";
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+    name: "App",
+    components: {
+        ImageProcessing,
+    },
+};
 </script>
 
 <style>
+html,
+body,
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    font-size: 12px;
+    min-width: 860px;
+}
+
+body {
+    margin: 0;
 }
 </style>
