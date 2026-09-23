@@ -1,0 +1,89 @@
+{
+  "id": "period-1790077466939",
+  "title": "闽东周期",
+  "groups": [
+    {
+      "id": "group-1790077489811-1ab5b86c7cb5a",
+      "name": "闽东股份",
+      "rows": [
+        {
+          "id": "row-1790077489811-c98e64f3d06e8",
+          "change": 9.97,
+          "totalChange": 9.97,
+          "date": "2026-09-09",
+          "note": "试错"
+        },
+        {
+          "id": "row-1790077516349-d5efe76cb7c3a8",
+          "change": 10.03,
+          "totalChange": 21,
+          "date": "2026-09-10",
+          "note": "试错"
+        },
+        {
+          "id": "row-1790077516497-7f45a0b4db82e",
+          "change": 9.98,
+          "totalChange": 33.0758,
+          "date": "2026-09-11",
+          "note": "试错"
+        },
+        {
+          "id": "row-1790077516643-f36a113eb9abc",
+          "change": 10.01,
+          "totalChange": 46.3967,
+          "date": "2026-09-14",
+          "note": "试错"
+        },
+        {
+          "id": "row-1790077516789-50932081e2c988",
+          "change": 10.02,
+          "totalChange": 61.0656,
+          "date": "2026-09-15",
+          "note": "爆量弱转强"
+        },
+        {
+          "id": "row-1790077516958-bc86a39fb563e",
+          "change": 10,
+          "totalChange": 77.1722,
+          "date": "2026-09-16",
+          "note": "平量反包"
+        },
+        {
+          "id": "row-1790077517103-acdee62679d7a8",
+          "change": -2.76,
+          "totalChange": 72.2822,
+          "date": "2026-09-17",
+          "note": ""
+        },
+        {
+          "id": "row-1790077517244-c07af4de075418",
+          "change": 9.07,
+          "totalChange": 87.9082,
+          "date": "2026-09-18",
+          "note": ""
+        },
+        {
+          "id": "row-1790077517394-006742651dcbd8",
+          "change": 4.23,
+          "totalChange": 95.8568,
+          "date": "2026-09-21",
+          "note": ""
+        },
+        {
+          "id": "row-1790077517547-d0e90ece37c24",
+          "change": 2.35,
+          "totalChange": 100.4594,
+          "date": "2026-09-22",
+          "note": "进去了"
+        },
+        {
+          "id": "row-1790077517697-1bd14ac982efa8",
+          "change": "",
+          "totalChange": "",
+          "date": "2026-09-23",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}
