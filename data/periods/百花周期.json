@@ -1,38 +1,42 @@
 {
   "id": "period-1790065918941",
   "title": "百花周期",
+  "stage": "退二",
+  "sourcePeriodId": "",
+  "relationType": "",
   "groups": [
     {
       "id": "group-1790065935989-c86c0bdc9d0a3",
       "name": "百花医药",
+      "role": "龙头",
       "rows": [
         {
           "id": "row-1790065935989-a178012e39d008",
           "change": 10,
           "totalChange": 10,
           "date": "2026-08-04",
-          "note": "试错"
+          "note": "主升"
         },
         {
           "id": "row-1790066151479-ddb292f764a82",
           "change": 9.97,
           "totalChange": 20.967,
           "date": "2026-08-05",
-          "note": "试错"
+          "note": "主升"
         },
         {
           "id": "row-1790066151658-8e57ccf163fd68",
           "change": 9.99,
           "totalChange": 33.0516,
           "date": "2026-08-06",
-          "note": "分歧转一致  补张龙节点"
+          "note": "主升爆量"
         },
         {
           "id": "row-1790066151918-3a735406fd654",
           "change": 10.02,
           "totalChange": 46.3834,
           "date": "2026-08-07",
-          "note": "缩量新高 确立龙头"
+          "note": "主升缩量突破"
         },
         {
           "id": "row-1790066152369-2471a041c6325",
@@ -60,91 +64,91 @@
           "change": 3.35,
           "totalChange": 101.3816,
           "date": "2026-08-13",
-          "note": "补涨力竭点"
+          "note": "主升盛极"
         },
         {
           "id": "row-1790066240929-f42196af914b3",
           "change": -4.76,
           "totalChange": 91.7958,
           "date": "2026-08-14",
-          "note": "补涨的补涨 反推"
+          "note": "震荡分歧"
         },
         {
           "id": "row-1790066241319-547dc16f0c7da8",
           "change": 1.52,
           "totalChange": 94.7111,
           "date": "2026-08-17",
-          "note": "补涨的补涨 反推"
+          "note": "震荡分歧"
         },
         {
           "id": "row-1790066596598-bff5762510bb98",
           "change": -3.71,
           "totalChange": 87.4873,
           "date": "2026-08-18",
-          "note": "衰竭"
+          "note": "震荡分歧"
         },
         {
           "id": "row-1790066615567-57a819af19388",
           "change": 1.63,
           "totalChange": 90.5434,
           "date": "2026-08-19",
-          "note": "衰竭"
+          "note": "震荡分歧"
         },
         {
           "id": "row-1790066615747-853aa6807a73f8",
           "change": -0.44,
           "totalChange": 89.705,
           "date": "2026-08-20",
-          "note": "衰竭"
+          "note": "震荡分歧"
         },
         {
           "id": "row-1790066616027-04fef0d201eb78",
           "change": -3,
           "totalChange": 84.0138,
           "date": "2026-08-21",
-          "note": "衰竭低点 也是补张龙高点"
+          "note": "震荡分歧"
         },
         {
           "id": "row-1790066616218-bf84e088c075",
           "change": 7.09,
           "totalChange": 97.0604,
           "date": "2026-08-24",
-          "note": "回流"
+          "note": "震荡回流"
         },
         {
           "id": "row-1790066656487-d186df17ab1888",
           "change": 5.43,
           "totalChange": 107.7608,
           "date": "2026-08-25",
-          "note": "回流"
+          "note": "震荡回流"
         },
         {
           "id": "row-1790066656647-44a1e799786e08",
           "change": 1.34,
           "totalChange": 110.5448,
           "date": "2026-08-26",
-          "note": "回流"
+          "note": "震荡回流"
         },
         {
           "id": "row-1790066656797-06fd6bad134888",
           "change": 10.03,
           "totalChange": 131.6624,
           "date": "2026-08-27",
-          "note": "回流高点"
+          "note": "震荡回流"
         },
         {
           "id": "row-1790066656947-139f8f75fdc818",
           "change": -7.43,
           "totalChange": 114.4499,
           "date": "2026-08-28",
-          "note": "退一切换节点"
+          "note": "退一分歧"
         },
         {
           "id": "row-1790074489851-ce25c91b1c43a",
           "change": -9.97,
           "totalChange": 93.0692,
           "date": "2026-08-31",
-          "note": "退一加速"
+          "note": "退一分歧"
         },
         {
           "id": "row-1790074490009-35790e4bcad5",
@@ -158,7 +162,7 @@
           "change": -2.5,
           "totalChange": 78.6233,
           "date": "2026-09-02",
-          "note": "衰竭"
+          "note": "退一分歧"
         },
         {
           "id": "row-1790074490302-675682357d07f",
@@ -172,347 +176,602 @@
           "change": 1.19,
           "totalChange": 65.8552,
           "date": "2026-09-04",
-          "note": "衰竭"
+          "note": "退一衰竭"
         },
         {
           "id": "row-1790074490570-4f8b9fbf847038",
           "change": 0.67,
           "totalChange": 66.9665,
           "date": "2026-09-07",
-          "note": "回流"
+          "note": "退一弱回流"
         },
         {
           "id": "row-1790074492392-39e7bde175657",
           "change": 2.16,
           "totalChange": 70.5729,
           "date": "2026-09-08",
-          "note": "回流"
+          "note": "退一弱回流"
+        },
+        {
+          "id": "row-1790149977002-fb68f87c996218",
+          "change": -5.94,
+          "totalChange": 60.4409,
+          "date": "2026-09-09",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790149977162-15e18848b148d8",
+          "change": -1.3,
+          "totalChange": 58.3552,
+          "date": "2026-09-10",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790149977332-d8ab5e7fdfc5b8",
+          "change": -4.3,
+          "totalChange": 51.5459,
+          "date": "2026-09-11",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790149977502-26909d11b74df8",
+          "change": 3.12,
+          "totalChange": 56.2741,
+          "date": "2026-09-14",
+          "note": "退一衰竭"
+        },
+        {
+          "id": "row-1790149977662-0df44f9992446",
+          "change": -5.24,
+          "totalChange": 48.0854,
+          "date": "2026-09-15",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790150083681-7e7751ed5b3e9",
+          "change": 1.22,
+          "totalChange": 49.892,
+          "date": "2026-09-16",
+          "note": "退一衰竭"
+        },
+        {
+          "id": "row-1790150083841-9aaa3879c4e91",
+          "change": 10.01,
+          "totalChange": 64.8962,
+          "date": "2026-09-17",
+          "note": "退一强回流"
+        },
+        {
+          "id": "row-1790150083991-e7a554cf1fba28",
+          "change": 0.67,
+          "totalChange": 66.001,
+          "date": "2026-09-18",
+          "note": "退一弱回流"
+        },
+        {
+          "id": "row-1790150114711-3fdc7beab85bb",
+          "change": 10.04,
+          "totalChange": 82.6675,
+          "date": "2026-09-21",
+          "note": "退一强回流"
+        },
+        {
+          "id": "row-1790150114871-70875f05700f1",
+          "change": 10.04,
+          "totalChange": 101.0073,
+          "date": "2026-09-22",
+          "note": "退一强回流"
+        },
+        {
+          "id": "row-1790150115011-254d8ec46bae08",
+          "change": -8.15,
+          "totalChange": 84.6252,
+          "date": "2026-09-23",
+          "note": "退二分歧"
+        },
+        {
+          "id": "row-1790150115171-2d0e342316eb5",
+          "change": "",
+          "totalChange": "",
+          "date": "2026-09-24",
+          "note": ""
         }
       ]
     },
     {
       "id": "group-1790066983647-48ad292c129f2",
       "name": "开开实业",
+      "role": "补涨龙",
       "rows": [
         {
           "id": "row-1790066983647-8a5a25ec97eff",
           "change": 9.98,
           "totalChange": 9.98,
           "date": "2026-08-06",
-          "note": "补张龙"
+          "note": "主升"
         },
         {
           "id": "row-1790067078036-e9afbcd6fd49d8",
           "change": 10.01,
           "totalChange": 20.989,
           "date": "2026-08-07",
-          "note": "补张主升"
+          "note": "主升"
         },
         {
           "id": "row-1790067078256-68e9b559055578",
           "change": 10.02,
           "totalChange": 33.1121,
           "date": "2026-08-10",
-          "note": "补张主升"
+          "note": "主升"
         },
         {
           "id": "row-1790067078526-c3c6bff7ca329",
           "change": 10.02,
           "totalChange": 46.4499,
           "date": "2026-08-11",
-          "note": "补张主升"
+          "note": "主升"
         },
         {
           "id": "row-1790067079376-2f5baa3c76b938",
           "change": 10,
           "totalChange": 61.0949,
           "date": "2026-08-12",
-          "note": "补张主升"
+          "note": "主升"
         },
         {
           "id": "row-1790067204916-b920651d7f151",
           "change": -7.35,
           "totalChange": 49.2544,
           "date": "2026-08-13",
-          "note": "断板 补涨的补涨节点"
+          "note": "主升爆量"
         },
         {
           "id": "row-1790067295335-1e77bc4ac52938",
           "change": 10,
           "totalChange": 64.1799,
           "date": "2026-08-14",
-          "note": "补涨的补涨 反推"
+          "note": "主升"
         },
         {
           "id": "row-1790067295625-1bef3068f8227",
           "change": 8.13,
           "totalChange": 77.5277,
           "date": "2026-08-17",
-          "note": "补涨的补涨 反推"
+          "note": "主升"
         },
         {
           "id": "row-1790067295976-07d90baa2ab128",
           "change": 9.98,
           "totalChange": 95.245,
           "date": "2026-08-18",
-          "note": "补涨的补涨 反推 盛级"
+          "note": "主升盛极"
         },
         {
           "id": "row-1790067533854-277e3a766a7fe8",
           "change": -6.83,
           "totalChange": 81.9097,
           "date": "2026-08-19",
-          "note": "衰竭"
+          "note": "震荡分歧"
         },
         {
           "id": "row-1790067534404-bc8ba099e4baf8",
           "change": -6,
           "totalChange": 70.9952,
           "date": "2026-08-20",
-          "note": "衰竭"
+          "note": "震荡分歧"
         },
         {
           "id": "row-1790067534764-d2b72d0ddeaaa",
           "change": -9.98,
           "totalChange": 53.9298,
           "date": "2026-08-21",
-          "note": "衰竭低点"
+          "note": "震荡分歧"
         },
         {
           "id": "row-1790067535184-a9374a2dad77c",
           "change": 10,
           "totalChange": 69.3228,
           "date": "2026-08-24",
-          "note": "开始回流"
+          "note": "震荡回流"
         },
         {
           "id": "row-1790067838264-ee8390d88f458",
           "change": 5.67,
           "totalChange": 78.9234,
           "date": "2026-08-25",
-          "note": "回流"
+          "note": "震荡回流"
         },
         {
           "id": "row-1790067858144-e5176c9dc02938",
           "change": 10.01,
           "totalChange": 96.8337,
           "date": "2026-08-26",
-          "note": "回流"
+          "note": "震荡回流"
         },
         {
           "id": "row-1790067858384-9a3bde50957698",
           "change": 2.84,
           "totalChange": 102.4237,
           "date": "2026-08-27",
-          "note": "回流 高点"
+          "note": "震荡回流"
         },
         {
           "id": "row-1790067858734-62447a625cba68",
           "change": -6.5,
           "totalChange": 89.2662,
           "date": "2026-08-28",
-          "note": "退一切换节点"
+          "note": "退一分歧"
         },
         {
           "id": "row-1790074284126-b4dc1813b07e98",
           "change": -10,
           "totalChange": 70.3396,
           "date": "2026-08-31",
-          "note": "退一加速"
+          "note": "退一分歧"
         },
         {
           "id": "row-1790074284273-3cc0f634570738",
           "change": 10,
           "totalChange": 87.3735,
           "date": "2026-09-01",
-          "note": "回流？"
+          "note": "退一强回流"
         },
         {
           "id": "row-1790074284415-7d8c7f23bf97a",
           "change": -10,
           "totalChange": 68.6362,
           "date": "2026-09-02",
-          "note": "退一"
+          "note": "退一分歧"
         },
         {
           "id": "row-1790074284567-257ae8938b62e8",
           "change": -9.73,
           "totalChange": 52.2279,
           "date": "2026-09-03",
-          "note": "退一衰竭"
+          "note": "退一分歧"
         },
         {
           "id": "row-1790074284696-b20e6351e53f6",
           "change": 7.66,
           "totalChange": 63.8885,
           "date": "2026-09-04",
-          "note": "回流"
+          "note": "退一强回流"
         },
         {
           "id": "row-1790074290297-32d96f5541f688",
           "change": -0.63,
           "totalChange": 62.856,
           "date": "2026-09-07",
-          "note": "回流"
+          "note": "退一分歧"
         },
         {
           "id": "row-1790074290426-487d74425ad328",
           "change": 0.17,
           "totalChange": 63.1329,
           "date": "2026-09-08",
-          "note": "回流"
+          "note": "退一衰竭"
+        },
+        {
+          "id": "row-1790150405220-c76ba02b95dae",
+          "change": -4.92,
+          "totalChange": 55.1068,
+          "date": "2026-09-09",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790150405379-7ca15c2f1e403",
+          "change": -4.27,
+          "totalChange": 48.4837,
+          "date": "2026-09-10",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790150405539-87aaefe80672d8",
+          "change": -3.08,
+          "totalChange": 43.9104,
+          "date": "2026-09-11",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790150405699-e298a533600d2",
+          "change": 0.26,
+          "totalChange": 44.2846,
+          "date": "2026-09-14",
+          "note": "退一衰竭"
+        },
+        {
+          "id": "row-1790150405859-ceea620bd991a",
+          "change": -3.04,
+          "totalChange": 39.8983,
+          "date": "2026-09-15",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790150406009-72c2010b903f18",
+          "change": -0.53,
+          "totalChange": 39.1569,
+          "date": "2026-09-16",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790150406180-99e2aca1d4a338",
+          "change": 0.8,
+          "totalChange": 40.2701,
+          "date": "2026-09-17",
+          "note": "退一衰竭"
+        },
+        {
+          "id": "row-1790150406339-b0e8f89c6a77e8",
+          "change": 1.66,
+          "totalChange": 42.5986,
+          "date": "2026-09-18",
+          "note": "退一弱回流"
+        },
+        {
+          "id": "row-1790150406499-67e7cf12239798",
+          "change": 6.74,
+          "totalChange": 52.2097,
+          "date": "2026-09-21",
+          "note": "退一强回流"
+        },
+        {
+          "id": "row-1790150406669-690a09c915e118",
+          "change": 6.31,
+          "totalChange": 61.8142,
+          "date": "2026-09-22",
+          "note": "退一强回流"
+        },
+        {
+          "id": "row-1790150406840-72347b5c6a1ef",
+          "change": -8.88,
+          "totalChange": 47.4451,
+          "date": "2026-09-23",
+          "note": "退二分歧"
+        },
+        {
+          "id": "row-1790150407009-3d9787b6d0b358",
+          "change": "",
+          "totalChange": "",
+          "date": "2026-09-24",
+          "note": ""
+        },
+        {
+          "id": "row-1790150407159-20980b6122a32",
+          "change": "",
+          "totalChange": "",
+          "date": "2026-09-28",
+          "note": ""
         }
       ]
     },
     {
       "id": "group-1790068073353-20dcd2e7ac3e1",
       "name": "神奇制药",
+      "role": "穿越龙",
       "rows": [
         {
           "id": "row-1790068073353-5d621016bad058",
           "change": 10,
           "totalChange": 10,
           "date": "2026-08-13",
-          "note": "补涨的补涨节点"
+          "note": "主升"
         },
         {
           "id": "row-1790068111164-b06b7197cc145",
           "change": 9.95,
           "totalChange": 20.945,
           "date": "2026-08-14",
-          "note": "补涨主升"
+          "note": "主升"
         },
         {
           "id": "row-1790068174973-a86bf56a4a9578",
           "change": 9.98,
           "totalChange": 33.0153,
           "date": "2026-08-17",
-          "note": "补涨主升"
+          "note": "主升"
         },
         {
           "id": "row-1790068175113-0bda7b9c09b64",
           "change": 10.07,
           "totalChange": 46.41,
           "date": "2026-08-18",
-          "note": "补涨主升"
+          "note": "主升"
         },
         {
           "id": "row-1790068175263-9609b5d89f6df8",
           "change": 0.26,
           "totalChange": 46.7906,
           "date": "2026-08-19",
-          "note": "主升断板 又来补涨 汉森去A杀"
+          "note": "主升爆量"
         },
         {
           "id": "row-1790068192953-c02acd1e6c8bf",
           "change": 10.03,
           "totalChange": 61.5137,
           "date": "2026-08-20",
-          "note": "补涨主升"
+          "note": "主升缩量突破"
         },
         {
           "id": "row-1790068193364-3e311f5f927d6",
           "change": 5.14,
           "totalChange": 69.8155,
           "date": "2026-08-21",
-          "note": "补涨主升 分歧低点"
+          "note": "主升爆量"
         },
         {
           "id": "row-1790068210023-0b3ce8c0c4d998",
           "change": 10,
           "totalChange": 86.7971,
           "date": "2026-08-24",
-          "note": "补涨主升"
+          "note": "主升"
         },
         {
           "id": "row-1790068216793-1fbdf5130109b",
           "change": 3.74,
           "totalChange": 93.7833,
           "date": "2026-08-25",
-          "note": "补涨主升"
+          "note": "主升爆量"
         },
         {
           "id": "row-1790068224153-749a910e5274b",
           "change": 2.73,
           "totalChange": 99.0736,
           "date": "2026-08-26",
-          "note": "补涨主升"
+          "note": "主升"
         },
         {
           "id": "row-1790068224313-da5b723d30da3",
           "change": 10.05,
           "totalChange": 119.0805,
           "date": "2026-08-27",
-          "note": "补涨主升"
+          "note": "主升"
         },
         {
           "id": "row-1790068224473-dd599bff8f7c6",
           "change": 6.8,
           "totalChange": 133.9779,
           "date": "2026-08-28",
-          "note": "主升顶点  肉神奇吃 锅汉森背"
+          "note": "主升盛极"
         },
         {
           "id": "row-1790074098079-969f79db191be8",
           "change": -10,
           "totalChange": 110.5801,
           "date": "2026-08-31",
-          "note": "补跌"
+          "note": "退一分歧"
         },
         {
           "id": "row-1790074098264-758147474ffc28",
           "change": 0.01,
           "totalChange": 110.6012,
           "date": "2026-09-01",
-          "note": "退一开始"
+          "note": "退一衰竭"
         },
         {
           "id": "row-1790074098436-dd57c300e02968",
           "change": -10.05,
           "totalChange": 89.4358,
           "date": "2026-09-02",
-          "note": "退一加速"
+          "note": "退一分歧"
         },
         {
           "id": "row-1790074098599-0b8eb41f13cad8",
           "change": -9.46,
           "totalChange": 71.5152,
           "date": "2026-09-03",
-          "note": "退一衰竭"
+          "note": "退一分歧"
         },
         {
           "id": "row-1790074098802-b2c71e431e8f18",
           "change": -0.77,
           "totalChange": 70.1945,
           "date": "2026-09-04",
-          "note": "退一衰竭"
+          "note": "退一分歧"
         },
         {
           "id": "row-1790074099473-b82e6512f7a5b8",
           "change": 4.32,
           "totalChange": 77.5469,
           "date": "2026-09-07",
-          "note": "回流"
+          "note": "退一衰竭"
         },
         {
           "id": "row-1790074167332-e376991dd794c",
           "change": 5.31,
           "totalChange": 86.9746,
           "date": "2026-09-08",
-          "note": "回流"
+          "note": "退一强回流"
+        },
+        {
+          "id": "row-1790151978125-f050a6a736de3",
+          "change": -8.98,
+          "totalChange": 70.1843,
+          "date": "2026-09-09",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790151978284-34bd338da36548",
+          "change": -5.65,
+          "totalChange": 60.5689,
+          "date": "2026-09-10",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790151978444-59cf504d9ca988",
+          "change": -4.82,
+          "totalChange": 52.8295,
+          "date": "2026-09-11",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790151978614-6f9ec423bf82",
+          "change": 5.31,
+          "totalChange": 60.9447,
+          "date": "2026-09-14",
+          "note": "退一衰竭"
+        },
+        {
+          "id": "row-1790151978774-bcc1b0183af7b",
+          "change": -3.52,
+          "totalChange": 55.2795,
+          "date": "2026-09-15",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790151978914-64c240d4cfcdd8",
+          "change": -0.36,
+          "totalChange": 54.7205,
+          "date": "2026-09-16",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790151980504-63de06112e768",
+          "change": 4.15,
+          "totalChange": 61.1414,
+          "date": "2026-09-17",
+          "note": "退一衰竭"
+        },
+        {
+          "id": "row-1790151980665-94f3fd8d6f0498",
+          "change": -1.52,
+          "totalChange": 58.692,
+          "date": "2026-09-18",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790151980845-fa8ee57fec651",
+          "change": 9.99,
+          "totalChange": 74.5453,
+          "date": "2026-09-21",
+          "note": "退一强回流"
+        },
+        {
+          "id": "row-1790151980994-99c23b792e38f",
+          "change": 1.95,
+          "totalChange": 77.949,
+          "date": "2026-09-22",
+          "note": "退一弱回流"
+        },
+        {
+          "id": "row-1790151983305-5f40e09093c328",
+          "change": -8.17,
+          "totalChange": 63.4105,
+          "date": "2026-09-23",
+          "note": "退二分歧"
         }
       ]
     },
     {
       "id": "group-1790068604582-6eb35b7613bce",
       "name": "汉森制药",
+      "role": "A杀龙",
       "rows": [
         {
           "id": "row-1790068604582-97134f1274a7e",
           "change": 10.07,
           "totalChange": 10.07,
           "date": "2026-08-19",
-          "note": "神奇的补涨 背锅侠 A杀"
+          "note": "主升"
         },
         {
           "id": "row-1790068719512-5aa3c6243063b8",
@@ -554,16 +813,146 @@
           "change": 7.1,
           "totalChange": 83.2606,
           "date": "2026-08-27",
-          "note": "主升"
+          "note": "主升盛极"
         },
         {
           "id": "row-1790068720542-6dd8c6c6ed3178",
           "change": -6.35,
           "totalChange": 71.6235,
           "date": "2026-08-28",
-          "note": "A杀"
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790152523413-c8674e2e90ffc8",
+          "change": -9.98,
+          "totalChange": 54.4955,
+          "date": "2026-08-31",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790152523563-2d9c9710d23c9",
+          "change": -5.58,
+          "totalChange": 45.8746,
+          "date": "2026-09-01",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790152523713-2dfdc9158834c8",
+          "change": -8.06,
+          "totalChange": 34.1171,
+          "date": "2026-09-02",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790152523863-78465efe3f5268",
+          "change": -2.92,
+          "totalChange": 30.2009,
+          "date": "2026-09-03",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790152524012-cf14846684c45",
+          "change": -2.81,
+          "totalChange": 26.5423,
+          "date": "2026-09-04",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790152524152-b96e850b29558",
+          "change": 0.62,
+          "totalChange": 27.3268,
+          "date": "2026-09-07",
+          "note": "退一衰竭"
+        },
+        {
+          "id": "row-1790152524292-3b14ddc0746ec8",
+          "change": 1.44,
+          "totalChange": 29.1603,
+          "date": "2026-09-08",
+          "note": "退一弱回流"
+        },
+        {
+          "id": "row-1790152524452-f31a984efbbf5",
+          "change": -2.53,
+          "totalChange": 25.8926,
+          "date": "2026-09-09",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790152524633-164401755f8158",
+          "change": -6.02,
+          "totalChange": 18.3139,
+          "date": "2026-09-10",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790152524832-0aa44f95fb2e08",
+          "change": -2.65,
+          "totalChange": 15.1785,
+          "date": "2026-09-11",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790152524972-2e68f573261658",
+          "change": 1.82,
+          "totalChange": 17.2748,
+          "date": "2026-09-14",
+          "note": "退一衰竭"
+        },
+        {
+          "id": "row-1790152641502-f6c22888c03b28",
+          "change": -3.12,
+          "totalChange": 13.6158,
+          "date": "2026-09-15",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790152641662-20ea59125c4268",
+          "change": -0.23,
+          "totalChange": 13.3545,
+          "date": "2026-09-16",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790152641812-65c86da77596d",
+          "change": 2.19,
+          "totalChange": 15.837,
+          "date": "2026-09-17",
+          "note": "退一衰竭"
+        },
+        {
+          "id": "row-1790152641972-6fa034215073e8",
+          "change": 2.03,
+          "totalChange": 18.1885,
+          "date": "2026-09-18",
+          "note": "退一弱回流"
+        },
+        {
+          "id": "row-1790152642112-d59cbdd0294be8",
+          "change": 6.42,
+          "totalChange": 25.7762,
+          "date": "2026-09-21",
+          "note": "退一强回流"
+        },
+        {
+          "id": "row-1790152706391-14d4e01e325408",
+          "change": 0.83,
+          "totalChange": 26.8201,
+          "date": "2026-09-22",
+          "note": "退一弱回流"
+        },
+        {
+          "id": "row-1790152706751-4703c719dac35",
+          "change": -2.99,
+          "totalChange": 23.0282,
+          "date": "2026-09-23",
+          "note": "退二分歧"
         }
       ]
     }
-  ]
+  ],
+  "timeRange": {
+    "startDate": "2026-08-04",
+    "endDate": "2026-09-24"
+  }
 }

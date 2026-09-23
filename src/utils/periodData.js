@@ -9,6 +9,27 @@ function roundChange(value) {
   return Number(value.toFixed(4))
 }
 
+export const PERIOD_STAGES = ['主升', '震荡', '修复', '退一', '退一回流', '退二', '退二回流']
+export const PERIOD_RANGE_ROLES = ['龙头', '穿越龙']
+export const PERIOD_RELATION_TYPES = ['承接', '分支', '补涨', '穿越', '共振', '独立']
+export const STOCK_POINT_STAGES = [
+  '主升',
+  '主升爆量',
+  '主升缩量突破',
+  '主升盛极',
+  '震荡分歧',
+  '震荡衰竭',
+  '震荡回流',
+  '退一分歧',
+  '退一衰竭',
+  '退一弱回流',
+  '退一强回流',
+  '退二分歧',
+  '退二衰竭',
+  '退二弱回流',
+  '退二强回流'
+]
+
 const holidaySet = new Set([
   '2024-01-01',
   '2024-02-09', '2024-02-12', '2024-02-13', '2024-02-14', '2024-02-15', '2024-02-16',
@@ -99,19 +120,40 @@ export function createGroup(index = 1, group = {}) {
   return {
     id: group.id || `group-${Date.now()}-${Math.random().toString(16).slice(2)}`,
     name: group.name || `股票 ${index}`,
+    role: group.role || '',
     rows: Array.isArray(group.rows) && group.rows.length ? group.rows.map(createRow) : [createRow()]
   }
 }
 
 export function createPeriodData(period = {}) {
   const stamp = new Date().toISOString().slice(0, 10)
-
-  return {
+  const periodData = {
     id: period.id || `period-${Date.now()}`,
     title: period.title || `${stamp} 周期`,
+    stage: period.stage || '',
+    sourcePeriodId: period.sourcePeriodId || '',
+    relationType: period.relationType || '',
     groups: Array.isArray(period.groups)
       ? period.groups.map((group, index) => createGroup(index + 1, group))
       : []
+  }
+
+  return {
+    ...periodData,
+    timeRange: calculatePeriodTimeRange(periodData)
+  }
+}
+
+export function calculatePeriodTimeRange(period) {
+  const dates = period.groups
+    .filter(group => PERIOD_RANGE_ROLES.includes(group.role))
+    .flatMap(group => group.rows.map(row => row.date))
+    .filter(isValidDate)
+    .sort()
+
+  return {
+    startDate: dates[0] || '',
+    endDate: dates[dates.length - 1] || ''
   }
 }
 
@@ -137,7 +179,7 @@ export function getChartRows(group) {
 }
 
 export function createPeriodForSave(period) {
-  return {
+  const periodForSave = {
     ...period,
     groups: period.groups.map(group => {
       const totals = calculateTotalChangeMap(group)
@@ -150,5 +192,10 @@ export function createPeriodForSave(period) {
         }))
       }
     })
+  }
+
+  return {
+    ...periodForSave,
+    timeRange: calculatePeriodTimeRange(periodForSave)
   }
 }

@@ -29,8 +29,11 @@
 
       <div class="period-grid">
         <button class="period-card global-period-card" type="button" @click="$emit('select-period', '__all__')">
-          <span>全部周期</span>
-          <strong>{{ totalGroups }} 组数据</strong>
+          <div class="period-card-head">
+            <span class="period-card-title">全部周期</span>
+            <strong>{{ totalGroups }} 组</strong>
+          </div>
+          <div class="period-card-summary">跨周期全局数据视图</div>
           <small>查看所有周期的数据</small>
         </button>
 
@@ -40,8 +43,30 @@
           class="period-card"
           @click="$emit('select-period', period.id)"
         >
-          <span>{{ period.title }}</span>
-          <strong>{{ period.groups.length }} 组数据</strong>
+          <div class="period-card-head">
+            <span class="period-card-title">{{ period.title }}</span>
+            <strong>{{ period.groups.length }} 组</strong>
+          </div>
+
+          <div class="period-stage-badge">{{ period.stage || '未设置阶段' }}</div>
+
+          <div class="period-range-box">
+            <div>
+              <small>开始</small>
+              <b>{{ formatRangeDate(period.timeRange, 'startDate') }}</b>
+            </div>
+            <div>
+              <small>结束</small>
+              <b>{{ formatRangeDate(period.timeRange, 'endDate') }}</b>
+            </div>
+          </div>
+
+          <div class="period-relation-box">
+            <small>来源</small>
+            <b>{{ getSourcePeriodTitle(period.sourcePeriodId) }}</b>
+            <i>{{ period.relationType || '未设置关系' }}</i>
+          </div>
+
           <div class="period-card-actions">
             <small>点击进入图表主页</small>
             <button
@@ -87,6 +112,17 @@ export default {
     }
   },
   methods: {
+    formatRangeDate(timeRange, key) {
+      if (!timeRange || !timeRange[key]) return '--'
+
+      return timeRange[key]
+    },
+    getSourcePeriodTitle(sourcePeriodId) {
+      if (!sourcePeriodId) return '无来源周期'
+
+      const sourcePeriod = this.periods.find(period => period.id === sourcePeriodId)
+      return sourcePeriod ? sourcePeriod.title : '来源周期不存在'
+    },
     submitPeriod() {
       if (!this.periodTitle) return
 

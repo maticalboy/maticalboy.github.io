@@ -1,395 +1,482 @@
 {
   "id": "period-1790076037143",
   "title": "金健周期",
+  "stage": "退一回流",
+  "sourcePeriodId": "period-1790065918941",
+  "relationType": "独立",
   "groups": [
     {
       "id": "group-1790076040043-9150fa7b84862",
       "name": "金健米业",
+      "role": "龙头",
       "rows": [
         {
           "id": "row-1790076040043-e10906a27b45e8",
           "change": 10.05,
           "totalChange": 10.05,
           "date": "2026-08-17",
-          "note": "试错"
+          "note": "主升"
         },
         {
           "id": "row-1790076054114-bb9ba60e812ae8",
           "change": 10.06,
           "totalChange": 21.121,
           "date": "2026-08-18",
-          "note": "试错"
+          "note": "主升"
         },
         {
           "id": "row-1790076054266-0505ee1615daa",
           "change": 9.99,
           "totalChange": 33.221,
           "date": "2026-08-19",
-          "note": "试错"
+          "note": "主升"
         },
         {
           "id": "row-1790076054414-40a9bfda4a5d98",
           "change": 9.97,
           "totalChange": 46.5032,
           "date": "2026-08-20",
-          "note": "爆量弱转强"
+          "note": "主升"
         },
         {
           "id": "row-1790076054567-309cb725ece6b8",
           "change": -4.65,
           "totalChange": 39.6908,
           "date": "2026-08-21",
-          "note": "放量分歧"
+          "note": "主升爆量"
         },
         {
           "id": "row-1790076054717-238f5e0cacfb38",
           "change": 3.17,
           "totalChange": 44.119,
           "date": "2026-08-24",
-          "note": "分歧"
+          "note": "主升"
         },
         {
           "id": "row-1790076054875-61dd59a51bba68",
           "change": 10.05,
           "totalChange": 58.6029,
           "date": "2026-08-25",
-          "note": "放量反包"
+          "note": "主升"
         },
         {
           "id": "row-1790076055030-443f682ef7df28",
           "change": 5.26,
           "totalChange": 66.9454,
           "date": "2026-08-26",
-          "note": "分歧"
+          "note": "主升"
         },
         {
           "id": "row-1790076055195-10d818215b11c",
           "change": 10,
           "totalChange": 83.64,
           "date": "2026-08-27",
-          "note": "缩量 定龙"
+          "note": "主升"
         },
         {
           "id": "row-1790076055356-b70cf36da598b8",
           "change": 9.18,
           "totalChange": 100.4981,
           "date": "2026-08-28",
-          "note": "补涨推动"
+          "note": "主升"
         },
         {
           "id": "row-1790076055511-b5b1736f12eb5",
           "change": 2.29,
           "totalChange": 105.0895,
           "date": "2026-08-31",
-          "note": "补涨推动"
+          "note": "主升"
         },
         {
           "id": "row-1790076055661-b4f6d48f5c3928",
           "change": 9.97,
           "totalChange": 125.5369,
           "date": "2026-09-01",
-          "note": "补涨推动"
+          "note": "主升盛极"
         },
         {
           "id": "row-1790076056040-b5bdd75084a408",
           "change": -6.34,
           "totalChange": 111.2379,
           "date": "2026-09-02",
-          "note": "分歧"
+          "note": "震荡分歧"
         },
         {
           "id": "row-1790076056197-c8b47eec4f6c78",
           "change": 2.18,
           "totalChange": 115.8429,
           "date": "2026-09-03",
-          "note": "补涨推动"
+          "note": "震荡衰竭"
         },
         {
           "id": "row-1790076056364-f83919e8b4d62",
           "change": -2.92,
           "totalChange": 109.5403,
           "date": "2026-09-04",
-          "note": "补涨推动"
+          "note": "震荡分歧"
         },
         {
           "id": "row-1790076056530-e7ab2da972633",
           "change": 10,
           "totalChange": 130.4943,
           "date": "2026-09-07",
-          "note": "补涨推动"
+          "note": "震荡回流"
         },
         {
           "id": "row-1790076056673-cb202d54386c18",
           "change": 9.31,
           "totalChange": 151.9533,
           "date": "2026-09-08",
-          "note": "补涨推动 盛及"
+          "note": "震荡回流"
         },
         {
           "id": "row-1790076214104-98bbda7fc40b78",
           "change": -3.11,
           "totalChange": 144.1176,
           "date": "2026-09-09",
-          "note": "退一"
+          "note": "退一分歧"
         },
         {
           "id": "row-1790076214263-83b7a9bc1c492",
           "change": -2.3,
           "totalChange": 138.5029,
           "date": "2026-09-10",
-          "note": "退一"
+          "note": "退一分歧"
         },
         {
           "id": "row-1790076214430-ab69c7c7ddf1e8",
           "change": -3.21,
           "totalChange": 130.8469,
           "date": "2026-09-11",
-          "note": "退一"
+          "note": "退一分歧"
         },
         {
           "id": "row-1790076214593-01df86ea08dff8",
           "change": 4.58,
           "totalChange": 141.4197,
           "date": "2026-09-14",
-          "note": "退一"
+          "note": "退一衰竭"
         },
         {
           "id": "row-1790076214743-7a866cab28ee78",
           "change": -10.02,
           "totalChange": 117.2295,
           "date": "2026-09-15",
-          "note": "退一加速"
+          "note": "退一分歧"
         },
         {
           "id": "row-1790076259833-edb33b219f6a8",
           "change": -7.14,
           "totalChange": 101.7193,
           "date": "2026-09-16",
-          "note": "退一衰竭"
+          "note": "退一分歧"
         },
         {
           "id": "row-1790076269359-19af8390b8d2c8",
           "change": 9.97,
           "totalChange": 121.8307,
           "date": "2026-09-17",
-          "note": "退一回流"
+          "note": "退一强回流"
         },
         {
           "id": "row-1790076269495-9ecbc218c35d6",
           "change": 9.98,
           "totalChange": 143.9694,
           "date": "2026-09-18",
-          "note": "退一回流"
+          "note": "退一强回流"
         },
         {
           "id": "row-1790076269644-36469956e3ac4",
           "change": 9.99,
           "totalChange": 168.3419,
           "date": "2026-09-21",
-          "note": "退一回流"
+          "note": "退一强回流"
         },
         {
           "id": "row-1790076269775-85992a1e3eb1f",
           "change": 4.57,
           "totalChange": 180.6052,
           "date": "2026-09-22",
-          "note": "回流盛及"
+          "note": "退一弱回流"
+        },
+        {
+          "id": "row-1790153290070-13ae6fd102e38",
+          "change": 1.7,
+          "totalChange": 185.3755,
+          "date": "2026-09-23",
+          "note": "退一弱回流"
         }
       ]
     },
     {
       "id": "group-1790076531538-83c4b964a2ed5",
       "name": "新赛股份",
+      "role": "补涨龙",
       "rows": [
         {
           "id": "row-1790076531538-e70b28add779e8",
           "change": 10.07,
           "totalChange": 10.07,
           "date": "2026-08-27",
-          "note": "补涨"
+          "note": "主升"
         },
         {
           "id": "row-1790076551285-30e100cc23d5f8",
           "change": 10.02,
           "totalChange": 21.099,
           "date": "2026-08-28",
-          "note": ""
+          "note": "主升"
         },
         {
           "id": "row-1790076551439-20ea935b22db58",
           "change": 10.1,
           "totalChange": 33.33,
           "date": "2026-08-31",
-          "note": ""
+          "note": "主升"
         },
         {
           "id": "row-1790076551593-d5bb9c512ab67",
           "change": 10.07,
           "totalChange": 46.7563,
           "date": "2026-09-01",
-          "note": ""
+          "note": "主升"
         },
         {
           "id": "row-1790076551741-6262624a9e4b58",
           "change": 9.97,
           "totalChange": 61.388,
           "date": "2026-09-02",
-          "note": ""
+          "note": "主升"
         },
         {
           "id": "row-1790076551888-95d2086767f5a",
           "change": -9.96,
           "totalChange": 45.3137,
           "date": "2026-09-03",
-          "note": "跌停次日不反包 补涨的补涨"
+          "note": "主升爆量"
         },
         {
           "id": "row-1790076552332-5a4462dc19ec5",
           "change": 0.83,
           "totalChange": 46.5198,
           "date": "2026-09-04",
-          "note": "补涨反推"
+          "note": "主升爆量"
         },
         {
           "id": "row-1790076552465-18b67a6598c1d8",
           "change": 9.98,
           "totalChange": 61.1425,
           "date": "2026-09-07",
-          "note": "补涨反推"
+          "note": "主升爆量"
         },
         {
           "id": "row-1790076596432-206335710b75f8",
           "change": -2.53,
           "totalChange": 57.0656,
           "date": "2026-09-08",
-          "note": "补涨反推"
+          "note": "主升爆量"
         },
         {
           "id": "row-1790076596567-56f7f4e6a49c6",
           "change": 10.08,
           "totalChange": 72.8978,
           "date": "2026-09-09",
-          "note": "补涨反推 盛及"
+          "note": "主升盛极"
         },
         {
           "id": "row-1790076596709-8e0ee701646dd",
           "change": -9.02,
           "totalChange": 57.3024,
           "date": "2026-09-10",
-          "note": "退一"
+          "note": "退一分歧"
         },
         {
           "id": "row-1790076597343-a3a2492765d8e",
           "change": -10.06,
           "totalChange": 41.4778,
           "date": "2026-09-11",
-          "note": "退一加速"
+          "note": "退一分歧"
         },
         {
           "id": "row-1790076597530-94e50edd97b4a",
           "change": -4.58,
           "totalChange": 34.9981,
           "date": "2026-09-14",
-          "note": "退一衰竭"
+          "note": "退一分歧"
         },
         {
           "id": "row-1790076909047-c1ed688f3ade",
           "change": -7.99,
           "totalChange": 24.2118,
           "date": "2026-09-15",
-          "note": "退一"
+          "note": "退一分歧"
         },
         {
           "id": "row-1790076909186-3a64b91c8edf3",
           "change": 1.74,
           "totalChange": 26.373,
           "date": "2026-09-16",
-          "note": "衰竭"
+          "note": "退一衰竭"
         },
         {
           "id": "row-1790076939251-b010d8ee821fb8",
           "change": 3.42,
           "totalChange": 30.695,
           "date": "2026-09-17",
-          "note": "回流"
+          "note": "退一弱回流"
         },
         {
           "id": "row-1790076939424-e743aab1a06d9",
           "change": 0.55,
           "totalChange": 31.4138,
           "date": "2026-09-18",
-          "note": "回流"
+          "note": "退一弱回流"
         },
         {
           "id": "row-1790076939921-af6a463915faf8",
           "change": 3.1,
           "totalChange": 35.4877,
           "date": "2026-09-21",
-          "note": "回流"
+          "note": "退一弱回流"
         },
         {
           "id": "row-1790076940069-ad96c5a8dde32",
           "change": 6.73,
           "totalChange": 44.606,
           "date": "2026-09-22",
-          "note": "回流"
+          "note": "退一强回流"
+        },
+        {
+          "id": "row-1790153557888-567912f2236f7",
+          "change": -3.81,
+          "totalChange": 39.0965,
+          "date": "2026-09-23",
+          "note": "退二分歧"
         }
       ]
     },
     {
       "id": "group-1790076732521-850dc1bb342558",
       "name": "亚盛集团",
+      "role": "A杀龙",
       "rows": [
         {
           "id": "row-1790076732521-833c91fe66695",
           "change": 10,
           "totalChange": 10,
           "date": "2026-09-03",
-          "note": ""
+          "note": "主升"
         },
         {
           "id": "row-1790076745366-1c149832a0e928",
           "change": 10.1,
           "totalChange": 21.11,
           "date": "2026-09-04",
-          "note": ""
+          "note": "主升"
         },
         {
           "id": "row-1790076745516-9986f1b92182d8",
           "change": 10.09,
           "totalChange": 33.33,
           "date": "2026-09-07",
-          "note": ""
+          "note": "主升"
         },
         {
           "id": "row-1790076745662-98228fa35040b8",
           "change": 10,
           "totalChange": 46.663,
           "date": "2026-09-08",
-          "note": ""
+          "note": "主升"
         },
         {
           "id": "row-1790076745809-5f3e43fa5de62",
           "change": 8.14,
           "totalChange": 58.6014,
           "date": "2026-09-09",
-          "note": ""
+          "note": "主升爆量"
         },
         {
           "id": "row-1790076795174-74f3c25dfc93d8",
           "change": -8.06,
           "totalChange": 45.8181,
           "date": "2026-09-10",
-          "note": "A杀"
+          "note": "主升盛极"
         },
         {
           "id": "row-1790076795785-09de89039ac828",
+          "change": -9.9,
+          "totalChange": 31.3821,
+          "date": "2026-09-11",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790153804608-492f2033fc657",
+          "change": -9.94,
+          "totalChange": 18.3227,
+          "date": "2026-09-14",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790153804768-e44bc6dafc166",
+          "change": -7.75,
+          "totalChange": 9.1527,
+          "date": "2026-09-15",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790153804938-b11e6a7704e9",
+          "change": 0.78,
+          "totalChange": 10.0041,
+          "date": "2026-09-16",
+          "note": "退一衰竭"
+        },
+        {
+          "id": "row-1790153805098-5a50dbac1ad2",
+          "change": 6.82,
+          "totalChange": 17.5064,
+          "date": "2026-09-17",
+          "note": "退一强回流"
+        },
+        {
+          "id": "row-1790153805268-62ae01983b356",
+          "change": -1.65,
+          "totalChange": 15.5675,
+          "date": "2026-09-18",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790153805398-de33469d6d4c1",
+          "change": 5.05,
+          "totalChange": 21.4037,
+          "date": "2026-09-21",
+          "note": "退一强回流"
+        },
+        {
+          "id": "row-1790153807129-6f5ef657f94ca",
+          "change": 0.92,
+          "totalChange": 22.5206,
+          "date": "2026-09-22",
+          "note": "退一弱回流"
+        },
+        {
+          "id": "row-1790153807318-e3b3174a497248",
+          "change": -3.17,
+          "totalChange": 18.6367,
+          "date": "2026-09-23",
+          "note": "退二分歧"
+        },
+        {
+          "id": "row-1790153807438-40559049fd42b8",
           "change": "",
           "totalChange": "",
-          "date": "2026-09-11",
+          "date": "2026-09-24",
           "note": ""
         }
       ]
     }
-  ]
+  ],
+  "timeRange": {
+    "startDate": "2026-08-17",
+    "endDate": "2026-09-23"
+  }
 }

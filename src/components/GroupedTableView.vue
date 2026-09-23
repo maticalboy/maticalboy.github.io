@@ -18,7 +18,7 @@
           @click="selectedGroupId = group.id"
         >
           <span>{{ group.name || '未命名股票' }}</span>
-          <small>{{ group.rows.length }} 条数据</small>
+          <small>{{ group.role || '未设置属性' }} · {{ group.rows.length }} 条数据</small>
         </button>
       </aside>
 
@@ -31,6 +31,10 @@
             aria-label="股票名称"
             placeholder="股票名称"
           />
+          <select v-model="selectedGroup.role" class="stock-role-select" :disabled="readOnly" aria-label="股票属性">
+            <option value="">未设置属性</option>
+            <option v-for="role in stockRoles" :key="role" :value="role">{{ role }}</option>
+          </select>
           <div v-if="!readOnly" class="group-actions">
             <button class="add-row-btn" type="button" @click="$emit('add-row', selectedGroup.id)">添加</button>
             <button class="ghost-btn danger" type="button" @click="removeSelectedGroup">删除股票</button>
@@ -60,7 +64,7 @@
 
 <script>
 import { AgGridVue } from 'ag-grid-vue'
-import { calculateTotalChangeMap } from '../utils/periodData'
+import { STOCK_POINT_STAGES, calculateTotalChangeMap } from '../utils/periodData'
 import 'ag-grid-community/styles/ag-grid.css'
 import 'ag-grid-community/styles/ag-theme-alpine.css'
 
@@ -91,6 +95,7 @@ export default {
   data() {
     return {
       selectedGroupId: '',
+      stockRoles: ['龙头', '穿越龙', '补涨龙', 'A杀龙'],
       defaultColDef: {
         flex: 1,
         minWidth: 130,
@@ -121,8 +126,9 @@ export default {
         {
           field: 'note',
           headerName: '标注',
-          editable: true,
-          minWidth: 180
+          editable: false,
+          cellRenderer: this.noteCellRenderer,
+          minWidth: 190
         },
         {
           headerName: '操作',
@@ -196,7 +202,7 @@ export default {
     },
     onCellValueChanged(event) {
       if (this.readOnly) return
-      if (!['change', 'note'].includes(event.colDef.field)) return
+      if (!['change'].includes(event.colDef.field)) return
 
       this.$emit('update-row', event.data.groupId, event.data.id, event.colDef.field, event.newValue)
     },
@@ -217,6 +223,32 @@ export default {
       })
 
       return input
+    },
+    noteCellRenderer(params) {
+      const select = document.createElement('select')
+      select.className = 'ag-note-select'
+      select.disabled = params.context.componentParent.readOnly
+
+      const emptyOption = document.createElement('option')
+      emptyOption.value = ''
+      emptyOption.textContent = '未标注'
+      select.appendChild(emptyOption)
+
+      STOCK_POINT_STAGES.forEach(stage => {
+        const option = document.createElement('option')
+        option.value = stage
+        option.textContent = stage
+        select.appendChild(option)
+      })
+
+      select.value = params.value || ''
+      select.addEventListener('change', event => {
+        if (params.context.componentParent.readOnly) return
+
+        params.context.componentParent.$emit('update-row', params.data.groupId, params.data.id, 'note', event.target.value)
+      })
+
+      return select
     },
     numberValueParser(params) {
       if (params.newValue === '' || params.newValue == null) return ''

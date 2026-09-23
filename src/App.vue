@@ -3,7 +3,7 @@
     <PeriodPanel
       v-if="showPeriodPanel"
       :deleting-period-id="deletingPeriodId"
-      :periods="periods"
+      :periods="sortedPeriods"
       :save-status="saveStatus"
       @create-period="createPeriod"
       @delete-period="deletePeriod"
@@ -14,8 +14,13 @@
       <AppTopBar
         :active-view="activeView"
         :current-period="currentPeriod"
+        :periods="periods"
+        :period-relation-types="periodRelationTypes"
+        :period-stages="periodStages"
         :read-only="isAllPeriods"
         :save-status="saveStatus"
+        @update-relation="updatePeriodRelation"
+        @update-stage="updatePeriodStage"
         @update-view="activeView = $event"
         @open-period-panel="showPeriodPanel = true"
         @save="saveCurrentPeriod"
@@ -41,7 +46,16 @@
 <script>
 import AppTopBar from './components/AppTopBar.vue'
 import PeriodPanel from './components/PeriodPanel.vue'
-import { createGroup, createPeriodData, createPeriodForSave, createRow, getNextRowDate } from './utils/periodData'
+import {
+  PERIOD_STAGES,
+  PERIOD_RELATION_TYPES,
+  calculatePeriodTimeRange,
+  createGroup,
+  createPeriodData,
+  createPeriodForSave,
+  createRow,
+  getNextRowDate
+} from './utils/periodData'
 
 const ALL_PERIODS_ID = '__all__'
 
@@ -58,6 +72,8 @@ export default {
       activeView: 'chart',
       currentPeriodId: '',
       deletingPeriodId: '',
+      periodRelationTypes: PERIOD_RELATION_TYPES,
+      periodStages: PERIOD_STAGES,
       periods: [],
       saveStatus: {
         text: '未保存',
@@ -84,6 +100,19 @@ export default {
           }))
         })))
       }
+    },
+    sortedPeriods() {
+      return this.periods
+        .map(period => ({
+          ...period,
+          timeRange: calculatePeriodTimeRange(period)
+        }))
+        .sort((left, right) => {
+          const rightDate = right.timeRange.endDate || right.timeRange.startDate || ''
+          const leftDate = left.timeRange.endDate || left.timeRange.startDate || ''
+
+          return rightDate.localeCompare(leftDate)
+        })
     },
     currentPeriod() {
       if (this.isAllPeriods) return this.allPeriodsView
@@ -135,6 +164,25 @@ export default {
       this.activeView = 'chart'
       this.saveStatus = {
         text: '新增周期未保存',
+        type: 'warn'
+      }
+    },
+    updatePeriodStage(stage) {
+      if (this.isAllPeriods) return
+
+      this.currentPeriod.stage = stage
+      this.saveStatus = {
+        text: '周期阶段未保存',
+        type: 'warn'
+      }
+    },
+    updatePeriodRelation(relation) {
+      if (this.isAllPeriods) return
+
+      this.currentPeriod.sourcePeriodId = relation.sourcePeriodId
+      this.currentPeriod.relationType = relation.relationType
+      this.saveStatus = {
+        text: '周期关联未保存',
         type: 'warn'
       }
     },
@@ -413,7 +461,7 @@ h2 {
 
 .period-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 18px;
   margin-top: 30px;
 }
@@ -448,35 +496,142 @@ h2 {
 
 .period-card {
   cursor: pointer;
-  min-height: 150px;
-  padding: 22px;
+  position: relative;
+  min-height: 190px;
+  padding: 20px;
   border: 1px solid #d9e2f1;
   border-radius: 24px;
   color: #172033;
   text-align: left;
-  background: rgba(255, 255, 255, 0.86);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 251, 255, 0.92));
   box-shadow: 0 20px 55px rgba(31, 41, 55, 0.08);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
 }
 
-.period-card span,
-.period-card strong,
-.period-card small {
-  display: block;
+.period-card:hover {
+  border-color: #9db7ff;
+  box-shadow: 0 24px 60px rgba(37, 99, 235, 0.14);
+  transform: translateY(-2px);
 }
 
-.period-card span {
-  margin-bottom: 34px;
-  font-size: 20px;
+.period-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.period-card-title {
+  color: #172033;
+  font-size: 21px;
   font-weight: 800;
+  line-height: 1.25;
 }
 
 .period-card strong {
-  margin-bottom: 6px;
-  color: #5b8cff;
+  flex: 0 0 auto;
+  padding: 5px 9px;
+  border-radius: 999px;
+  color: #175cd3;
+  font-size: 12px;
+  background: #eff6ff;
+}
+
+.period-card-summary {
+  min-height: 62px;
+  margin-bottom: 18px;
+  padding: 14px;
+  border-radius: 18px;
+  color: #344054;
+  font-size: 13px;
+  font-weight: 700;
+  background: #f4f7fb;
 }
 
 .period-card small {
   color: #72809a;
+}
+
+.period-stage-badge {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 14px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #2563eb, #25c2a0);
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.18);
+}
+
+.period-range-box {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.period-range-box div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  background: #f8fbff;
+}
+
+.period-range-box small {
+  flex: 0 0 auto;
+  color: #72809a;
+  font-size: 12px;
+}
+
+.period-range-box b {
+  flex: 1;
+  color: #172033;
+  font-size: 13px;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.period-relation-box {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 10px 12px;
+  border: 1px dashed #c7d7fe;
+  border-radius: 16px;
+  background: #f8fbff;
+}
+
+.period-relation-box small {
+  color: #72809a;
+  font-size: 12px;
+}
+
+.period-relation-box b {
+  overflow: hidden;
+  color: #172033;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.period-relation-box i {
+  padding: 4px 8px;
+  border-radius: 999px;
+  color: #175cd3;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 800;
+  background: #eff6ff;
 }
 
 .period-card-actions {
@@ -522,6 +677,35 @@ h2 {
   padding: 18px 28px;
   background: rgba(255, 255, 255, 0.92);
   border-bottom: 1px solid #dce5f3;
+}
+
+.title-block {
+  display: grid;
+  gap: 6px;
+}
+
+.period-stage-select {
+  width: 150px;
+  padding: 8px 10px;
+  border: 1px solid #d0d7e2;
+  border-radius: 12px;
+  color: #172033;
+  background: #fff;
+}
+
+.period-relation-controls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.period-relation-select {
+  width: 150px;
+  padding: 8px 10px;
+  border: 1px solid #d0d7e2;
+  border-radius: 12px;
+  color: #172033;
+  background: #fff;
 }
 
 .view-tabs {
@@ -629,6 +813,44 @@ h2 {
   border-radius: 22px;
   overflow: hidden;
   background: #fbfdff;
+}
+
+.chart-host.is-draggable {
+  cursor: grab;
+  touch-action: none;
+}
+
+.chart-host.is-draggable:active {
+  cursor: grabbing;
+}
+
+.chart-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.chart-actions span {
+  margin-right: 4px;
+  color: #72809a;
+  font-size: 13px;
+}
+
+.chart-actions button {
+  padding: 7px 10px;
+  border: 0;
+  border-radius: 10px;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 700;
+  background: #edf2fb;
+}
+
+.chart-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
 }
 
 .compact-chart-tooltip,
@@ -828,7 +1050,8 @@ h2 {
   min-height: 0;
 }
 
-.ag-date-editor {
+.ag-date-editor,
+.ag-note-select {
   width: 100%;
   height: 32px;
   padding: 0 10px;
@@ -836,6 +1059,11 @@ h2 {
   border-radius: 8px;
   outline: 0;
   background: #fff;
+}
+
+.ag-note-select:disabled {
+  color: #475467;
+  background: #f7f9fc;
 }
 
 .ag-action-btn {
@@ -853,6 +1081,20 @@ h2 {
 }
 
 .group-name:disabled {
+  color: #475467;
+  background: #f7f9fc;
+}
+
+.stock-role-select {
+  width: 150px;
+  padding: 11px 12px;
+  border: 1px solid #d0d7e2;
+  border-radius: 14px;
+  color: #172033;
+  background: #fff;
+}
+
+.stock-role-select:disabled {
   color: #475467;
   background: #f7f9fc;
 }
@@ -949,6 +1191,11 @@ td input {
 
   .group-actions {
     flex-wrap: wrap;
+  }
+
+  .stock-role-select,
+  .group-name {
+    width: 100%;
   }
 
   .tab-btn {
