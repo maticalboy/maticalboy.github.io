@@ -1,7 +1,7 @@
 {
   "id": "period-1790075022600",
   "title": "华瓷周期",
-  "stage": "主升",
+  "stage": "震荡",
   "sourcePeriodId": "period-1790071849754",
   "relationType": "承接",
   "groups": [
@@ -57,17 +57,59 @@
           "change": 6.95,
           "totalChange": 89.4857,
           "date": "2026-09-23",
-          "note": "主升爆量"
+          "note": "主升盛极"
         },
         {
           "id": "row-1790075059020-3978eda5410158",
-          "change": "",
-          "totalChange": "",
+          "change": 0.32,
+          "totalChange": 90.092,
           "date": "2026-09-24",
-          "note": ""
+          "note": "震荡分歧"
         },
         {
           "id": "row-1790075059224-f1d608b59d8298",
+          "change": "",
+          "totalChange": "",
+          "date": "2026-09-28",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "group-1790240516975-3bf82044344de",
+      "name": "奥佳华",
+      "role": "补涨龙",
+      "rows": [
+        {
+          "id": "row-1790240516975-c561b8f56472d",
+          "change": 10.4,
+          "totalChange": 10.4,
+          "date": "2026-09-21",
+          "note": "主升"
+        },
+        {
+          "id": "row-1790240653865-ab63aeb606898",
+          "change": 10.08,
+          "totalChange": 21.5283,
+          "date": "2026-09-22",
+          "note": "主升"
+        },
+        {
+          "id": "row-1790240654025-5c0fd8aa3d0038",
+          "change": 10.03,
+          "totalChange": 33.7176,
+          "date": "2026-09-23",
+          "note": "主升爆量"
+        },
+        {
+          "id": "row-1790240654185-05a90e09c130b8",
+          "change": 10.04,
+          "totalChange": 47.1429,
+          "date": "2026-09-24",
+          "note": "主升缩量突破"
+        },
+        {
+          "id": "row-1790240654335-4477146f1bc738",
           "change": "",
           "totalChange": "",
           "date": "2026-09-28",
