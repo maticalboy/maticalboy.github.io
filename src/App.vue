@@ -27,7 +27,11 @@
       />
 
       <main class="display-area">
-        <LineChartView v-if="activeView === 'chart'" :current-period="currentPeriod" />
+        <LineChartView
+          v-if="activeView === 'chart'"
+          :current-period="currentPeriod"
+          :periods="isAllPeriods ? periods : []"
+        />
         <GroupedTableView
           v-else
           :current-period="currentPeriod"
@@ -93,6 +97,7 @@ export default {
         groups: this.periods.flatMap(period => period.groups.map(group => ({
           ...group,
           id: `${period.id}__${group.id}`,
+          periodId: period.id,
           name: `${period.title} / ${group.name || '未命名股票'}`,
           rows: group.rows.map(row => ({
             ...row,
@@ -851,6 +856,34 @@ h2 {
 .chart-actions button:disabled {
   cursor: not-allowed;
   opacity: 0.45;
+}
+
+.period-filters {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-height: 72px;
+  overflow: auto;
+}
+
+.period-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border: 1px solid #dce5f3;
+  border-radius: 999px;
+  color: #475467;
+  font-size: 13px;
+  background: #fff;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.period-filter input {
+  margin: 0;
+  accent-color: #2563eb;
 }
 
 .compact-chart-tooltip,

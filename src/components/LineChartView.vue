@@ -5,6 +5,12 @@
         <p class="eyebrow">AG Charts</p>
         <h2>日期 / 截止至今总涨幅</h2>
       </div>
+      <div v-if="isAllPeriods" class="period-filters" aria-label="选择要展示的周期">
+        <label v-for="period in periods" :key="period.id" class="period-filter">
+          <input v-model="selectedPeriodIds" type="checkbox" :value="period.id" />
+          <span>{{ period.title }}</span>
+        </label>
+      </div>
       <div class="chart-actions">
         <span>{{ chartSeries.length }} 条折线</span>
         <button type="button" :disabled="!canZoomIn" @click="zoomIn">放大</button>
@@ -51,6 +57,10 @@ export default {
     currentPeriod: {
       type: Object,
       required: true
+    },
+    periods: {
+      type: Array,
+      default: () => []
     }
   },
   data() {
@@ -59,14 +69,20 @@ export default {
       dragLastX: 0,
       isDragging: false,
       resizeObserver: null,
+      selectedPeriodIds: [],
       zoomEndIndex: null,
       zoomStartIndex: 0
     }
   },
   computed: {
+    isAllPeriods() {
+      return this.currentPeriod.id === '__all__'
+    },
     chartSeries() {
-      const groups = this.currentPeriod.id === '__all__'
-        ? this.currentPeriod.groups.filter(group => allPeriodsChartRoles.has(group.role))
+      const groups = this.isAllPeriods
+        ? this.currentPeriod.groups.filter(group =>
+          allPeriodsChartRoles.has(group.role) && this.selectedPeriodIds.includes(group.periodId)
+        )
         : this.currentPeriod.groups
 
       return groups
@@ -199,6 +215,15 @@ export default {
     }
   },
   watch: {
+    periods: {
+      immediate: true,
+      handler(periods) {
+        const periodIds = periods.map(period => period.id)
+        this.selectedPeriodIds = this.selectedPeriodIds.length
+          ? this.selectedPeriodIds.filter(id => periodIds.includes(id))
+          : periodIds
+      }
+    },
     currentPeriod: {
       deep: true,
       handler() {
