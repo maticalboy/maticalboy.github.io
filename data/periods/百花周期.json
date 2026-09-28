@@ -15,6 +15,7 @@
           "change": 10,
           "totalChange": 10,
           "date": "2026-08-04",
+          "segmentStage": "3",
           "note": "主升"
         },
         {
@@ -22,6 +23,7 @@
           "change": 9.97,
           "totalChange": 20.967,
           "date": "2026-08-05",
+          "segmentStage": "3",
           "note": "主升"
         },
         {
@@ -29,6 +31,7 @@
           "change": 9.99,
           "totalChange": 33.0516,
           "date": "2026-08-06",
+          "segmentStage": "3",
           "note": "主升爆量"
         },
         {
@@ -36,6 +39,7 @@
           "change": 10.02,
           "totalChange": 46.3834,
           "date": "2026-08-07",
+          "segmentStage": "3",
           "note": "主升缩量突破"
         },
         {
@@ -43,6 +47,7 @@
           "change": 9.96,
           "totalChange": 60.9632,
           "date": "2026-08-10",
+          "segmentStage": "3",
           "note": "主升"
         },
         {
@@ -50,6 +55,7 @@
           "change": 10.01,
           "totalChange": 77.0756,
           "date": "2026-08-11",
+          "segmentStage": "3",
           "note": "主升"
         },
         {
@@ -57,6 +63,7 @@
           "change": 10.04,
           "totalChange": 94.854,
           "date": "2026-08-12",
+          "segmentStage": "3",
           "note": "主升"
         },
         {
@@ -64,6 +71,7 @@
           "change": 3.35,
           "totalChange": 101.3816,
           "date": "2026-08-13",
+          "segmentStage": "3",
           "note": "主升盛极"
         },
         {
@@ -71,6 +79,7 @@
           "change": -4.76,
           "totalChange": 91.7958,
           "date": "2026-08-14",
+          "segmentStage": "4",
           "note": "震荡分歧"
         },
         {
@@ -78,6 +87,7 @@
           "change": 1.52,
           "totalChange": 94.7111,
           "date": "2026-08-17",
+          "segmentStage": "4",
           "note": "震荡分歧"
         },
         {
@@ -85,6 +95,7 @@
           "change": -3.71,
           "totalChange": 87.4873,
           "date": "2026-08-18",
+          "segmentStage": "4",
           "note": "震荡分歧"
         },
         {
@@ -92,6 +103,7 @@
           "change": 1.63,
           "totalChange": 90.5434,
           "date": "2026-08-19",
+          "segmentStage": "4",
           "note": "震荡分歧"
         },
         {
@@ -99,6 +111,7 @@
           "change": -0.44,
           "totalChange": 89.705,
           "date": "2026-08-20",
+          "segmentStage": "4",
           "note": "震荡分歧"
         },
         {
@@ -106,6 +119,7 @@
           "change": -3,
           "totalChange": 84.0138,
           "date": "2026-08-21",
+          "segmentStage": "4",
           "note": "震荡分歧"
         },
         {
@@ -113,6 +127,7 @@
           "change": 7.09,
           "totalChange": 97.0604,
           "date": "2026-08-24",
+          "segmentStage": "5-1",
           "note": "震荡回流"
         },
         {
@@ -120,6 +135,7 @@
           "change": 5.43,
           "totalChange": 107.7608,
           "date": "2026-08-25",
+          "segmentStage": "5-1",
           "note": "震荡回流"
         },
         {
@@ -127,6 +143,7 @@
           "change": 1.34,
           "totalChange": 110.5448,
           "date": "2026-08-26",
+          "segmentStage": "5-1",
           "note": "震荡回流"
         },
         {
@@ -134,6 +151,7 @@
           "change": 10.03,
           "totalChange": 131.6624,
           "date": "2026-08-27",
+          "segmentStage": "5-1",
           "note": "震荡回流"
         },
         {
@@ -141,6 +159,7 @@
           "change": -7.43,
           "totalChange": 114.4499,
           "date": "2026-08-28",
+          "segmentStage": "5-2",
           "note": "退一分歧"
         },
         {
@@ -148,6 +167,7 @@
           "change": -9.97,
           "totalChange": 93.0692,
           "date": "2026-08-31",
+          "segmentStage": "5-2",
           "note": "退一分歧"
         },
         {
@@ -155,6 +175,7 @@
           "change": -5.11,
           "totalChange": 83.2034,
           "date": "2026-09-01",
+          "segmentStage": "5-2",
           "note": "退一分歧"
         },
         {
@@ -162,6 +183,7 @@
           "change": -2.5,
           "totalChange": 78.6233,
           "date": "2026-09-02",
+          "segmentStage": "5-2",
           "note": "退一分歧"
         },
         {
@@ -169,6 +191,7 @@
           "change": -8.24,
           "totalChange": 63.9048,
           "date": "2026-09-03",
+          "segmentStage": "5-2",
           "note": "退一分歧"
         },
         {
@@ -176,6 +199,7 @@
           "change": 1.19,
           "totalChange": 65.8552,
           "date": "2026-09-04",
+          "segmentStage": "5-3",
           "note": "退一衰竭"
         },
         {
@@ -183,6 +207,7 @@
           "change": 0.67,
           "totalChange": 66.9665,
           "date": "2026-09-07",
+          "segmentStage": "5-3",
           "note": "退一弱回流"
         },
         {
@@ -190,6 +215,7 @@
           "change": 2.16,
           "totalChange": 70.5729,
           "date": "2026-09-08",
+          "segmentStage": "5-3",
           "note": "退一弱回流"
         },
         {
@@ -197,6 +223,7 @@
           "change": -5.94,
           "totalChange": 60.4409,
           "date": "2026-09-09",
+          "segmentStage": "5-2",
           "note": "退一分歧"
         },
         {
@@ -204,6 +231,7 @@
           "change": -1.3,
           "totalChange": 58.3552,
           "date": "2026-09-10",
+          "segmentStage": "5-2",
           "note": "退一分歧"
         },
         {
@@ -211,6 +239,7 @@
           "change": -4.3,
           "totalChange": 51.5459,
           "date": "2026-09-11",
+          "segmentStage": "5-2",
           "note": "退一分歧"
         },
         {
@@ -218,6 +247,7 @@
           "change": 3.12,
           "totalChange": 56.2741,
           "date": "2026-09-14",
+          "segmentStage": "5-2",
           "note": "退一衰竭"
         },
         {
@@ -225,6 +255,7 @@
           "change": -5.24,
           "totalChange": 48.0854,
           "date": "2026-09-15",
+          "segmentStage": "5-2",
           "note": "退一分歧"
         },
         {
@@ -232,6 +263,7 @@
           "change": 1.22,
           "totalChange": 49.892,
           "date": "2026-09-16",
+          "segmentStage": "5-2",
           "note": "退一衰竭"
         },
         {
@@ -239,6 +271,7 @@
           "change": 10.01,
           "totalChange": 64.8962,
           "date": "2026-09-17",
+          "segmentStage": "5-3",
           "note": "退一强回流"
         },
         {
@@ -246,6 +279,7 @@
           "change": 0.67,
           "totalChange": 66.001,
           "date": "2026-09-18",
+          "segmentStage": "5-3",
           "note": "退一弱回流"
         },
         {
@@ -253,6 +287,7 @@
           "change": 10.04,
           "totalChange": 82.6675,
           "date": "2026-09-21",
+          "segmentStage": "5-3",
           "note": "退一强回流"
         },
         {
@@ -260,6 +295,7 @@
           "change": 10.04,
           "totalChange": 101.0073,
           "date": "2026-09-22",
+          "segmentStage": "5-3",
           "note": "退一强回流"
         },
         {
@@ -267,6 +303,7 @@
           "change": -8.15,
           "totalChange": 84.6252,
           "date": "2026-09-23",
+          "segmentStage": "5-4",
           "note": "退二分歧"
         },
         {
@@ -274,6 +311,15 @@
           "change": -2.78,
           "totalChange": 79.4926,
           "date": "2026-09-24",
+          "segmentStage": "5-4",
+          "note": "退二分歧"
+        },
+        {
+          "id": "row-1790579648210-99cae92b92ba2",
+          "change": -5.73,
+          "totalChange": 69.2077,
+          "date": "2026-09-28",
+          "segmentStage": "5-4",
           "note": "退二分歧"
         }
       ]
@@ -288,6 +334,7 @@
           "change": 9.98,
           "totalChange": 9.98,
           "date": "2026-08-06",
+          "segmentStage": "",
           "note": "主升"
         },
         {
@@ -295,6 +342,7 @@
           "change": 10.01,
           "totalChange": 20.989,
           "date": "2026-08-07",
+          "segmentStage": "",
           "note": "主升"
         },
         {
@@ -302,6 +350,7 @@
           "change": 10.02,
           "totalChange": 33.1121,
           "date": "2026-08-10",
+          "segmentStage": "",
           "note": "主升"
         },
         {
@@ -309,6 +358,7 @@
           "change": 10.02,
           "totalChange": 46.4499,
           "date": "2026-08-11",
+          "segmentStage": "",
           "note": "主升"
         },
         {
@@ -316,6 +366,7 @@
           "change": 10,
           "totalChange": 61.0949,
           "date": "2026-08-12",
+          "segmentStage": "",
           "note": "主升"
         },
         {
@@ -323,6 +374,7 @@
           "change": -7.35,
           "totalChange": 49.2544,
           "date": "2026-08-13",
+          "segmentStage": "",
           "note": "主升爆量"
         },
         {
@@ -330,6 +382,7 @@
           "change": 10,
           "totalChange": 64.1799,
           "date": "2026-08-14",
+          "segmentStage": "",
           "note": "主升"
         },
         {
@@ -337,6 +390,7 @@
           "change": 8.13,
           "totalChange": 77.5277,
           "date": "2026-08-17",
+          "segmentStage": "",
           "note": "主升"
         },
         {
@@ -344,6 +398,7 @@
           "change": 9.98,
           "totalChange": 95.245,
           "date": "2026-08-18",
+          "segmentStage": "",
           "note": "主升盛极"
         },
         {
@@ -351,6 +406,7 @@
           "change": -6.83,
           "totalChange": 81.9097,
           "date": "2026-08-19",
+          "segmentStage": "",
           "note": "震荡分歧"
         },
         {
@@ -358,6 +414,7 @@
           "change": -6,
           "totalChange": 70.9952,
           "date": "2026-08-20",
+          "segmentStage": "",
           "note": "震荡分歧"
         },
         {
@@ -365,6 +422,7 @@
           "change": -9.98,
           "totalChange": 53.9298,
           "date": "2026-08-21",
+          "segmentStage": "",
           "note": "震荡分歧"
         },
         {
@@ -372,6 +430,7 @@
           "change": 10,
           "totalChange": 69.3228,
           "date": "2026-08-24",
+          "segmentStage": "",
           "note": "震荡回流"
         },
         {
@@ -379,6 +438,7 @@
           "change": 5.67,
           "totalChange": 78.9234,
           "date": "2026-08-25",
+          "segmentStage": "",
           "note": "震荡回流"
         },
         {
@@ -386,6 +446,7 @@
           "change": 10.01,
           "totalChange": 96.8337,
           "date": "2026-08-26",
+          "segmentStage": "",
           "note": "震荡回流"
         },
         {
@@ -393,6 +454,7 @@
           "change": 2.84,
           "totalChange": 102.4237,
           "date": "2026-08-27",
+          "segmentStage": "",
           "note": "震荡回流"
         },
         {
@@ -400,6 +462,7 @@
           "change": -6.5,
           "totalChange": 89.2662,
           "date": "2026-08-28",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -407,6 +470,7 @@
           "change": -10,
           "totalChange": 70.3396,
           "date": "2026-08-31",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -414,6 +478,7 @@
           "change": 10,
           "totalChange": 87.3735,
           "date": "2026-09-01",
+          "segmentStage": "",
           "note": "退一强回流"
         },
         {
@@ -421,6 +486,7 @@
           "change": -10,
           "totalChange": 68.6362,
           "date": "2026-09-02",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -428,6 +494,7 @@
           "change": -9.73,
           "totalChange": 52.2279,
           "date": "2026-09-03",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -435,6 +502,7 @@
           "change": 7.66,
           "totalChange": 63.8885,
           "date": "2026-09-04",
+          "segmentStage": "",
           "note": "退一强回流"
         },
         {
@@ -442,6 +510,7 @@
           "change": -0.63,
           "totalChange": 62.856,
           "date": "2026-09-07",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -449,6 +518,7 @@
           "change": 0.17,
           "totalChange": 63.1329,
           "date": "2026-09-08",
+          "segmentStage": "",
           "note": "退一衰竭"
         },
         {
@@ -456,6 +526,7 @@
           "change": -4.92,
           "totalChange": 55.1068,
           "date": "2026-09-09",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -463,6 +534,7 @@
           "change": -4.27,
           "totalChange": 48.4837,
           "date": "2026-09-10",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -470,6 +542,7 @@
           "change": -3.08,
           "totalChange": 43.9104,
           "date": "2026-09-11",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -477,6 +550,7 @@
           "change": 0.26,
           "totalChange": 44.2846,
           "date": "2026-09-14",
+          "segmentStage": "",
           "note": "退一衰竭"
         },
         {
@@ -484,6 +558,7 @@
           "change": -3.04,
           "totalChange": 39.8983,
           "date": "2026-09-15",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -491,6 +566,7 @@
           "change": -0.53,
           "totalChange": 39.1569,
           "date": "2026-09-16",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -498,6 +574,7 @@
           "change": 0.8,
           "totalChange": 40.2701,
           "date": "2026-09-17",
+          "segmentStage": "",
           "note": "退一衰竭"
         },
         {
@@ -505,6 +582,7 @@
           "change": 1.66,
           "totalChange": 42.5986,
           "date": "2026-09-18",
+          "segmentStage": "",
           "note": "退一弱回流"
         },
         {
@@ -512,6 +590,7 @@
           "change": 6.74,
           "totalChange": 52.2097,
           "date": "2026-09-21",
+          "segmentStage": "",
           "note": "退一强回流"
         },
         {
@@ -519,6 +598,7 @@
           "change": 6.31,
           "totalChange": 61.8142,
           "date": "2026-09-22",
+          "segmentStage": "",
           "note": "退一强回流"
         },
         {
@@ -526,6 +606,7 @@
           "change": -8.88,
           "totalChange": 47.4451,
           "date": "2026-09-23",
+          "segmentStage": "",
           "note": "退二分歧"
         },
         {
@@ -533,13 +614,23 @@
           "change": -3.61,
           "totalChange": 42.1223,
           "date": "2026-09-24",
+          "segmentStage": "",
           "note": "退二分歧"
         },
         {
           "id": "row-1790150407159-20980b6122a32",
+          "change": -0.59,
+          "totalChange": 41.2838,
+          "date": "2026-09-28",
+          "segmentStage": "",
+          "note": "退二分歧"
+        },
+        {
+          "id": "row-1790579688339-5f687384d7e5e",
           "change": "",
           "totalChange": "",
-          "date": "2026-09-28",
+          "date": "2026-09-29",
+          "segmentStage": "",
           "note": ""
         }
       ]
@@ -554,6 +645,7 @@
           "change": 10,
           "totalChange": 10,
           "date": "2026-08-13",
+          "segmentStage": "",
           "note": "主升"
         },
         {
@@ -561,6 +653,7 @@
           "change": 9.95,
           "totalChange": 20.945,
           "date": "2026-08-14",
+          "segmentStage": "",
           "note": "主升"
         },
         {
@@ -568,6 +661,7 @@
           "change": 9.98,
           "totalChange": 33.0153,
           "date": "2026-08-17",
+          "segmentStage": "",
           "note": "主升"
         },
         {
@@ -575,6 +669,7 @@
           "change": 10.07,
           "totalChange": 46.41,
           "date": "2026-08-18",
+          "segmentStage": "",
           "note": "主升"
         },
         {
@@ -582,6 +677,7 @@
           "change": 0.26,
           "totalChange": 46.7906,
           "date": "2026-08-19",
+          "segmentStage": "",
           "note": "主升爆量"
         },
         {
@@ -589,6 +685,7 @@
           "change": 10.03,
           "totalChange": 61.5137,
           "date": "2026-08-20",
+          "segmentStage": "",
           "note": "主升缩量突破"
         },
         {
@@ -596,6 +693,7 @@
           "change": 5.14,
           "totalChange": 69.8155,
           "date": "2026-08-21",
+          "segmentStage": "",
           "note": "主升爆量"
         },
         {
@@ -603,6 +701,7 @@
           "change": 10,
           "totalChange": 86.7971,
           "date": "2026-08-24",
+          "segmentStage": "",
           "note": "主升"
         },
         {
@@ -610,6 +709,7 @@
           "change": 3.74,
           "totalChange": 93.7833,
           "date": "2026-08-25",
+          "segmentStage": "",
           "note": "主升爆量"
         },
         {
@@ -617,6 +717,7 @@
           "change": 2.73,
           "totalChange": 99.0736,
           "date": "2026-08-26",
+          "segmentStage": "",
           "note": "主升"
         },
         {
@@ -624,6 +725,7 @@
           "change": 10.05,
           "totalChange": 119.0805,
           "date": "2026-08-27",
+          "segmentStage": "",
           "note": "主升"
         },
         {
@@ -631,6 +733,7 @@
           "change": 6.8,
           "totalChange": 133.9779,
           "date": "2026-08-28",
+          "segmentStage": "",
           "note": "主升盛极"
         },
         {
@@ -638,6 +741,7 @@
           "change": -10,
           "totalChange": 110.5801,
           "date": "2026-08-31",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -645,6 +749,7 @@
           "change": 0.01,
           "totalChange": 110.6012,
           "date": "2026-09-01",
+          "segmentStage": "",
           "note": "退一衰竭"
         },
         {
@@ -652,6 +757,7 @@
           "change": -10.05,
           "totalChange": 89.4358,
           "date": "2026-09-02",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -659,6 +765,7 @@
           "change": -9.46,
           "totalChange": 71.5152,
           "date": "2026-09-03",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -666,6 +773,7 @@
           "change": -0.77,
           "totalChange": 70.1945,
           "date": "2026-09-04",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -673,6 +781,7 @@
           "change": 4.32,
           "totalChange": 77.5469,
           "date": "2026-09-07",
+          "segmentStage": "",
           "note": "退一衰竭"
         },
         {
@@ -680,6 +789,7 @@
           "change": 5.31,
           "totalChange": 86.9746,
           "date": "2026-09-08",
+          "segmentStage": "",
           "note": "退一强回流"
         },
         {
@@ -687,6 +797,7 @@
           "change": -8.98,
           "totalChange": 70.1843,
           "date": "2026-09-09",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -694,6 +805,7 @@
           "change": -5.65,
           "totalChange": 60.5689,
           "date": "2026-09-10",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -701,6 +813,7 @@
           "change": -4.82,
           "totalChange": 52.8295,
           "date": "2026-09-11",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -708,6 +821,7 @@
           "change": 5.31,
           "totalChange": 60.9447,
           "date": "2026-09-14",
+          "segmentStage": "",
           "note": "退一衰竭"
         },
         {
@@ -715,6 +829,7 @@
           "change": -3.52,
           "totalChange": 55.2795,
           "date": "2026-09-15",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -722,6 +837,7 @@
           "change": -0.36,
           "totalChange": 54.7205,
           "date": "2026-09-16",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -729,6 +845,7 @@
           "change": 4.15,
           "totalChange": 61.1414,
           "date": "2026-09-17",
+          "segmentStage": "",
           "note": "退一衰竭"
         },
         {
@@ -736,6 +853,7 @@
           "change": -1.52,
           "totalChange": 58.692,
           "date": "2026-09-18",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -743,6 +861,7 @@
           "change": 9.99,
           "totalChange": 74.5453,
           "date": "2026-09-21",
+          "segmentStage": "",
           "note": "退一强回流"
         },
         {
@@ -750,6 +869,7 @@
           "change": 1.95,
           "totalChange": 77.949,
           "date": "2026-09-22",
+          "segmentStage": "",
           "note": "退一弱回流"
         },
         {
@@ -757,6 +877,7 @@
           "change": -8.17,
           "totalChange": 63.4105,
           "date": "2026-09-23",
+          "segmentStage": "",
           "note": "退二分歧"
         },
         {
@@ -764,7 +885,16 @@
           "change": -4.73,
           "totalChange": 55.6812,
           "date": "2026-09-24",
+          "segmentStage": "",
           "note": "退二分歧"
+        },
+        {
+          "id": "row-1790579710219-6e299bf474677",
+          "change": 0.48,
+          "totalChange": 56.4285,
+          "date": "2026-09-28",
+          "segmentStage": "",
+          "note": "退二衰竭"
         }
       ]
     },
@@ -778,6 +908,7 @@
           "change": 10.07,
           "totalChange": 10.07,
           "date": "2026-08-19",
+          "segmentStage": "",
           "note": "主升"
         },
         {
@@ -785,6 +916,7 @@
           "change": 9.98,
           "totalChange": 21.055,
           "date": "2026-08-20",
+          "segmentStage": "",
           "note": "主升"
         },
         {
@@ -792,6 +924,7 @@
           "change": 10.04,
           "totalChange": 33.2089,
           "date": "2026-08-21",
+          "segmentStage": "",
           "note": "主升"
         },
         {
@@ -799,6 +932,7 @@
           "change": 10.01,
           "totalChange": 46.5431,
           "date": "2026-08-24",
+          "segmentStage": "",
           "note": "主升"
         },
         {
@@ -806,6 +940,7 @@
           "change": 9.99,
           "totalChange": 61.1828,
           "date": "2026-08-25",
+          "segmentStage": "",
           "note": "主升"
         },
         {
@@ -813,6 +948,7 @@
           "change": 6.16,
           "totalChange": 71.1116,
           "date": "2026-08-26",
+          "segmentStage": "",
           "note": "主升"
         },
         {
@@ -820,6 +956,7 @@
           "change": 7.1,
           "totalChange": 83.2606,
           "date": "2026-08-27",
+          "segmentStage": "",
           "note": "主升盛极"
         },
         {
@@ -827,6 +964,7 @@
           "change": -6.35,
           "totalChange": 71.6235,
           "date": "2026-08-28",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -834,6 +972,7 @@
           "change": -9.98,
           "totalChange": 54.4955,
           "date": "2026-08-31",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -841,6 +980,7 @@
           "change": -5.58,
           "totalChange": 45.8746,
           "date": "2026-09-01",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -848,6 +988,7 @@
           "change": -8.06,
           "totalChange": 34.1171,
           "date": "2026-09-02",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -855,6 +996,7 @@
           "change": -2.92,
           "totalChange": 30.2009,
           "date": "2026-09-03",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -862,6 +1004,7 @@
           "change": -2.81,
           "totalChange": 26.5423,
           "date": "2026-09-04",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -869,6 +1012,7 @@
           "change": 0.62,
           "totalChange": 27.3268,
           "date": "2026-09-07",
+          "segmentStage": "",
           "note": "退一衰竭"
         },
         {
@@ -876,6 +1020,7 @@
           "change": 1.44,
           "totalChange": 29.1603,
           "date": "2026-09-08",
+          "segmentStage": "",
           "note": "退一弱回流"
         },
         {
@@ -883,6 +1028,7 @@
           "change": -2.53,
           "totalChange": 25.8926,
           "date": "2026-09-09",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -890,6 +1036,7 @@
           "change": -6.02,
           "totalChange": 18.3139,
           "date": "2026-09-10",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -897,6 +1044,7 @@
           "change": -2.65,
           "totalChange": 15.1785,
           "date": "2026-09-11",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -904,6 +1052,7 @@
           "change": 1.82,
           "totalChange": 17.2748,
           "date": "2026-09-14",
+          "segmentStage": "",
           "note": "退一衰竭"
         },
         {
@@ -911,6 +1060,7 @@
           "change": -3.12,
           "totalChange": 13.6158,
           "date": "2026-09-15",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -918,6 +1068,7 @@
           "change": -0.23,
           "totalChange": 13.3545,
           "date": "2026-09-16",
+          "segmentStage": "",
           "note": "退一分歧"
         },
         {
@@ -925,6 +1076,7 @@
           "change": 2.19,
           "totalChange": 15.837,
           "date": "2026-09-17",
+          "segmentStage": "",
           "note": "退一衰竭"
         },
         {
@@ -932,6 +1084,7 @@
           "change": 2.03,
           "totalChange": 18.1885,
           "date": "2026-09-18",
+          "segmentStage": "",
           "note": "退一弱回流"
         },
         {
@@ -939,6 +1092,7 @@
           "change": 6.42,
           "totalChange": 25.7762,
           "date": "2026-09-21",
+          "segmentStage": "",
           "note": "退一强回流"
         },
         {
@@ -946,6 +1100,7 @@
           "change": 0.83,
           "totalChange": 26.8201,
           "date": "2026-09-22",
+          "segmentStage": "",
           "note": "退一弱回流"
         },
         {
@@ -953,6 +1108,7 @@
           "change": -2.99,
           "totalChange": 23.0282,
           "date": "2026-09-23",
+          "segmentStage": "",
           "note": "退二分歧"
         },
         {
@@ -960,6 +1116,15 @@
           "change": -3.29,
           "totalChange": 18.9805,
           "date": "2026-09-24",
+          "segmentStage": "",
+          "note": "退二分歧"
+        },
+        {
+          "id": "row-1790579732550-50a5042e38b1a",
+          "change": -2.86,
+          "totalChange": 15.5777,
+          "date": "2026-09-28",
+          "segmentStage": "",
           "note": "退二分歧"
         }
       ]
@@ -967,6 +1132,6 @@
   ],
   "timeRange": {
     "startDate": "2026-08-04",
-    "endDate": "2026-09-24"
+    "endDate": "2026-09-28"
   }
 }

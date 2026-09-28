@@ -58,6 +58,7 @@ import {
   createPeriodData,
   createPeriodForSave,
   createRow,
+  getDefaultSegmentStage,
   getNextRowDate
 } from './utils/periodData'
 
@@ -295,6 +296,17 @@ export default {
 
       const row = group.rows.find(item => item.id === rowId)
       if (!row) return
+
+      if (field === 'note') {
+        const previousDefaultSegmentStage = getDefaultSegmentStage(row.note)
+        const nextDefaultSegmentStage = getDefaultSegmentStage(value)
+
+        row.note = value
+        if (!row.segmentStage || row.segmentStage === previousDefaultSegmentStage) {
+          row.segmentStage = nextDefaultSegmentStage
+        }
+        return
+      }
 
       row[field] = value
     },
@@ -811,7 +823,8 @@ h2 {
   padding: 24px 24px 20px;
 }
 
-.chart-host {
+.chart-shell {
+  position: relative;
   width: 100%;
   height: 100%;
   min-height: 0;
@@ -820,12 +833,63 @@ h2 {
   background: #fbfdff;
 }
 
-.chart-host.is-draggable {
+.chart-host {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.chart-stage-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.chart-stage-label {
+  position: absolute;
+  transform: translate(-50%, -140%);
+  padding: 2px 7px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.4;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+  white-space: nowrap;
+}
+
+.chart-key-node {
+  position: absolute;
+  top: 28px;
+  bottom: 78px;
+  width: 0;
+  border-left: 2px dashed var(--marker-color, #dc2626);
+  opacity: 0.9;
+}
+
+.chart-key-node span {
+  position: absolute;
+  top: -2px;
+  left: 6px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  color: var(--marker-color, #991b1b);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.4;
+  background: var(--marker-fill, rgba(254, 226, 226, 0.95));
+  box-shadow: 0 4px 12px rgba(153, 27, 27, 0.16);
+  white-space: nowrap;
+}
+
+.chart-shell.is-draggable {
   cursor: grab;
   touch-action: none;
 }
 
-.chart-host.is-draggable:active {
+.chart-shell.is-draggable:active {
   cursor: grabbing;
 }
 
@@ -1084,6 +1148,7 @@ h2 {
 }
 
 .ag-date-editor,
+.ag-stage-select,
 .ag-note-select {
   width: 100%;
   height: 32px;
@@ -1094,6 +1159,7 @@ h2 {
   background: #fff;
 }
 
+.ag-stage-select:disabled,
 .ag-note-select:disabled {
   color: #475467;
   background: #f7f9fc;

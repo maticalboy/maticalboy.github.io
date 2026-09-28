@@ -29,6 +29,20 @@ export const STOCK_POINT_STAGES = [
   '退二弱回流',
   '退二强回流'
 ]
+export const STOCK_SEGMENT_STAGES = ['3', '4', '5-1', '5-2', '5-3', '5-4', '5-5']
+
+export function getDefaultSegmentStage(note) {
+  if (!note) return ''
+  if (note.startsWith('主升')) return '3'
+  if (note === '震荡分歧') return '4'
+  if (note === '震荡回流') return '5-1'
+  if (note === '退一分歧') return '5-2'
+  if (note.includes('退一') && note.includes('回流')) return '5-3'
+  if (note === '退二分歧') return '5-4'
+  if (note.includes('退二') && note.includes('回流')) return '5-5'
+
+  return ''
+}
 
 const holidaySet = new Set([
   '2024-01-01',
@@ -88,12 +102,15 @@ function getSortedValidRows(group) {
 }
 
 export function createRow(row = {}) {
+  const note = row.note || ''
+
   return {
     id: row.id || `row-${Date.now()}-${Math.random().toString(16).slice(2)}`,
     change: normalizeNumber(row.change),
     totalChange: normalizeNumber(row.totalChange),
     date: row.date || '',
-    note: row.note || ''
+    segmentStage: row.segmentStage || getDefaultSegmentStage(note),
+    note
   }
 }
 

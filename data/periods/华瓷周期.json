@@ -68,10 +68,10 @@
         },
         {
           "id": "row-1790075059224-f1d608b59d8298",
-          "change": "",
-          "totalChange": "",
+          "change": -1.27,
+          "totalChange": 87.6778,
           "date": "2026-09-28",
-          "note": ""
+          "note": "震荡分歧"
         }
       ]
     },
@@ -110,10 +110,24 @@
         },
         {
           "id": "row-1790240654335-4477146f1bc738",
-          "change": "",
-          "totalChange": "",
+          "change": 2.04,
+          "totalChange": 50.1446,
           "date": "2026-09-28",
-          "note": ""
+          "note": "主升爆量"
+        }
+      ]
+    },
+    {
+      "id": "group-1790581260964-fd0b863f9819c8",
+      "name": "深华发A",
+      "role": "A杀龙",
+      "rows": [
+        {
+          "id": "row-1790581260964-e8289dacb5419",
+          "change": 10,
+          "totalChange": 10,
+          "date": "2026-09-28",
+          "note": "主升"
         }
       ]
     }

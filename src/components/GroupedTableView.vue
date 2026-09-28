@@ -64,7 +64,7 @@
 
 <script>
 import { AgGridVue } from 'ag-grid-vue'
-import { STOCK_POINT_STAGES, calculateTotalChangeMap } from '../utils/periodData'
+import { STOCK_POINT_STAGES, STOCK_SEGMENT_STAGES, calculateTotalChangeMap } from '../utils/periodData'
 import 'ag-grid-community/styles/ag-grid.css'
 import 'ag-grid-community/styles/ag-theme-alpine.css'
 
@@ -95,6 +95,7 @@ export default {
   data() {
     return {
       selectedGroupId: '',
+      stockSegmentStages: STOCK_SEGMENT_STAGES,
       stockRoles: ['龙头', '穿越龙', '补涨龙', 'A杀龙'],
       defaultColDef: {
         flex: 1,
@@ -122,6 +123,13 @@ export default {
           headerName: '总涨幅',
           editable: false,
           valueFormatter: this.percentValueFormatter
+        },
+        {
+          field: 'segmentStage',
+          headerName: '个股阶段',
+          editable: false,
+          cellRenderer: this.segmentStageCellRenderer,
+          minWidth: 140
         },
         {
           field: 'note',
@@ -246,6 +254,32 @@ export default {
         if (params.context.componentParent.readOnly) return
 
         params.context.componentParent.$emit('update-row', params.data.groupId, params.data.id, 'note', event.target.value)
+      })
+
+      return select
+    },
+    segmentStageCellRenderer(params) {
+      const select = document.createElement('select')
+      select.className = 'ag-stage-select'
+      select.disabled = params.context.componentParent.readOnly
+
+      const emptyOption = document.createElement('option')
+      emptyOption.value = ''
+      emptyOption.textContent = '未设置'
+      select.appendChild(emptyOption)
+
+      params.context.componentParent.stockSegmentStages.forEach(stage => {
+        const option = document.createElement('option')
+        option.value = stage
+        option.textContent = stage
+        select.appendChild(option)
+      })
+
+      select.value = params.value || ''
+      select.addEventListener('change', event => {
+        if (params.context.componentParent.readOnly) return
+
+        params.context.componentParent.$emit('update-row', params.data.groupId, params.data.id, 'segmentStage', event.target.value)
       })
 
       return select
