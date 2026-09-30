@@ -15,6 +15,7 @@
           "change": 9.97,
           "totalChange": 9.97,
           "date": "2026-09-15",
+          "segmentStage": "3",
           "note": "主升"
         },
         {
@@ -22,6 +23,7 @@
           "change": 9.98,
           "totalChange": 20.945,
           "date": "2026-09-16",
+          "segmentStage": "3",
           "note": "主升"
         },
         {
@@ -29,6 +31,7 @@
           "change": 10.02,
           "totalChange": 33.0637,
           "date": "2026-09-17",
+          "segmentStage": "3",
           "note": "主升爆量"
         },
         {
@@ -36,6 +39,7 @@
           "change": 10.01,
           "totalChange": 46.3834,
           "date": "2026-09-18",
+          "segmentStage": "3",
           "note": "主升"
         },
         {
@@ -43,6 +47,7 @@
           "change": 10.01,
           "totalChange": 61.0363,
           "date": "2026-09-21",
+          "segmentStage": "3",
           "note": "主升缩量突破"
         },
         {
@@ -50,6 +55,7 @@
           "change": 10.02,
           "totalChange": 77.1722,
           "date": "2026-09-22",
+          "segmentStage": "3",
           "note": "主升"
         },
         {
@@ -57,6 +63,7 @@
           "change": 6.95,
           "totalChange": 89.4857,
           "date": "2026-09-23",
+          "segmentStage": "3",
           "note": "主升盛极"
         },
         {
@@ -64,6 +71,7 @@
           "change": 0.32,
           "totalChange": 90.092,
           "date": "2026-09-24",
+          "segmentStage": "4",
           "note": "震荡分歧"
         },
         {
@@ -71,6 +79,23 @@
           "change": -1.27,
           "totalChange": 87.6778,
           "date": "2026-09-28",
+          "segmentStage": "4",
+          "note": "震荡分歧"
+        },
+        {
+          "id": "row-1790670702786-c56d10233fdfd8",
+          "change": 3.74,
+          "totalChange": 94.697,
+          "date": "2026-09-29",
+          "segmentStage": "4",
+          "note": "震荡衰竭"
+        },
+        {
+          "id": "row-1790751728787-e54d6bccf402f8",
+          "change": -10,
+          "totalChange": 75.2273,
+          "date": "2026-09-30",
+          "segmentStage": "4",
           "note": "震荡分歧"
         }
       ]
@@ -85,6 +110,7 @@
           "change": 10.4,
           "totalChange": 10.4,
           "date": "2026-09-21",
+          "segmentStage": "3",
           "note": "主升"
         },
         {
@@ -92,6 +118,7 @@
           "change": 10.08,
           "totalChange": 21.5283,
           "date": "2026-09-22",
+          "segmentStage": "3",
           "note": "主升"
         },
         {
@@ -99,6 +126,7 @@
           "change": 10.03,
           "totalChange": 33.7176,
           "date": "2026-09-23",
+          "segmentStage": "3",
           "note": "主升爆量"
         },
         {
@@ -106,6 +134,7 @@
           "change": 10.04,
           "totalChange": 47.1429,
           "date": "2026-09-24",
+          "segmentStage": "3",
           "note": "主升缩量突破"
         },
         {
@@ -113,27 +142,69 @@
           "change": 2.04,
           "totalChange": 50.1446,
           "date": "2026-09-28",
+          "segmentStage": "3",
           "note": "主升爆量"
+        },
+        {
+          "id": "row-1790670720506-439df9de597098",
+          "change": -4.35,
+          "totalChange": 43.6133,
+          "date": "2026-09-29",
+          "segmentStage": "4",
+          "note": "震荡分歧"
+        },
+        {
+          "id": "row-1790751749923-871a66a6c000e",
+          "change": -4.55,
+          "totalChange": 37.0789,
+          "date": "2026-09-30",
+          "segmentStage": "4",
+          "note": "震荡分歧"
         }
       ]
     },
     {
-      "id": "group-1790581260964-fd0b863f9819c8",
-      "name": "深华发A",
+      "id": "group-1790752238490-92d896e5883d28",
+      "name": "九阳股份",
       "role": "A杀龙",
       "rows": [
         {
-          "id": "row-1790581260964-e8289dacb5419",
-          "change": 10,
-          "totalChange": 10,
+          "id": "row-1790752238491-acd97de5b4d7e8",
+          "change": 10.01,
+          "totalChange": 10.01,
           "date": "2026-09-28",
-          "note": "主升"
+          "segmentStage": "3",
+          "note": ""
+        },
+        {
+          "id": "row-1790752268161-90bd4c4625f5a",
+          "change": 9.97,
+          "totalChange": 20.978,
+          "date": "2026-09-29",
+          "segmentStage": "3",
+          "note": ""
+        },
+        {
+          "id": "row-1790752268320-f31253338f763",
+          "change": 10.04,
+          "totalChange": 33.1242,
+          "date": "2026-09-30",
+          "segmentStage": "3",
+          "note": ""
+        },
+        {
+          "id": "row-1790752268460-1d61f4ecd4369",
+          "change": "",
+          "totalChange": "",
+          "date": "2026-10-08",
+          "segmentStage": "",
+          "note": ""
         }
       ]
     }
   ],
   "timeRange": {
     "startDate": "2026-09-15",
-    "endDate": "2026-09-28"
+    "endDate": "2026-09-30"
   }
 }

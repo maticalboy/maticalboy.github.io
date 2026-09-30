@@ -1,7 +1,7 @@
 {
   "id": "period-1790077466939",
   "title": "闽东周期",
-  "stage": "退一",
+  "stage": "退一回流",
   "sourcePeriodId": "period-1790076037143",
   "relationType": "承接",
   "groups": [
@@ -88,7 +88,7 @@
           "totalChange": 100.4594,
           "date": "2026-09-22",
           "segmentStage": "5-1",
-          "note": "震荡回流"
+          "note": "退一衰竭"
         },
         {
           "id": "row-1790077517697-1bd14ac982efa8",
@@ -103,7 +103,7 @@
           "change": 2.66,
           "totalChange": 85.2124,
           "date": "2026-09-24",
-          "segmentStage": "",
+          "segmentStage": "5-2",
           "note": "退一衰竭"
         },
         {
@@ -116,11 +116,19 @@
         },
         {
           "id": "row-1790580888325-5ea73f1364f0f8",
-          "change": "",
-          "totalChange": "",
+          "change": -6.38,
+          "totalChange": 56.0736,
           "date": "2026-09-29",
-          "segmentStage": "",
-          "note": ""
+          "segmentStage": "5-2",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790752623809-ec9f9c2f02967",
+          "change": 4.98,
+          "totalChange": 63.8461,
+          "date": "2026-09-30",
+          "segmentStage": "5-3",
+          "note": "退一强回流"
         }
       ]
     },
@@ -195,48 +203,72 @@
         },
         {
           "id": "row-1790579879309-a354faafab95b8",
-          "change": "",
-          "totalChange": "",
+          "change": -7.88,
+          "totalChange": 51.1199,
           "date": "2026-09-29",
-          "segmentStage": "",
-          "note": ""
+          "segmentStage": "5-2",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1790752639599-3bfeda15316aa8",
+          "change": -8.49,
+          "totalChange": 38.2898,
+          "date": "2026-09-30",
+          "segmentStage": "5-2",
+          "note": "退一分歧"
         }
       ]
     },
     {
-      "id": "group-1790580893065-01ae5e9376dac",
-      "name": "福建水泥",
+      "id": "group-1790669896610-de1b5bdc6fd078",
+      "name": "雪龙集团",
       "role": "A杀龙",
       "rows": [
         {
-          "id": "row-1790580893065-0cb91da432ccd",
-          "change": 10,
-          "totalChange": 10,
+          "id": "row-1790669896610-78636a4452ecd",
+          "change": 10.03,
+          "totalChange": 10.03,
           "date": "2026-09-23",
           "segmentStage": "3",
           "note": "主升"
         },
         {
-          "id": "row-1790580905475-5cbd9ca457b1f",
-          "change": 10,
-          "totalChange": 21,
+          "id": "row-1790669927609-ac400cabdb4bf",
+          "change": 10.03,
+          "totalChange": 21.066,
           "date": "2026-09-24",
           "segmentStage": "3",
           "note": "主升"
         },
         {
-          "id": "row-1790580905696-79ef66fe85801",
+          "id": "row-1790669927759-19b3439205f528",
           "change": 10,
-          "totalChange": 33.1,
+          "totalChange": 33.1726,
           "date": "2026-09-28",
           "segmentStage": "3",
+          "note": "主升爆量"
+        },
+        {
+          "id": "row-1790669927910-c35fce280fc15",
+          "change": 10.01,
+          "totalChange": 46.5032,
+          "date": "2026-09-29",
+          "segmentStage": "3",
           "note": "主升"
+        },
+        {
+          "id": "row-1790669928039-60a9c549a721e",
+          "change": -9.98,
+          "totalChange": 31.8822,
+          "date": "2026-09-30",
+          "segmentStage": "5-2",
+          "note": "退一分歧"
         }
       ]
     }
   ],
   "timeRange": {
     "startDate": "2026-09-09",
-    "endDate": "2026-09-29"
+    "endDate": "2026-09-30"
   }
 }
