@@ -193,6 +193,14 @@
           "date": "2026-09-30",
           "segmentStage": "5-4",
           "note": "退二分歧"
+        },
+        {
+          "id": "row-1791446079344-51eec39051bd28",
+          "change": 1.88,
+          "totalChange": 79.1285,
+          "date": "2026-10-08",
+          "segmentStage": "5-4",
+          "note": "退二衰竭"
         }
       ]
     },
@@ -336,12 +344,20 @@
           "date": "2026-09-30",
           "segmentStage": "5-4",
           "note": "退二分歧"
+        },
+        {
+          "id": "row-1791446107863-c7dcf02818a728",
+          "change": -0.99,
+          "totalChange": 6.013,
+          "date": "2026-10-08",
+          "segmentStage": "5-4",
+          "note": "退二分歧"
         }
       ]
     }
   ],
   "timeRange": {
     "startDate": "2026-08-28",
-    "endDate": "2026-09-30"
+    "endDate": "2026-10-08"
   }
 }

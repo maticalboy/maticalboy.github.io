@@ -337,6 +337,14 @@
           "date": "2026-09-30",
           "segmentStage": "5-5",
           "note": "退二弱回流"
+        },
+        {
+          "id": "row-1791446168214-c9d74084e3ba68",
+          "change": -4.04,
+          "totalChange": 74.7743,
+          "date": "2026-10-08",
+          "segmentStage": "5-5",
+          "note": ""
         }
       ]
     },
@@ -656,6 +664,14 @@
           "date": "2026-09-30",
           "segmentStage": "5-5",
           "note": "退二弱回流"
+        },
+        {
+          "id": "row-1791446201573-1d44b67b32942",
+          "change": 3.26,
+          "totalChange": 44.5309,
+          "date": "2026-10-08",
+          "segmentStage": "",
+          "note": ""
         }
       ]
     },
@@ -935,6 +951,14 @@
           "date": "2026-09-30",
           "segmentStage": "5-5",
           "note": "退二弱回流"
+        },
+        {
+          "id": "row-1791446219393-1603d52243852",
+          "change": 0.12,
+          "totalChange": 54.7345,
+          "date": "2026-10-08",
+          "segmentStage": "",
+          "note": ""
         }
       ]
     },
@@ -1182,12 +1206,20 @@
           "date": "2026-09-30",
           "segmentStage": "5-5",
           "note": "退二强回流"
+        },
+        {
+          "id": "row-1791446232913-b71ce937807fa8",
+          "change": -0.99,
+          "totalChange": 17.4013,
+          "date": "2026-10-08",
+          "segmentStage": "",
+          "note": ""
         }
       ]
     }
   ],
   "timeRange": {
     "startDate": "2026-08-04",
-    "endDate": "2026-09-30"
+    "endDate": "2026-10-08"
   }
 }

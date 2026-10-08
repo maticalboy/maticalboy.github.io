@@ -1,7 +1,7 @@
 {
   "id": "period-1790076037143",
   "title": "金健周期",
-  "stage": "退二",
+  "stage": "退二回流",
   "sourcePeriodId": "period-1790065918941",
   "relationType": "独立",
   "groups": [
@@ -265,6 +265,14 @@
           "date": "2026-09-30",
           "segmentStage": "5-4",
           "note": "退二分歧"
+        },
+        {
+          "id": "row-1791446321832-1f4dc5b10848a8",
+          "change": 5.02,
+          "totalChange": 135.1041,
+          "date": "2026-10-08",
+          "segmentStage": "5-5",
+          "note": "退二强回流"
         }
       ]
     },
@@ -464,6 +472,14 @@
           "date": "2026-09-30",
           "segmentStage": "5-4",
           "note": "退二分歧"
+        },
+        {
+          "id": "row-1791446352723-a150a989b371c",
+          "change": -1.45,
+          "totalChange": 30.4557,
+          "date": "2026-10-08",
+          "segmentStage": "5-4",
+          "note": "退二分歧"
         }
       ]
     },
@@ -623,12 +639,20 @@
           "date": "2026-09-30",
           "segmentStage": "5-4",
           "note": "退二衰竭"
+        },
+        {
+          "id": "row-1791446371233-d87ee3f7869008",
+          "change": 0.01,
+          "totalChange": 10.3065,
+          "date": "2026-10-08",
+          "segmentStage": "5-5",
+          "note": "退二弱回流"
         }
       ]
     }
   ],
   "timeRange": {
     "startDate": "2026-08-17",
-    "endDate": "2026-09-30"
+    "endDate": "2026-10-08"
   }
 }

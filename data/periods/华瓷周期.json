@@ -97,6 +97,14 @@
           "date": "2026-09-30",
           "segmentStage": "4",
           "note": "震荡分歧"
+        },
+        {
+          "id": "row-1791445738075-c89683c671959",
+          "change": -10.01,
+          "totalChange": 57.687,
+          "date": "2026-10-08",
+          "segmentStage": "4",
+          "note": "震荡分歧"
         }
       ]
     },
@@ -160,6 +168,14 @@
           "date": "2026-09-30",
           "segmentStage": "4",
           "note": "震荡分歧"
+        },
+        {
+          "id": "row-1791445752615-021cf44cff71c8",
+          "change": 7.47,
+          "totalChange": 47.3187,
+          "date": "2026-10-08",
+          "segmentStage": "5-1",
+          "note": "震荡回流"
         }
       ]
     },
@@ -174,7 +190,7 @@
           "totalChange": 10.01,
           "date": "2026-09-28",
           "segmentStage": "3",
-          "note": ""
+          "note": "主升"
         },
         {
           "id": "row-1790752268161-90bd4c4625f5a",
@@ -182,7 +198,7 @@
           "totalChange": 20.978,
           "date": "2026-09-29",
           "segmentStage": "3",
-          "note": ""
+          "note": "主升"
         },
         {
           "id": "row-1790752268320-f31253338f763",
@@ -190,13 +206,21 @@
           "totalChange": 33.1242,
           "date": "2026-09-30",
           "segmentStage": "3",
-          "note": ""
+          "note": "主升爆量"
         },
         {
           "id": "row-1790752268460-1d61f4ecd4369",
+          "change": 10,
+          "totalChange": 46.4366,
+          "date": "2026-10-08",
+          "segmentStage": "3",
+          "note": "主升"
+        },
+        {
+          "id": "row-1791445779475-5acf899d16c0f8",
           "change": "",
           "totalChange": "",
-          "date": "2026-10-08",
+          "date": "2026-10-09",
           "segmentStage": "",
           "note": ""
         }
@@ -205,6 +229,6 @@
   ],
   "timeRange": {
     "startDate": "2026-09-15",
-    "endDate": "2026-09-30"
+    "endDate": "2026-10-08"
   }
 }
