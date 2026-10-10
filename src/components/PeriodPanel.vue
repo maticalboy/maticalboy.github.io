@@ -110,6 +110,14 @@
           </div>
           <strong :class="getChangeClass(stock.change)">{{ formatChange(stock.change) }}</strong>
           <div class="watch-stock-actions">
+            <button
+              class="ghost-btn"
+              type="button"
+              :disabled="refreshingWatchStockId === stock.id"
+              @click="$emit('refresh-watch-stock', stock.id)"
+            >
+              {{ refreshingWatchStockId === stock.id ? '刷新中' : '刷新' }}
+            </button>
             <button class="primary-btn" type="button" @click="$emit('preview-watch-stock', stock.id)">预览</button>
             <button class="period-delete-btn" type="button" @click="$emit('delete-watch-stock', stock.id)">删除</button>
           </div>
@@ -134,6 +142,10 @@ export default {
       required: true
     },
     deletingPeriodId: {
+      type: String,
+      default: ''
+    },
+    refreshingWatchStockId: {
       type: String,
       default: ''
     },

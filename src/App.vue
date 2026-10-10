@@ -11,6 +11,7 @@
       v-else-if="showPeriodPanel"
       :deleting-period-id="deletingPeriodId"
       :periods="sortedPeriods"
+      :refreshing-watch-stock-id="refreshingWatchStockId"
       :save-status="saveStatus"
       :watchlist="watchlist"
       @create-period="createPeriod"
@@ -18,6 +19,7 @@
       @delete-watch-stock="deleteWatchStock"
       @delete-period="deletePeriod"
       @preview-watch-stock="previewWatchStock"
+      @refresh-watch-stock="refreshWatchStock"
       @select-period="selectPeriod"
     />
 
@@ -95,6 +97,7 @@ export default {
       periodStages: PERIOD_STAGES,
       periods: [],
       previewStockId: '',
+      refreshingWatchStockId: '',
       saveStatus: {
         text: '未保存',
         type: 'idle'
@@ -223,7 +226,11 @@ export default {
         const existingIndex = this.watchlist.findIndex(item => item.secid && item.secid === stock.secid)
 
         if (existingIndex >= 0) {
-          this.watchlist.splice(existingIndex, 1, stock)
+          this.watchlist.splice(existingIndex, 1, {
+            ...stock,
+            id: this.watchlist[existingIndex].id,
+            drawings: this.watchlist[existingIndex].drawings || []
+          })
           await this.saveWatchlist('自选股票已更新')
           return
         }
@@ -235,6 +242,45 @@ export default {
           text: `查询失败：${error.message || '请确认股票名称/代码正确，并正在使用 npm run serve'}`,
           type: 'warn'
         }
+      }
+    },
+    async refreshWatchStock(stockId, options = {}) {
+      const stockIndex = this.watchlist.findIndex(item => item.id === stockId)
+      const stock = this.watchlist[stockIndex]
+      if (!stock || !stock.code) return false
+
+      this.refreshingWatchStockId = stockId
+      this.saveStatus = {
+        text: `正在刷新「${stock.name}」...`,
+        type: 'idle'
+      }
+
+      try {
+        const response = await fetch(`/api/stock/lookup?keyword=${encodeURIComponent(stock.code)}`)
+
+        if (!response.ok) return false
+
+        const refreshedStock = createWatchStockData(await response.json())
+        this.watchlist.splice(stockIndex, 1, {
+          ...stock,
+          name: refreshedStock.name || stock.name,
+          code: refreshedStock.code || stock.code,
+          secid: refreshedStock.secid || stock.secid,
+          change: refreshedStock.change,
+          klines: refreshedStock.klines,
+          drawings: stock.drawings || []
+        })
+
+        if (options.save !== false) await this.saveWatchlist('自选行情已刷新')
+        return true
+      } catch {
+        this.saveStatus = {
+          text: `刷新失败：${stock.name}`,
+          type: 'warn'
+        }
+        return false
+      } finally {
+        this.refreshingWatchStockId = ''
       }
     },
     async deleteWatchStock(stockId) {
@@ -1032,6 +1078,11 @@ h2 {
 .chart-actions button:disabled {
   cursor: not-allowed;
   opacity: 0.45;
+}
+
+.watch-stock-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .period-filters {
