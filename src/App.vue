@@ -1,12 +1,23 @@
 <template>
   <div id="app">
+    <KlinePreviewView
+      v-if="previewStock"
+      :stock="previewStock"
+      @back="previewStockId = ''"
+      @update-drawings="updateWatchStockDrawings"
+    />
+
     <PeriodPanel
-      v-if="showPeriodPanel"
+      v-else-if="showPeriodPanel"
       :deleting-period-id="deletingPeriodId"
       :periods="sortedPeriods"
       :save-status="saveStatus"
+      :watchlist="watchlist"
       @create-period="createPeriod"
+      @create-watch-stock="createWatchStock"
+      @delete-watch-stock="deleteWatchStock"
       @delete-period="deletePeriod"
+      @preview-watch-stock="previewWatchStock"
       @select-period="selectPeriod"
     />
 
@@ -49,6 +60,7 @@
 
 <script>
 import AppTopBar from './components/AppTopBar.vue'
+import KlinePreviewView from './components/KlinePreviewView.vue'
 import PeriodPanel from './components/PeriodPanel.vue'
 import {
   PERIOD_STAGES,
@@ -61,6 +73,7 @@ import {
   getDefaultSegmentStage,
   getNextRowDate
 } from './utils/periodData'
+import { createWatchStock as createWatchStockData, createWatchlist } from './utils/watchlistData'
 
 const ALL_PERIODS_ID = '__all__'
 
@@ -69,6 +82,7 @@ export default {
   components: {
     AppTopBar,
     GroupedTableView: () => import('./components/GroupedTableView.vue'),
+    KlinePreviewView,
     LineChartView: () => import('./components/LineChartView.vue'),
     PeriodPanel
   },
@@ -80,11 +94,13 @@ export default {
       periodRelationTypes: PERIOD_RELATION_TYPES,
       periodStages: PERIOD_STAGES,
       periods: [],
+      previewStockId: '',
       saveStatus: {
         text: '未保存',
         type: 'idle'
       },
-      showPeriodPanel: true
+      showPeriodPanel: true,
+      watchlist: []
     }
   },
   computed: {
@@ -124,10 +140,14 @@ export default {
       if (this.isAllPeriods) return this.allPeriodsView
 
       return this.periods.find(period => period.id === this.currentPeriodId) || this.periods[0] || createPeriodData()
+    },
+    previewStock() {
+      return this.watchlist.find(stock => stock.id === this.previewStockId) || null
     }
   },
   created() {
     this.loadPeriods()
+    this.loadWatchlist()
   },
   methods: {
     async loadPeriods() {
@@ -147,6 +167,18 @@ export default {
       }
 
       this.currentPeriodId = this.periods[0] ? this.periods[0].id : ''
+    },
+    async loadWatchlist() {
+      try {
+        const response = await fetch('/api/watchlist')
+
+        if (!response.ok) throw new Error('api unavailable')
+
+        const watchlist = await response.json()
+        this.watchlist = createWatchlist(watchlist)
+      } catch {
+        this.watchlist = []
+      }
     },
     selectPeriod(periodId) {
       this.currentPeriodId = periodId
@@ -171,6 +203,86 @@ export default {
       this.saveStatus = {
         text: '新增周期未保存',
         type: 'warn'
+      }
+    },
+    async createWatchStock(keyword) {
+      this.saveStatus = {
+        text: '正在查询行情...',
+        type: 'idle'
+      }
+
+      try {
+        const response = await fetch(`/api/stock/lookup?keyword=${encodeURIComponent(keyword)}`)
+
+        if (!response.ok) {
+          const error = await response.json().catch(() => ({}))
+          throw new Error(error.message || 'lookup failed')
+        }
+
+        const stock = createWatchStockData(await response.json())
+        const existingIndex = this.watchlist.findIndex(item => item.secid && item.secid === stock.secid)
+
+        if (existingIndex >= 0) {
+          this.watchlist.splice(existingIndex, 1, stock)
+          await this.saveWatchlist('自选股票已更新')
+          return
+        }
+
+        this.watchlist.push(stock)
+        await this.saveWatchlist('自选股票已添加')
+      } catch (error) {
+        this.saveStatus = {
+          text: `查询失败：${error.message || '请确认股票名称/代码正确，并正在使用 npm run serve'}`,
+          type: 'warn'
+        }
+      }
+    },
+    async deleteWatchStock(stockId) {
+      const stock = this.watchlist.find(item => item.id === stockId)
+      if (!stock) return
+
+      const confirmed = await this.confirmDelete(`确认删除自选股票「${stock.name}」吗？`)
+      if (!confirmed) return
+
+      this.watchlist = this.watchlist.filter(item => item.id !== stockId)
+      await this.saveWatchlist('自选股票已删除')
+    },
+    previewWatchStock(stockId) {
+      this.previewStockId = stockId
+    },
+    async updateWatchStockDrawings(drawings) {
+      const stock = this.watchlist.find(item => item.id === this.previewStockId)
+      if (!stock) return
+
+      stock.drawings = drawings
+      await this.saveWatchlist('画线已保存')
+    },
+    async saveWatchlist(successText = '自选股票已保存') {
+      this.saveStatus = {
+        text: '保存中...',
+        type: 'idle'
+      }
+
+      try {
+        const response = await fetch('/api/watchlist', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(this.watchlist)
+        })
+
+        if (!response.ok) throw new Error('save failed')
+
+        this.saveStatus = {
+          text: successText,
+          type: 'success'
+        }
+      } catch {
+        this.saveStatus = {
+          text: '自选保存失败，请确认正在使用 npm run serve',
+          type: 'warn'
+        }
       }
     },
     updatePeriodStage(stage) {
@@ -948,6 +1060,222 @@ h2 {
 .period-filter input {
   margin: 0;
   accent-color: #2563eb;
+}
+
+.watchlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 14px;
+}
+
+.watch-stock-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 34%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.92));
+  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.07);
+}
+
+.watch-stock-main {
+  display: flex;
+  min-width: 0;
+  gap: 12px;
+  align-items: center;
+}
+
+.watch-stock-avatar {
+  display: grid;
+  flex: 0 0 auto;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 14px;
+  color: #fff;
+  font-weight: 900;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.22);
+}
+
+.watch-stock-card h3 {
+  overflow: hidden;
+  margin: 0;
+  color: #172033;
+  font-size: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.watch-stock-card small {
+  display: block;
+  margin-top: 4px;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.watch-change {
+  color: #64748b;
+  font-size: 24px;
+  justify-self: end;
+}
+
+.watch-change.positive {
+  color: #dc2626;
+}
+
+.watch-change.negative {
+  color: #16a34a;
+}
+
+.watch-stock-actions {
+  display: flex;
+  grid-column: 1 / -1;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
+  padding-top: 10px;
+  border-top: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.kline-page {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 18px;
+  height: 100%;
+  padding: 24px;
+  background: #eef3fb;
+}
+
+.kline-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: center;
+  padding: 20px 22px;
+  border: 1px solid #dce5f3;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 24px 65px rgba(31, 41, 55, 0.08);
+}
+
+.kline-head h1 {
+  margin: 4px 0;
+  color: #172033;
+}
+
+.kline-head small {
+  color: #72809a;
+}
+
+.kline-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.kline-actions button {
+  padding: 9px 12px;
+  border: 0;
+  border-radius: 12px;
+  color: #334155;
+  font-weight: 800;
+  background: #edf2fb;
+}
+
+.kline-actions button.active {
+  color: #fff;
+  background: #2563eb;
+}
+
+.kline-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.kline-chart-box {
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid #dce5f3;
+  border-radius: 26px;
+  background: #fbfdff;
+  box-shadow: 0 24px 65px rgba(31, 41, 55, 0.08);
+}
+
+.kline-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+}
+
+.kline-axis {
+  stroke: #9aa8bd;
+  stroke-width: 1;
+}
+
+.kline-grid {
+  stroke: #e0e7f1;
+  stroke-dasharray: 5 7;
+}
+
+.kline-label {
+  fill: #667085;
+  font-size: 12px;
+}
+
+.candle-wick,
+.candle-body {
+  stroke-width: 1.5;
+}
+
+.candle-wick.up,
+.candle-body.up {
+  stroke: #dc2626;
+  fill: #dc2626;
+}
+
+.candle-wick.down,
+.candle-body.down {
+  stroke: #16a34a;
+  fill: #16a34a;
+}
+
+.volume-bar.up {
+  fill: rgba(220, 38, 38, 0.28);
+}
+
+.volume-bar.down {
+  fill: rgba(22, 163, 74, 0.28);
+}
+
+.drawing-line {
+  stroke: #f59e0b;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  cursor: pointer;
+}
+
+.drawing-line.selected {
+  stroke: #2563eb;
+  stroke-width: 4;
+}
+
+.drawing-line.preview {
+  opacity: 0.45;
+  stroke-dasharray: 6 6;
+}
+
+.snap-point {
+  fill: #f59e0b;
+  stroke: #fff;
+  stroke-width: 2;
+  filter: drop-shadow(0 2px 5px rgba(245, 158, 11, 0.45));
 }
 
 .compact-chart-tooltip,

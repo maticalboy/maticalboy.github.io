@@ -8,10 +8,11 @@
           <h1>周期选择</h1>
         </div>
       </div>
-      <button class="side-item active" type="button">周期</button>
+      <button :class="['side-item', { active: activeMenu === 'periods' }]" type="button" @click="activeMenu = 'periods'">周期</button>
+      <button :class="['side-item', { active: activeMenu === 'watchlist' }]" type="button" @click="activeMenu = 'watchlist'">自选</button>
     </aside>
 
-    <main class="period-content">
+    <main v-if="activeMenu === 'periods'" class="period-content">
       <div class="content-head">
         <div>
           <p class="eyebrow">选择一个周期进入主页</p>
@@ -81,6 +82,42 @@
         </article>
       </div>
     </main>
+
+    <main v-else class="period-content">
+      <div class="content-head">
+        <div>
+          <p class="eyebrow">自选观察池</p>
+          <h2>自选股票</h2>
+        </div>
+        <form class="period-create-form" @submit.prevent="submitWatchStock">
+          <input v-model.trim="watchStockKeyword" placeholder="股票名称或代码" aria-label="股票名称或代码" />
+          <button class="primary-btn" type="submit">查询添加</button>
+        </form>
+      </div>
+
+      <p v-if="saveStatus.text !== '未保存'" :class="['period-status', saveStatus.type]">
+        {{ saveStatus.text }}
+      </p>
+
+      <div v-if="watchlist.length" class="watchlist-grid">
+        <article v-for="stock in watchlist" :key="stock.id" class="watch-stock-card">
+          <div class="watch-stock-main">
+            <span class="watch-stock-avatar">{{ getStockInitial(stock.name) }}</span>
+            <div>
+              <h3>{{ stock.name }}</h3>
+              <small>{{ stock.code || '暂无代码' }} · {{ getKlineCount(stock) }} 根K线</small>
+            </div>
+          </div>
+          <strong :class="getChangeClass(stock.change)">{{ formatChange(stock.change) }}</strong>
+          <div class="watch-stock-actions">
+            <button class="primary-btn" type="button" @click="$emit('preview-watch-stock', stock.id)">预览</button>
+            <button class="period-delete-btn" type="button" @click="$emit('delete-watch-stock', stock.id)">删除</button>
+          </div>
+        </article>
+      </div>
+
+      <div v-else class="empty-state">还没有自选股票，先新增一个。</div>
+    </main>
   </section>
 </template>
 
@@ -99,11 +136,17 @@ export default {
     deletingPeriodId: {
       type: String,
       default: ''
+    },
+    watchlist: {
+      type: Array,
+      default: () => []
     }
   },
   data() {
     return {
-      periodTitle: ''
+      activeMenu: 'periods',
+      periodTitle: '',
+      watchStockKeyword: ''
     }
   },
   computed: {
@@ -128,6 +171,31 @@ export default {
 
       this.$emit('create-period', this.periodTitle)
       this.periodTitle = ''
+    },
+    submitWatchStock() {
+      if (!this.watchStockKeyword) return
+
+      this.$emit('create-watch-stock', this.watchStockKeyword)
+      this.watchStockKeyword = ''
+    },
+    formatChange(change) {
+      if (change === '' || change == null) return '--'
+
+      const sign = Number(change) > 0 ? '+' : ''
+      return `${sign}${change}%`
+    },
+    getChangeClass(change) {
+      return {
+        'watch-change': true,
+        positive: Number(change) > 0,
+        negative: Number(change) < 0
+      }
+    },
+    getStockInitial(name) {
+      return String(name || '股').slice(0, 1)
+    },
+    getKlineCount(stock) {
+      return Array.isArray(stock.klines) ? stock.klines.length : 0
     }
   }
 }
