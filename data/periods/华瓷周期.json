@@ -1,7 +1,7 @@
 {
   "id": "period-1790075022600",
   "title": "华瓷周期",
-  "stage": "震荡",
+  "stage": "退一回流",
   "sourcePeriodId": "period-1790071849754",
   "relationType": "承接",
   "groups": [
@@ -80,31 +80,39 @@
           "totalChange": 87.6778,
           "date": "2026-09-28",
           "segmentStage": "4",
-          "note": "震荡分歧"
+          "note": "震荡衰竭"
         },
         {
           "id": "row-1790670702786-c56d10233fdfd8",
           "change": 3.74,
           "totalChange": 94.697,
           "date": "2026-09-29",
-          "segmentStage": "4",
-          "note": "震荡衰竭"
+          "segmentStage": "5-1",
+          "note": "震荡回流"
         },
         {
           "id": "row-1790751728787-e54d6bccf402f8",
           "change": -10,
           "totalChange": 75.2273,
           "date": "2026-09-30",
-          "segmentStage": "4",
-          "note": "震荡分歧"
+          "segmentStage": "5-2",
+          "note": "退一分歧"
         },
         {
           "id": "row-1791445738075-c89683c671959",
           "change": -10.01,
           "totalChange": 57.687,
           "date": "2026-10-08",
-          "segmentStage": "4",
-          "note": "震荡分歧"
+          "segmentStage": "5-2",
+          "note": "退一分歧"
+        },
+        {
+          "id": "row-1791531550942-3437e35a13f7c",
+          "change": -3.44,
+          "totalChange": 52.2626,
+          "date": "2026-10-09",
+          "segmentStage": "5-2",
+          "note": "退一分歧"
         }
       ]
     },
@@ -166,16 +174,24 @@
           "change": -4.55,
           "totalChange": 37.0789,
           "date": "2026-09-30",
-          "segmentStage": "4",
-          "note": "震荡分歧"
+          "segmentStage": "5-2",
+          "note": "退一分歧"
         },
         {
           "id": "row-1791445752615-021cf44cff71c8",
           "change": 7.47,
           "totalChange": 47.3187,
           "date": "2026-10-08",
-          "segmentStage": "5-1",
-          "note": "震荡回流"
+          "segmentStage": "5-3",
+          "note": "退一强回流"
+        },
+        {
+          "id": "row-1791531633949-f719b3b5ea64e8",
+          "change": 2.15,
+          "totalChange": 50.486,
+          "date": "2026-10-09",
+          "segmentStage": "5-3",
+          "note": "退一弱回流"
         }
       ]
     },
@@ -218,17 +234,17 @@
         },
         {
           "id": "row-1791445779475-5acf899d16c0f8",
-          "change": "",
-          "totalChange": "",
+          "change": 10.04,
+          "totalChange": 61.1388,
           "date": "2026-10-09",
-          "segmentStage": "",
-          "note": ""
+          "segmentStage": "3",
+          "note": "主升爆量"
         }
       ]
     }
   ],
   "timeRange": {
     "startDate": "2026-09-15",
-    "endDate": "2026-10-08"
+    "endDate": "2026-10-09"
   }
 }

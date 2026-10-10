@@ -1,7 +1,7 @@
 {
   "id": "period-1790071849754",
   "title": "国芳周期",
-  "stage": "退二",
+  "stage": "退二回流",
   "sourcePeriodId": "period-1790065918941",
   "relationType": "承接",
   "groups": [
@@ -201,6 +201,14 @@
           "date": "2026-10-08",
           "segmentStage": "5-4",
           "note": "退二衰竭"
+        },
+        {
+          "id": "row-1791532038218-66a0190752f938",
+          "change": 10.01,
+          "totalChange": 97.0593,
+          "date": "2026-10-09",
+          "segmentStage": "5-5",
+          "note": "退二强回流"
         }
       ]
     },
@@ -352,12 +360,20 @@
           "date": "2026-10-08",
           "segmentStage": "5-4",
           "note": "退二分歧"
+        },
+        {
+          "id": "row-1791532053688-934587b02e29d",
+          "change": 1.85,
+          "totalChange": 7.9742,
+          "date": "2026-10-09",
+          "segmentStage": "",
+          "note": "退二衰竭"
         }
       ]
     }
   ],
   "timeRange": {
     "startDate": "2026-08-28",
-    "endDate": "2026-10-08"
+    "endDate": "2026-10-09"
   }
 }
