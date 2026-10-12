@@ -221,6 +221,7 @@ async function fetchStockWithKlines(keyword) {
 module.exports = defineConfig({
     transpileDependencies: false,
     devServer: {
+        port: 9997,
         setupMiddlewares(middlewares, devServer) {
             ensureDataDir()
 

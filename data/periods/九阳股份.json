@@ -1,0 +1,99 @@
+{
+  "id": "period-1791787336604",
+  "title": "九阳股份",
+  "stage": "主升",
+  "sourcePeriodId": "period-1790077466939",
+  "relationType": "承接",
+  "groups": [
+    {
+      "id": "group-1791787349393-38883b03561448",
+      "name": "九阳股份",
+      "role": "龙头",
+      "rows": [
+        {
+          "id": "row-1791787349393-98e5370bf3ce78",
+          "change": 10,
+          "totalChange": 10,
+          "date": "2026-09-28",
+          "segmentStage": "3",
+          "note": "主升"
+        },
+        {
+          "id": "row-1791787405093-26fed5bb9fd538",
+          "change": 10,
+          "totalChange": 21,
+          "date": "2026-09-29",
+          "segmentStage": "3",
+          "note": "主升"
+        },
+        {
+          "id": "row-1791787405693-a07627dabbc588",
+          "change": 10,
+          "totalChange": 33.1,
+          "date": "2026-09-30",
+          "segmentStage": "3",
+          "note": "主升"
+        },
+        {
+          "id": "row-1791787405843-d7478902153b9",
+          "change": 10,
+          "totalChange": 46.41,
+          "date": "2026-10-08",
+          "segmentStage": "3",
+          "note": "主升"
+        },
+        {
+          "id": "row-1791787406004-4873caf940cde8",
+          "change": 10,
+          "totalChange": 61.051,
+          "date": "2026-10-09",
+          "segmentStage": "3",
+          "note": "主升爆量"
+        },
+        {
+          "id": "row-1791787407403-ee37524d30bf98",
+          "change": 10,
+          "totalChange": 77.1561,
+          "date": "2026-10-12",
+          "segmentStage": "3",
+          "note": "主升缩量突破"
+        },
+        {
+          "id": "row-1791787407623-913132eeb70d8",
+          "change": "",
+          "totalChange": "",
+          "date": "2026-10-13",
+          "segmentStage": "",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "group-1791787525033-809b793c97cd68",
+      "name": "丽人丽妆",
+      "role": "补涨龙",
+      "rows": [
+        {
+          "id": "row-1791787525033-7705d7c02c3ab",
+          "change": 10,
+          "totalChange": 10,
+          "date": "2026-10-09",
+          "segmentStage": "3",
+          "note": "主升"
+        },
+        {
+          "id": "row-1791787547943-581f1d5fc158f8",
+          "change": 9.96,
+          "totalChange": 20.956,
+          "date": "2026-10-12",
+          "segmentStage": "3",
+          "note": "主升"
+        }
+      ]
+    }
+  ],
+  "timeRange": {
+    "startDate": "2026-09-28",
+    "endDate": "2026-10-13"
+  }
+}
