@@ -1,0 +1,147 @@
+{
+  "id": "period-1791875306999",
+  "title": "新华传媒",
+  "stage": "主升",
+  "sourcePeriodId": "",
+  "relationType": "独立",
+  "groups": [
+    {
+      "id": "group-1791875371498-54100025743348",
+      "name": "新华传媒",
+      "role": "龙头",
+      "rows": [
+        {
+          "id": "row-1791875371498-591d03afe10b68",
+          "change": 10,
+          "totalChange": 10,
+          "date": "2026-09-21",
+          "segmentStage": "3",
+          "note": "主升"
+        },
+        {
+          "id": "row-1791875423818-8739238cebb61",
+          "change": 10,
+          "totalChange": 21,
+          "date": "2026-09-22",
+          "segmentStage": "3",
+          "note": "主升"
+        },
+        {
+          "id": "row-1791875423957-5e3ce364272b78",
+          "change": 10,
+          "totalChange": 33.1,
+          "date": "2026-09-23",
+          "segmentStage": "3",
+          "note": "主升"
+        },
+        {
+          "id": "row-1791875424117-14783d63e7a3f",
+          "change": 10,
+          "totalChange": 46.41,
+          "date": "2026-09-24",
+          "segmentStage": "3",
+          "note": "主升"
+        },
+        {
+          "id": "row-1791875424267-8417af581b5c6",
+          "change": 10,
+          "totalChange": 61.051,
+          "date": "2026-09-28",
+          "segmentStage": "3",
+          "note": "主升"
+        },
+        {
+          "id": "row-1791875424427-9d9bbea30c024",
+          "change": 10,
+          "totalChange": 77.1561,
+          "date": "2026-09-29",
+          "segmentStage": "3",
+          "note": "主升"
+        },
+        {
+          "id": "row-1791875432188-2c8e190aa2ccc",
+          "change": 10,
+          "totalChange": 94.8717,
+          "date": "2026-09-30",
+          "segmentStage": "3",
+          "note": "主升"
+        },
+        {
+          "id": "row-1791875432337-d890956ad58da",
+          "change": 10,
+          "totalChange": 114.3589,
+          "date": "2026-10-08",
+          "segmentStage": "3",
+          "note": "主升"
+        },
+        {
+          "id": "row-1791875432477-225199efac3798",
+          "change": 10,
+          "totalChange": 135.7948,
+          "date": "2026-10-09",
+          "segmentStage": "3",
+          "note": "主升爆量"
+        },
+        {
+          "id": "row-1791875438067-ff17686943d4b",
+          "change": 10,
+          "totalChange": 159.3742,
+          "date": "2026-10-12",
+          "segmentStage": "3",
+          "note": "主升"
+        },
+        {
+          "id": "row-1791875441477-e483dac28a824",
+          "change": 0.01,
+          "totalChange": 159.4002,
+          "date": "2026-10-13",
+          "segmentStage": "3",
+          "note": "主升"
+        },
+        {
+          "id": "row-1791875492447-29ca20d156de5",
+          "change": "",
+          "totalChange": "",
+          "date": "2026-10-14",
+          "segmentStage": "",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "group-1791875494387-d08c0819096b7",
+      "name": "丽人丽妆",
+      "role": "补涨龙",
+      "rows": [
+        {
+          "id": "row-1791875494387-1d2e1877348958",
+          "change": 10,
+          "totalChange": 10,
+          "date": "2026-10-09",
+          "segmentStage": "3",
+          "note": "主升"
+        },
+        {
+          "id": "row-1791875514848-7e2529460041d",
+          "change": 10,
+          "totalChange": 21,
+          "date": "2026-10-12",
+          "segmentStage": "3",
+          "note": "主升"
+        },
+        {
+          "id": "row-1791875515067-1da125f29d187",
+          "change": 10,
+          "totalChange": 33.1,
+          "date": "2026-10-13",
+          "segmentStage": "3",
+          "note": "主升爆量"
+        }
+      ]
+    }
+  ],
+  "timeRange": {
+    "startDate": "2026-09-21",
+    "endDate": "2026-10-14"
+  }
+}

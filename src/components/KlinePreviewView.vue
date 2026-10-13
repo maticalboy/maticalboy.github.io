@@ -78,7 +78,7 @@
         />
 
         <g
-          v-for="drawing in drawings"
+          v-for="drawing in renderedDrawings"
           :key="drawing.id"
           :clip-path="drawing.area === 'volume' ? 'url(#volume-drawing-clip)' : 'url(#price-drawing-clip)'"
         >
@@ -139,8 +139,8 @@ export default {
         this.drawings = Array.isArray(stock.drawings) ? stock.drawings.map(drawing => ({
           id: drawing.id,
           area: drawing.area || 'price',
-          start: { ...drawing.start },
-          end: { ...drawing.end }
+          start: this.normalizePoint(drawing.start, drawing.area || 'price'),
+          end: this.normalizePoint(drawing.end, drawing.area || 'price')
         })) : []
         this.selectedDrawingId = ''
         this.pendingPoint = null
@@ -221,6 +221,13 @@ export default {
       if (!this.hoverPoint) return null
 
       return this.getNearestSnapPoint(this.hoverPoint)
+    },
+    renderedDrawings() {
+      return this.drawings.map(drawing => ({
+        ...drawing,
+        start: this.getCanvasPoint(drawing.start, drawing.area || 'price'),
+        end: this.getCanvasPoint(drawing.end, drawing.area || 'price')
+      }))
     },
     priceTicks() {
       const ticks = []
@@ -313,7 +320,7 @@ export default {
       this.pendingPoint = null
     },
     addDrawing(drawing) {
-      this.drawings.push(drawing)
+      this.drawings.push(this.normalizeDrawing(drawing))
       this.selectedDrawingId = drawing.id
       this.emitDrawingsChange()
     },
@@ -337,6 +344,63 @@ export default {
         start: { ...drawing.start },
         end: { ...drawing.end }
       })))
+    },
+    getAreaBounds(area) {
+      return area === 'volume'
+        ? {
+          left: this.padding.left,
+          right: this.width - this.padding.right,
+          top: this.volumeTop,
+          bottom: this.volumeBottom
+        }
+        : {
+          left: this.padding.left,
+          right: this.width - this.padding.right,
+          top: this.padding.top,
+          bottom: this.priceBottom
+        }
+    },
+    clampRatio(value) {
+      if (!Number.isFinite(value)) return 0
+
+      return Math.min(Math.max(value, 0), 1)
+    },
+    normalizePoint(point = {}, area = 'price') {
+      if (point.xRatio != null && point.yRatio != null) {
+        return {
+          xRatio: this.clampRatio(Number(point.xRatio)),
+          yRatio: Number(point.yRatio)
+        }
+      }
+
+      const bounds = this.getAreaBounds(area)
+      const areaWidth = bounds.right - bounds.left || 1
+      const areaHeight = bounds.bottom - bounds.top || 1
+
+      return {
+        xRatio: this.clampRatio((Number(point.x) - bounds.left) / areaWidth),
+        yRatio: (Number(point.y) - bounds.top) / areaHeight
+      }
+    },
+    normalizeDrawing(drawing) {
+      const area = drawing.area || 'price'
+
+      return {
+        id: drawing.id,
+        area,
+        start: this.normalizePoint(drawing.start, area),
+        end: this.normalizePoint(drawing.end, area)
+      }
+    },
+    getCanvasPoint(point = {}, area = 'price') {
+      if (point.x != null && point.y != null && point.xRatio == null && point.yRatio == null) return point
+
+      const bounds = this.getAreaBounds(area)
+
+      return {
+        x: bounds.left + (bounds.right - bounds.left) * this.clampRatio(Number(point.xRatio)),
+        y: bounds.top + (bounds.bottom - bounds.top) * Number(point.yRatio)
+      }
     },
     getPreviewEndPoint() {
       if (!this.pendingPoint || !this.hoverPoint) return this.hoverPoint
